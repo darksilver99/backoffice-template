@@ -1,3 +1,4 @@
+import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -106,47 +107,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                  child: Material(
-                    color: Colors.transparent,
-                    elevation: 3.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(8.0),
-                        topLeft: Radius.circular(0.0),
-                        topRight: Radius.circular(8.0),
-                      ),
-                    ),
-                    child: Container(
-                      width: 60.0,
-                      height: 60.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(8.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(8.0),
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.menu_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 32.0,
-                      ),
-                    ),
-                  ),
-                ),
+              wrapWithModel(
+                model: _model.menuButtonViewModel,
+                updateCallback: () => setState(() {}),
+                child: MenuButtonViewWidget(),
               ),
             ],
           ),

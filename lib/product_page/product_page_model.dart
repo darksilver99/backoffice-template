@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -32,15 +33,19 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
+  // Model for MenuButtonView component.
+  late MenuButtonViewModel menuButtonViewModel;
 
   @override
   void initState(BuildContext context) {
     menuViewModel = createModel(context, () => MenuViewModel());
+    menuButtonViewModel = createModel(context, () => MenuButtonViewModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     menuViewModel.dispose();
+    menuButtonViewModel.dispose();
   }
 }
