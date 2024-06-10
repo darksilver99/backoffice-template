@@ -47,6 +47,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'ProductPage',
+          path: '/productPage',
+          builder: (context, params) => ProductPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -1,3 +1,4 @@
+import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -74,6 +75,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ],
               ),
+              Expanded(
+                child: wrapWithModel(
+                  model: _model.menuViewModel,
+                  updateCallback: () => setState(() {}),
+                  child: MenuViewWidget(),
+                ),
+              ),
             ],
           ),
         ),
@@ -81,7 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Page Title',
+            'Dashboard',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
