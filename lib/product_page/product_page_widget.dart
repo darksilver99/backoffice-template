@@ -244,6 +244,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       ),
                                 )),
                               ),
+                              onSort: onSortChanged,
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
