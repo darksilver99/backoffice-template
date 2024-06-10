@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,6 +41,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         )!
             .toList()
             .cast<dynamic>();
+        _model.pageTotal = getJsonField(
+          (_model.apiResultmmq?.jsonBody ?? ''),
+          r'''$.total''',
+        );
         setState(() {});
       }
     });
@@ -134,6 +139,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         return FlutterFlowDataTable<dynamic>(
                           controller: _model.paginatedDataTableController,
                           data: productTmpList,
+                          numRows: _model.pageTotal,
                           columnsBuilder: (onSortChanged) => [
                             DataColumn2(
                               label: DefaultTextStyle.merge(
@@ -189,6 +195,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   selected,
                                   onSelectChanged) =>
                               DataRow(
+                            selected: selected,
+                            onSelectChanged: onSelectChanged,
                             color: MaterialStateProperty.all(
                               productTmpListIndex % 2 == 0
                                   ? FlutterFlowTheme.of(context)
@@ -235,8 +243,29 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               ),
                             ].map((c) => DataCell(c)).toList(),
                           ),
+                          onPageChanged: (currentRowIndex) async {
+                            _model.apiResultyhb = await ProductlistCall.call(
+                              start: _model.pageIndex.toString(),
+                            );
+                            if ((_model.apiResultyhb?.succeeded ?? true)) {
+                              _model.pageIndex = _model.pageIndex + 1;
+                              _model.productList = functions
+                                  .addNewList(
+                                      productTmpList.toList(),
+                                      getJsonField(
+                                        (_model.apiResultyhb?.jsonBody ?? ''),
+                                        r'''$.data''',
+                                        true,
+                                      )!)
+                                  .toList()
+                                  .cast<dynamic>();
+                              setState(() {});
+                            }
+
+                            setState(() {});
+                          },
                           paginated: true,
-                          selectable: false,
+                          selectable: true,
                           hidePaginator: false,
                           showFirstLastButtons: false,
                           headingRowHeight: 75.0,
@@ -251,6 +280,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           horizontalDividerThickness: 1.0,
                           addVerticalDivider: false,
+                          checkboxUnselectedFillColor: Colors.transparent,
+                          checkboxSelectedFillColor: Colors.transparent,
+                          checkboxCheckColor: Color(0x8A000000),
+                          checkboxUnselectedBorderColor: Color(0x8A000000),
+                          checkboxSelectedBorderColor: Color(0x8A000000),
                         );
                       },
                     ),

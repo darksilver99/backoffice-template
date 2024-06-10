@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'product_page_widget.dart' show ProductPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -23,6 +24,10 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   void updateProductListAtIndex(int index, Function(dynamic) updateFn) =>
       productList[index] = updateFn(productList[index]);
 
+  int? pageTotal;
+
+  int pageIndex = 1;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -33,6 +38,8 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
+  // Stores action output result for [Backend Call - API (productlist)] action in PaginatedDataTable widget.
+  ApiCallResponse? apiResultyhb;
   // Model for MenuButtonView component.
   late MenuButtonViewModel menuButtonViewModel;
 
