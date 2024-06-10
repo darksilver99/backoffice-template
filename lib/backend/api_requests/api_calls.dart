@@ -11,9 +11,9 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class ProductlistCall {
   static Future<ApiCallResponse> call({
-    int? rows,
-    int? start,
-    int? uid,
+    String? rows = '',
+    String? start = '',
+    String? uid = '',
     String? keyword = '',
     String? ids = '',
   }) async {
