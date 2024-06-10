@@ -469,6 +469,13 @@ class ApiManager {
       result = ApiCallResponse(null, {}, -1, exception: e);
     }
 
+    try{
+      print("result.bodyText");
+      print(result.bodyText);
+    }catch(e){
+      print(e);
+    }
+
     return result;
   }
 }
