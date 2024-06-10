@@ -2,9 +2,11 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'product_page_widget.dart' show ProductPageWidget;
 import 'package:flutter/material.dart';
@@ -28,6 +30,10 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
 
   int pageIndex = 1;
 
+  String sortKey = 'desc';
+
+  String sortField = 'create_date';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -35,6 +41,14 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   ApiCallResponse? apiResultmmq;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
+  // State field(s) for DropDown widget.
+  String? dropDownValue1;
+  FormFieldController<String>? dropDownValueController1;
+  // State field(s) for DropDown widget.
+  String? dropDownValue2;
+  FormFieldController<String>? dropDownValueController2;
+  // Stores action output result for [Backend Call - API (productlist)] action in Button widget.
+  ApiCallResponse? apiResultrcy;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();

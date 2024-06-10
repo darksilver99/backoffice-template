@@ -29,6 +29,7 @@ dependencies:
   cached_network_image: 3.3.1
   collection: 1.18.0
   data_table_2: 2.5.10
+  dropdown_button2: 2.3.9
   equatable: 2.0.5
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.1
