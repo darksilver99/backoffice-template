@@ -205,7 +205,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       .primaryBackground,
                             ),
                             cells: [
-                              Text(
+                              SelectionArea(
+                                  child: Text(
                                 getJsonField(
                                   productTmpListItem,
                                   r'''$.id''',
@@ -216,8 +217,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
-                              ),
-                              Text(
+                              )),
+                              SelectionArea(
+                                  child: Text(
                                 getJsonField(
                                   productTmpListItem,
                                   r'''$.subject''',
@@ -228,8 +230,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
-                              ),
-                              Text(
+                              )),
+                              SelectionArea(
+                                  child: Text(
                                 getJsonField(
                                   productTmpListItem,
                                   r'''$.normal_price''',
@@ -240,7 +243,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
-                              ),
+                              )),
                             ].map((c) => DataCell(c)).toList(),
                           ),
                           onPageChanged: (currentRowIndex) async {
