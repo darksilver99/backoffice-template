@@ -310,6 +310,19 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   child: Text(
                                 getJsonField(
                                   productTmpListItem,
+                                  r'''$.product_id''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
                                   r'''$.subject''',
                                 ).toString(),
                                 style: FlutterFlowTheme.of(context)
@@ -376,19 +389,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 getJsonField(
                                   productTmpListItem,
                                   r'''$.status''',
-                                ).toString(),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                              )),
-                              SelectionArea(
-                                  child: Text(
-                                getJsonField(
-                                  productTmpListItem,
-                                  r'''$.product_id''',
                                 ).toString(),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
