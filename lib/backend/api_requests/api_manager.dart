@@ -400,6 +400,9 @@ class ApiManager {
       return _apiCache[callOptions]!;
     }
 
+    print("apiUrl : $apiUrl");
+    print("params : $params");
+    print("body : $body");
     ApiCallResponse result;
     try {
       switch (callType) {
