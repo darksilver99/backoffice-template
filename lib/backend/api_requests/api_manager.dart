@@ -472,7 +472,14 @@ class ApiManager {
     try{
       print("result.bodyText");
       var json = jsonDecode(result.bodyText);
-      print(json["data"]);
+      List<dynamic> data = json["data"];
+      print("data.length : ${data.length}");
+      List<dynamic> idList = [];
+      for(var i = 0; i < data.length; i++){
+        idList.add(data[i]["id"]);
+      }
+      print("idList");
+      print(idList);
     }catch(e){
       print(e);
     }
