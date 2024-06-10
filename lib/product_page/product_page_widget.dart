@@ -421,6 +421,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
 
                             setState(() {});
                           },
+                          onSortChanged: (columnIndex, ascending) async {
+                            setState(() {});
+                          },
                           paginated: true,
                           selectable: false,
                           hidePaginator: false,
