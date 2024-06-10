@@ -16,6 +16,8 @@ class ProductlistCall {
     String? uid = '',
     String? keyword = '',
     String? ids = '',
+    String? sortField = '',
+    String? sortKey = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'productlist',
@@ -28,6 +30,8 @@ class ProductlistCall {
         'uid': uid,
         'keyword': keyword,
         'ids': ids,
+        'sort_field': sortField,
+        'sort_key': sortKey,
       },
       returnBody: true,
       encodeBodyUtf8: false,

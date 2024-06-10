@@ -2,9 +2,11 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -127,13 +129,147 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    Builder(
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(8.0, 64.0, 8.0, 32.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 8.0, 0.0),
+                          child: FlutterFlowDropDown<String>(
+                            controller: _model.dropDownValueController1 ??=
+                                FormFieldController<String>(
+                              _model.dropDownValue1 ??= 'create_date',
+                            ),
+                            options: List<String>.from(
+                                ['create_date', 'normal_price']),
+                            optionLabels: ['วันที่สร้างข้อมูล', 'ราคา'],
+                            onChanged: (val) =>
+                                setState(() => _model.dropDownValue1 = val),
+                            width: 300.0,
+                            height: 56.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintText: 'Please select...',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderWidth: 2.0,
+                            borderRadius: 8.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 4.0, 16.0, 4.0),
+                            hidesUnderline: true,
+                            isOverButton: true,
+                            isSearchable: false,
+                            isMultiSelect: false,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 8.0, 0.0),
+                          child: FlutterFlowDropDown<String>(
+                            controller: _model.dropDownValueController2 ??=
+                                FormFieldController<String>(
+                              _model.dropDownValue2 ??= 'desc',
+                            ),
+                            options: List<String>.from(['desc', 'asc']),
+                            optionLabels: ['จากมากไปน้อย', 'จากน้อยไปมาก'],
+                            onChanged: (val) =>
+                                setState(() => _model.dropDownValue2 = val),
+                            width: 300.0,
+                            height: 56.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintText: 'Please select...',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderWidth: 2.0,
+                            borderRadius: 8.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 4.0, 16.0, 4.0),
+                            hidesUnderline: true,
+                            isOverButton: true,
+                            isSearchable: false,
+                            isMultiSelect: false,
+                          ),
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            _model.apiResultrcy = await ProductlistCall.call(
+                              sortField: _model.dropDownValue1,
+                              sortKey: _model.dropDownValue2,
+                            );
+                            if ((_model.apiResultrcy?.succeeded ?? true)) {
+                              _model.productList = getJsonField(
+                                (_model.apiResultrcy?.jsonBody ?? ''),
+                                r'''$.data''',
+                                true,
+                              )!
+                                  .toList()
+                                  .cast<dynamic>();
+                              _model.sortKey = _model.dropDownValue1!;
+                              _model.sortField = _model.dropDownValue2!;
+                              setState(() {});
+                            }
+
+                            setState(() {});
+                          },
+                          text: 'Search',
+                          options: FFButtonOptions(
+                            height: 50.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Builder(
                       builder: (context) {
                         final productTmpList = _model.productList.toList();
                         return FlutterFlowDataTable<dynamic>(
@@ -158,7 +294,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 )),
                               ),
                               fixedWidth: 80.0,
-                              onSort: onSortChanged,
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
@@ -244,7 +379,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       ),
                                 )),
                               ),
-                              onSort: onSortChanged,
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
@@ -403,6 +537,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           onPageChanged: (currentRowIndex) async {
                             _model.apiResultyhb = await ProductlistCall.call(
                               start: _model.pageIndex.toString(),
+                              sortField: _model.dropDownValue1,
+                              sortKey: _model.dropDownValue2,
                             );
                             if ((_model.apiResultyhb?.succeeded ?? true)) {
                               _model.pageIndex = _model.pageIndex + 1;
@@ -430,7 +566,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           dataRowHeight: 48.0,
                           columnSpacing: 20.0,
                           headingRowColor: FlutterFlowTheme.of(context).primary,
-                          sortIconColor: FlutterFlowTheme.of(context).primary,
                           borderRadius: BorderRadius.circular(0.0),
                           addHorizontalDivider: true,
                           addTopAndBottomDivider: false,
@@ -442,13 +577,13 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         );
                       },
                     ),
-                    wrapWithModel(
-                      model: _model.menuButtonViewModel,
-                      updateCallback: () => setState(() {}),
-                      child: MenuButtonViewWidget(),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              wrapWithModel(
+                model: _model.menuButtonViewModel,
+                updateCallback: () => setState(() {}),
+                child: MenuButtonViewWidget(),
               ),
             ],
           ),
