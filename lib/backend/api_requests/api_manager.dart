@@ -471,7 +471,8 @@ class ApiManager {
 
     try{
       print("result.bodyText");
-      print(result.bodyText);
+      var json = jsonDecode(result.bodyText);
+      print(json["data"]);
     }catch(e){
       print(e);
     }
