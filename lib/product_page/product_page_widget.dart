@@ -144,7 +144,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             DataColumn2(
                               label: DefaultTextStyle.merge(
                                 softWrap: true,
-                                child: Text(
+                                child: SelectionArea(
+                                    child: Text(
                                   'id',
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
@@ -154,13 +155,14 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                       ),
-                                ),
+                                )),
                               ),
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
                                 softWrap: true,
-                                child: Text(
+                                child: SelectionArea(
+                                    child: Text(
                                   'หัวข้อ',
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
@@ -170,13 +172,14 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                       ),
-                                ),
+                                )),
                               ),
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
                                 softWrap: true,
-                                child: Text(
+                                child: SelectionArea(
+                                    child: Text(
                                   'ราคา',
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
@@ -186,7 +189,92 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                       ),
-                                ),
+                                )),
+                              ),
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'ราคาพิเศษ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'วันที่สร้างข้อมูล',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'สร้างโดย',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'สถานะ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'รหัสสินค้า',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
                               ),
                             ),
                           ],
@@ -195,8 +283,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   selected,
                                   onSelectChanged) =>
                               DataRow(
-                            selected: selected,
-                            onSelectChanged: onSelectChanged,
                             color: MaterialStateProperty.all(
                               productTmpListIndex % 2 == 0
                                   ? FlutterFlowTheme.of(context)
@@ -244,6 +330,71 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
+                                  r'''$.special_price''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
+                                  r'''$.create_date''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
+                                  r'''$.create_by''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
+                                  r'''$.status''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
+                              SelectionArea(
+                                  child: Text(
+                                getJsonField(
+                                  productTmpListItem,
+                                  r'''$.product_id''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              )),
                             ].map((c) => DataCell(c)).toList(),
                           ),
                           onPageChanged: (currentRowIndex) async {
@@ -268,9 +419,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             setState(() {});
                           },
                           paginated: true,
-                          selectable: true,
+                          selectable: false,
                           hidePaginator: false,
                           showFirstLastButtons: false,
+                          minWidth: 800.0,
                           headingRowHeight: 75.0,
                           dataRowHeight: 48.0,
                           columnSpacing: 20.0,
@@ -283,11 +435,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           horizontalDividerThickness: 1.0,
                           addVerticalDivider: false,
-                          checkboxUnselectedFillColor: Colors.transparent,
-                          checkboxSelectedFillColor: Colors.transparent,
-                          checkboxCheckColor: Color(0x8A000000),
-                          checkboxUnselectedBorderColor: Color(0x8A000000),
-                          checkboxSelectedBorderColor: Color(0x8A000000),
                         );
                       },
                     ),
