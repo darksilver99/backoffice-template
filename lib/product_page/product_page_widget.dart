@@ -243,7 +243,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           dataRowHeight: 48.0,
                           columnSpacing: 20.0,
                           headingRowColor: FlutterFlowTheme.of(context).primary,
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(0.0),
                           addHorizontalDivider: true,
                           addTopAndBottomDivider: false,
                           hideDefaultHorizontalDivider: true,
