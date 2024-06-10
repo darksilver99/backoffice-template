@@ -157,6 +157,25 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       ),
                                 )),
                               ),
+                              fixedWidth: 80.0,
+                              onSort: onSortChanged,
+                            ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'รหัสสินค้า',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
@@ -249,23 +268,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 child: SelectionArea(
                                     child: Text(
                                   'สถานะ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                      ),
-                                )),
-                              ),
-                            ),
-                            DataColumn2(
-                              label: DefaultTextStyle.merge(
-                                softWrap: true,
-                                child: SelectionArea(
-                                    child: Text(
-                                  'รหัสสินค้า',
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -427,6 +429,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           dataRowHeight: 48.0,
                           columnSpacing: 20.0,
                           headingRowColor: FlutterFlowTheme.of(context).primary,
+                          sortIconColor: FlutterFlowTheme.of(context).primary,
                           borderRadius: BorderRadius.circular(0.0),
                           addHorizontalDivider: true,
                           addTopAndBottomDivider: false,
