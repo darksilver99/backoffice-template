@@ -34,8 +34,6 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
 
   String sortField = 'create_date';
 
-  String? keyWord;
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
