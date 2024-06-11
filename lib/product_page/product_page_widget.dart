@@ -161,7 +161,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 8.0, 0.0),
+                                    0.0, 0.0, 8.0, 8.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller:
                                       _model.dropDownValueController1 ??=
@@ -205,7 +205,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 8.0, 0.0),
+                                    0.0, 0.0, 8.0, 8.0),
                                 child: FlutterFlowDropDown<String>(
                                   controller:
                                       _model.dropDownValueController2 ??=
@@ -251,7 +251,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 8.0, 0.0),
+                                    0.0, 0.0, 8.0, 8.0),
                                 child: Container(
                                   width: 300.0,
                                   height: 56.0,
@@ -671,6 +671,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           selectable: false,
                           hidePaginator: false,
                           showFirstLastButtons: false,
+                          height: 1000.0,
                           minWidth: 800.0,
                           headingRowHeight: 75.0,
                           dataRowHeight: 48.0,
