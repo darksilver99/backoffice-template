@@ -608,6 +608,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               start: _model.pageIndex.toString(),
                               sortField: _model.dropDownValue1,
                               sortKey: _model.dropDownValue2,
+                              keyword: _model.textController.text,
                             );
                             if ((_model.apiResultyhb?.succeeded ?? true)) {
                               _model.pageIndex = _model.pageIndex + 1;
