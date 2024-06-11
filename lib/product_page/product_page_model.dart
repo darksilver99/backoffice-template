@@ -34,6 +34,8 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
 
   String sortField = 'create_date';
 
+  String? keyWord;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -47,6 +49,10 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (productlist)] action in Button widget.
   ApiCallResponse? apiResultrcy;
   // State field(s) for PaginatedDataTable widget.
@@ -67,6 +73,9 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   void dispose() {
     unfocusNode.dispose();
     menuViewModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
+
     menuButtonViewModel.dispose();
   }
 }

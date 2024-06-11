@@ -51,6 +51,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
       }
     });
 
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -221,6 +224,66 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             isMultiSelect: false,
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 8.0, 0.0),
+                          child: Container(
+                            width: 300.0,
+                            height: 56.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextFormField(
+                                  controller: _model.textController,
+                                  focusNode: _model.textFieldFocusNode,
+                                  autofocus: false,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'ชื่อ, รายละเอียด',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    errorBorder: InputBorder.none,
+                                    focusedErrorBorder: InputBorder.none,
+                                    filled: true,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         FFButtonWidget(
                           onPressed: () async {
                             _model.paginatedDataTableController
@@ -231,6 +294,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                               sortField: _model.dropDownValue1,
                               sortKey: _model.dropDownValue2,
                               start: _model.pageIndex.toString(),
+                              keyword: _model.textController.text,
                             );
                             if ((_model.apiResultrcy?.succeeded ?? true)) {
                               _model.productList = getJsonField(
@@ -249,7 +313,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           },
                           text: 'Search',
                           options: FFButtonOptions(
-                            height: 50.0,
+                            height: 56.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
