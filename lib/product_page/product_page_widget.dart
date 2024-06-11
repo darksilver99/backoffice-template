@@ -292,7 +292,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             _model.pageIndex = 1;
-                            _model.isSearch = true;
                             _model.apiResultrcy = await ProductlistCall.call(
                               sortField: _model.dropDownValue1,
                               sortKey: _model.dropDownValue2,
@@ -313,10 +312,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 (_model.apiResultrcy?.jsonBody ?? ''),
                                 r'''$.total''',
                               );
-                              _model.isSearch = false;
                               _model.paginatedDataTableController
                                   .paginatorController
-                                  .goToFirstPage();
+                                  .goToPageWithRow(0);
                             }
 
                             setState(() {});
@@ -614,27 +612,25 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             ].map((c) => DataCell(c)).toList(),
                           ),
                           onPageChanged: (currentRowIndex) async {
-                            if (!_model.isSearch) {
-                              _model.apiResultyhb = await ProductlistCall.call(
-                                start: _model.pageIndex.toString(),
-                                sortField: _model.dropDownValue1,
-                                sortKey: _model.dropDownValue2,
-                                keyword: _model.textController.text,
-                              );
-                              if ((_model.apiResultyhb?.succeeded ?? true)) {
-                                _model.pageIndex = _model.pageIndex + 1;
-                                _model.productList = functions
-                                    .addNewList(
-                                        productTmpList.toList(),
-                                        getJsonField(
-                                          (_model.apiResultyhb?.jsonBody ?? ''),
-                                          r'''$.data''',
-                                          true,
-                                        )!)
-                                    .toList()
-                                    .cast<dynamic>();
-                                setState(() {});
-                              }
+                            _model.apiResultyhb = await ProductlistCall.call(
+                              start: _model.pageIndex.toString(),
+                              sortField: _model.dropDownValue1,
+                              sortKey: _model.dropDownValue2,
+                              keyword: _model.textController.text,
+                            );
+                            if ((_model.apiResultyhb?.succeeded ?? true)) {
+                              _model.pageIndex = _model.pageIndex + 1;
+                              _model.productList = functions
+                                  .addNewList(
+                                      productTmpList.toList(),
+                                      getJsonField(
+                                        (_model.apiResultyhb?.jsonBody ?? ''),
+                                        r'''$.data''',
+                                        true,
+                                      )!)
+                                  .toList()
+                                  .cast<dynamic>();
+                              setState(() {});
                             }
 
                             setState(() {});
