@@ -473,6 +473,7 @@ class ApiManager {
       print("result.bodyText");
       var json = jsonDecode(result.bodyText);
       List<dynamic> data = json["data"];
+      print("total : ${json["total"]}");
       print("data.length : ${data.length}");
       List<dynamic> idList = [];
       for(var i = 0; i < data.length; i++){
