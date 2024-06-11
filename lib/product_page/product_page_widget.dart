@@ -291,6 +291,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
+                            _model.paginatedDataTableController
+                                .paginatorController
+                                .goToFirstPage();
+                            await Future.delayed(
+                                const Duration(milliseconds: 500));
                             _model.pageIndex = 1;
                             _model.apiResultrcy = await ProductlistCall.call(
                               sortField: _model.dropDownValue1,
@@ -312,9 +317,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 (_model.apiResultrcy?.jsonBody ?? ''),
                                 r'''$.total''',
                               );
-                              _model.paginatedDataTableController
-                                  .paginatorController
-                                  .goToPageWithRow(0);
                             }
 
                             setState(() {});
