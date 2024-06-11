@@ -34,7 +34,12 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultmmq = await ProductlistCall.call();
+      _model.apiResultmmq = await ProductlistCall.call(
+        keyword: _model.textController.text,
+        start: '0',
+        sortField: _model.dropDownValue1,
+        sortKey: _model.dropDownValue2,
+      );
       if ((_model.apiResultmmq?.succeeded ?? true)) {
         _model.productList = getJsonField(
           (_model.apiResultmmq?.jsonBody ?? ''),
@@ -307,7 +312,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                 (_model.apiResultrcy?.jsonBody ?? ''),
                                 r'''$.total''',
                               );
-                              setState(() {});
                               _model.paginatedDataTableController
                                   .paginatorController
                                   .goToFirstPage();
