@@ -306,6 +306,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                   .cast<dynamic>();
                               _model.sortKey = _model.dropDownValue1!;
                               _model.sortField = _model.dropDownValue2!;
+                              _model.pageTotal = getJsonField(
+                                (_model.apiResultrcy?.jsonBody ?? ''),
+                                r'''$.total''',
+                              );
                               setState(() {});
                             }
 
