@@ -226,10 +226,11 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             _model.paginatedDataTableController
                                 .paginatorController
                                 .goToFirstPage();
+                            _model.pageIndex = 0;
                             _model.apiResultrcy = await ProductlistCall.call(
                               sortField: _model.dropDownValue1,
                               sortKey: _model.dropDownValue2,
-                              start: '0',
+                              start: _model.pageIndex.toString(),
                             );
                             if ((_model.apiResultrcy?.succeeded ?? true)) {
                               _model.productList = getJsonField(
