@@ -111,10 +111,61 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 65.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      'uid : ${valueOrDefault<String>(
+                        currentUserData?.uid?.toString(),
+                        '-',
+                      )}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
                     Text(
                       'first_name : ${valueOrDefault<String>(
                         currentUserData?.firstName,
+                        '-',
+                      )}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    Text(
+                      'last_name : ${valueOrDefault<String>(
+                        currentUserData?.lastName,
+                        '-',
+                      )}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    Text(
+                      'email : ${valueOrDefault<String>(
+                        currentUserData?.email,
+                        '-',
+                      )}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    Text(
+                      'phone : ${valueOrDefault<String>(
+                        currentUserData?.phone,
+                        '-',
+                      )}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    Text(
+                      'token : ${valueOrDefault<String>(
+                        currentUserData?.token,
                         '-',
                       )}',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
