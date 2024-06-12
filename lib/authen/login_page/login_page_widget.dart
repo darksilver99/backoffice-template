@@ -1,6 +1,5 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -284,36 +283,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       1) {
                                     GoRouter.of(context).prepareAuthEvent();
                                     await authManager.signIn(
-                                      userData: UserDataStruct(
-                                        uid: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.id''',
-                                        ),
-                                        firstName: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.first_name''',
-                                        ).toString(),
-                                        lastName: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.last_name''',
-                                        ).toString(),
-                                        email: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.email''',
-                                        ).toString(),
-                                        phone: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.phone''',
-                                        ).toString(),
-                                        photo: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.photo''',
-                                        ).toString(),
-                                        token: getJsonField(
-                                          (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.data.token''',
-                                        ).toString(),
-                                      ),
+                                      authenticationToken: getJsonField(
+                                        (_model.apiResult8v9?.jsonBody ?? ''),
+                                        r'''$.data.token''',
+                                      ).toString(),
+                                      userData: UserDataStruct.maybeFromMap(
+                                          (_model.apiResult8v9?.jsonBody ??
+                                              '')),
                                     );
                                     _navigate = () => context.goNamedAuth(
                                         'HomePage', context.mounted);
