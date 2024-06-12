@@ -272,7 +272,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
-                                _model.apiResult8v9 = await LoginCall.call();
+                                _model.apiResult8v9 = await LoginCall.call(
+                                  username: _model.usernameTextController.text,
+                                  password: _model.passwordTextController.text,
+                                );
                                 if ((_model.apiResult8v9?.succeeded ?? true)) {
                                   if (GeneralDataStruct.maybeFromMap(
                                               (_model.apiResult8v9?.jsonBody ??
