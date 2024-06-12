@@ -86,6 +86,33 @@ class InsertproductCall {
   }
 }
 
+class LoginCall {
+  static Future<ApiCallResponse> call({
+    String? username = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "${username}",
+  "password": "${password}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'login',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/login',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
