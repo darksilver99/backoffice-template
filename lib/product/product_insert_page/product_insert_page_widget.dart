@@ -666,7 +666,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                             .normalPriceTextController.text),
                                         specialPrice: double.tryParse(_model
                                             .specialPriceTextController.text),
-                                        uid: currentUserData?.uid?.toString(),
+                                        uid: currentUserData?.id?.toString(),
                                         token: currentUserData?.token,
                                       );
                                       if ((_model.apiResulto60?.succeeded ??

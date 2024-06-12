@@ -7,27 +7,20 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class UserDataStruct extends BaseStruct {
   UserDataStruct({
-    int? uid,
     String? firstName,
     String? lastName,
     String? email,
     String? phone,
     String? photo,
     String? token,
-  })  : _uid = uid,
-        _firstName = firstName,
+    int? id,
+  })  : _firstName = firstName,
         _lastName = lastName,
         _email = email,
         _phone = phone,
         _photo = photo,
-        _token = token;
-
-  // "uid" field.
-  int? _uid;
-  int get uid => _uid ?? 0;
-  set uid(int? val) => _uid = val;
-  void incrementUid(int amount) => _uid = uid + amount;
-  bool hasUid() => _uid != null;
+        _token = token,
+        _id = id;
 
   // "first_name" field.
   String? _firstName;
@@ -65,35 +58,38 @@ class UserDataStruct extends BaseStruct {
   set token(String? val) => _token = val;
   bool hasToken() => _token != null;
 
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+  void incrementId(int amount) => _id = id + amount;
+  bool hasId() => _id != null;
+
   static UserDataStruct fromMap(Map<String, dynamic> data) => UserDataStruct(
-        uid: castToType<int>(data['uid']),
         firstName: data['first_name'] as String?,
         lastName: data['last_name'] as String?,
         email: data['email'] as String?,
         phone: data['phone'] as String?,
         photo: data['photo'] as String?,
         token: data['token'] as String?,
+        id: castToType<int>(data['id']),
       );
 
   static UserDataStruct? maybeFromMap(dynamic data) =>
       data is Map ? UserDataStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
-        'uid': _uid,
         'first_name': _firstName,
         'last_name': _lastName,
         'email': _email,
         'phone': _phone,
         'photo': _photo,
         'token': _token,
+        'id': _id,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'uid': serializeParam(
-          _uid,
-          ParamType.int,
-        ),
         'first_name': serializeParam(
           _firstName,
           ParamType.String,
@@ -118,15 +114,14 @@ class UserDataStruct extends BaseStruct {
           _token,
           ParamType.String,
         ),
+        'id': serializeParam(
+          _id,
+          ParamType.int,
+        ),
       }.withoutNulls;
 
   static UserDataStruct fromSerializableMap(Map<String, dynamic> data) =>
       UserDataStruct(
-        uid: deserializeParam(
-          data['uid'],
-          ParamType.int,
-          false,
-        ),
         firstName: deserializeParam(
           data['first_name'],
           ParamType.String,
@@ -157,6 +152,11 @@ class UserDataStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -165,35 +165,35 @@ class UserDataStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is UserDataStruct &&
-        uid == other.uid &&
         firstName == other.firstName &&
         lastName == other.lastName &&
         email == other.email &&
         phone == other.phone &&
         photo == other.photo &&
-        token == other.token;
+        token == other.token &&
+        id == other.id;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([uid, firstName, lastName, email, phone, photo, token]);
+      .hash([firstName, lastName, email, phone, photo, token, id]);
 }
 
 UserDataStruct createUserDataStruct({
-  int? uid,
   String? firstName,
   String? lastName,
   String? email,
   String? phone,
   String? photo,
   String? token,
+  int? id,
 }) =>
     UserDataStruct(
-      uid: uid,
       firstName: firstName,
       lastName: lastName,
       email: email,
       phone: phone,
       photo: photo,
       token: token,
+      id: id,
     );

@@ -366,10 +366,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           ],
                         ),
                         Text(
-                          'uid : ${valueOrDefault<String>(
-                            currentUserData?.uid?.toString(),
-                            '-',
-                          )}',
+                          'uid : ${currentUserData?.id?.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',

@@ -115,7 +115,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   children: [
                     Text(
                       'uid : ${valueOrDefault<String>(
-                        currentUserData?.uid?.toString(),
+                        currentUserData?.id?.toString(),
                         '-',
                       )}',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
