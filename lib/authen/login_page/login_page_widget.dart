@@ -387,6 +387,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ],
                         ),
+                        Text(
+                          'uid : ${valueOrDefault<String>(
+                            currentUserData?.uid?.toString(),
+                            '-',
+                          )}',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
                       ],
                     ),
                   ),
