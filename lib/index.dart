@@ -1,3 +1,6 @@
 // Export pages
-export '/home_page/home_page_widget.dart' show HomePageWidget;
-export '/product_page/product_page_widget.dart' show ProductPageWidget;
+export '/dashboard/home_page/home_page_widget.dart' show HomePageWidget;
+export '/product/product_list_page/product_list_page_widget.dart'
+    show ProductListPageWidget;
+export '/product/product_insert_page/product_insert_page_widget.dart'
+    show ProductInsertPageWidget;

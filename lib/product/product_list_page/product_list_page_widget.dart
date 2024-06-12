@@ -12,25 +12,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'product_page_model.dart';
-export 'product_page_model.dart';
+import 'product_list_page_model.dart';
+export 'product_list_page_model.dart';
 
-class ProductPageWidget extends StatefulWidget {
-  const ProductPageWidget({super.key});
+class ProductListPageWidget extends StatefulWidget {
+  const ProductListPageWidget({super.key});
 
   @override
-  State<ProductPageWidget> createState() => _ProductPageWidgetState();
+  State<ProductListPageWidget> createState() => _ProductListPageWidgetState();
 }
 
-class _ProductPageWidgetState extends State<ProductPageWidget> {
-  late ProductPageModel _model;
+class _ProductListPageWidgetState extends State<ProductListPageWidget> {
+  late ProductListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductPageModel());
+    _model = createModel(context, () => ProductListPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -142,13 +142,13 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 64.0, 8.0, 32.0),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(8.0, 64.0, 8.0, 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
                           child: Wrap(
                             spacing: 0.0,
                             runSpacing: 0.0,
@@ -374,8 +374,48 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                             ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context.pushNamed('ProductInsertPage');
+                          },
+                          text: 'เพิ่ม',
+                          icon: Icon(
+                            Icons.add_rounded,
+                            size: 15.0,
+                          ),
+                          options: FFButtonOptions(
+                            width: 150.0,
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Builder(
@@ -671,7 +711,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                           selectable: false,
                           hidePaginator: false,
                           showFirstLastButtons: false,
-                          height: 1000.0,
                           minWidth: 800.0,
                           headingRowHeight: 75.0,
                           dataRowHeight: 48.0,
