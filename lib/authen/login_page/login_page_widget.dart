@@ -288,8 +288,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         r'''$.data.token''',
                                       ).toString(),
                                       userData: UserDataStruct.maybeFromMap(
-                                          (_model.apiResult8v9?.jsonBody ??
-                                              '')),
+                                          getJsonField(
+                                        (_model.apiResult8v9?.jsonBody ?? ''),
+                                        r'''$.data''',
+                                      )),
                                     );
                                     _navigate = () => context.goNamedAuth(
                                         'HomePage', context.mounted);
