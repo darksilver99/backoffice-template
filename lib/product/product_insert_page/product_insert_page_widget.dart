@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
@@ -165,7 +166,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                   child: TextFormField(
                                     controller: _model.subjectTextController,
                                     focusNode: _model.subjectFocusNode,
-                                    autofocus: true,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'ชื่อสินค้า',
@@ -258,7 +259,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                   child: TextFormField(
                                     controller: _model.productIDTextController,
                                     focusNode: _model.productIDFocusNode,
-                                    autofocus: true,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'รหัสสินค้า',
@@ -351,7 +352,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                   child: TextFormField(
                                     controller: _model.detailTextController,
                                     focusNode: _model.detailFocusNode,
-                                    autofocus: true,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'รายละเอียด',
@@ -446,7 +447,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                     controller:
                                         _model.normalPriceTextController,
                                     focusNode: _model.normalPriceFocusNode,
-                                    autofocus: true,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'ราคา',
@@ -540,7 +541,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                     controller:
                                         _model.specialPriceTextController,
                                     focusNode: _model.specialPriceFocusNode,
-                                    autofocus: true,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'ราคาพิเศษ',
@@ -665,6 +666,8 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                             .normalPriceTextController.text),
                                         specialPrice: double.tryParse(_model
                                             .specialPriceTextController.text),
+                                        uid: currentUserData?.uid?.toString(),
+                                        token: currentUserData?.token,
                                       );
                                       if ((_model.apiResulto60?.succeeded ??
                                           true)) {
