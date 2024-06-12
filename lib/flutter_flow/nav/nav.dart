@@ -91,16 +91,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
+          requireAuth: true,
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'ProductListPage',
           path: '/productListPage',
+          requireAuth: true,
           builder: (context, params) => ProductListPageWidget(),
         ),
         FFRoute(
           name: 'ProductInsertPage',
           path: '/productInsertPage',
+          requireAuth: true,
           builder: (context, params) => ProductInsertPageWidget(),
         ),
         FFRoute(
