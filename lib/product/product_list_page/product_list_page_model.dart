@@ -8,13 +8,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'product_page_widget.dart' show ProductPageWidget;
+import 'product_list_page_widget.dart' show ProductListPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
+class ProductListPageModel extends FlutterFlowModel<ProductListPageWidget> {
   ///  Local state fields for this page.
 
   List<dynamic> productList = [];
@@ -37,7 +37,7 @@ class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (productlist)] action in ProductPage widget.
+  // Stores action output result for [Backend Call - API (productlist)] action in ProductListPage widget.
   ApiCallResponse? apiResultmmq;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;

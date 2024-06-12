@@ -116,7 +116,7 @@ class _MenuViewWidgetState extends State<MenuViewWidget> {
               if (Navigator.of(context).canPop()) {
                 context.pop();
               }
-              context.pushNamed('ProductPage');
+              context.pushNamed('ProductListPage');
             },
             child: Container(
               width: double.infinity,
