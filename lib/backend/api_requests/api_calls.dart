@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../schema/structs/index.dart';
+
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
@@ -33,6 +35,48 @@ class ProductlistCall {
         'sort_field': sortField,
         'sort_key': sortKey,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class InsertproductCall {
+  static Future<ApiCallResponse> call({
+    String? token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
+    String? uid = '1',
+    String? productId = '',
+    String? subject = '',
+    String? detail = '',
+    double? normalPrice,
+    double? specialPrice,
+    String? displayImage = '',
+    FFUploadedFile? images,
+    int? displayImageIndex = 0,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'insertproduct',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/insert_product',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'uid': uid,
+        'product_id': productId,
+        'subject': subject,
+        'detail': detail,
+        'normal_price': normalPrice,
+        'special_price': specialPrice,
+        'display_image': displayImage,
+        'images[]': images,
+        'display_image_index': displayImageIndex,
+      },
+      bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
