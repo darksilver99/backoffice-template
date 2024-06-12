@@ -287,19 +287,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       userData: UserDataStruct(
                                         uid: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.id''',
+                                          r'''$.data.id''',
                                         ),
                                         firstName: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.first_name''',
+                                          r'''$.data.first_name''',
                                         ).toString(),
                                         lastName: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.last_name''',
+                                          r'''$.data.last_name''',
                                         ).toString(),
                                         email: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.email''',
+                                          r'''$.data.email''',
                                         ).toString(),
                                         phone: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
@@ -307,11 +307,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ).toString(),
                                         photo: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.photo''',
+                                          r'''$.data.photo''',
                                         ).toString(),
                                         token: getJsonField(
                                           (_model.apiResult8v9?.jsonBody ?? ''),
-                                          r'''$.token''',
+                                          r'''$.data.token''',
                                         ).toString(),
                                       ),
                                     );
