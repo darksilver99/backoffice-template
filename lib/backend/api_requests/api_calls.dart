@@ -44,6 +44,33 @@ class ProductlistCall {
   }
 }
 
+class ProductdetailCall {
+  static Future<ApiCallResponse> call({
+    int? id,
+    int? uid,
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'productdetail',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/product_detail',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'id': id,
+        'uid': uid,
+        'token': token,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class InsertproductCall {
   static Future<ApiCallResponse> call({
     String? token =
