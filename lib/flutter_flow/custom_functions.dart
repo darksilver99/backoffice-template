@@ -35,5 +35,13 @@ List<int> getSelectedIdList(
   List<dynamic> list,
   List<int> selectedIndexList,
 ) {
-  return [];
+  List<int> tmp = [];
+  for (int i = 0; i < selectedIndexList.length; i++) {
+    int index = selectedIndexList[i];
+    if (index >= 0 && index < list.length) {
+      int id = list[index]["id"];
+      tmp.add(id);
+    }
+  }
+  return tmp;
 }

@@ -422,14 +422,120 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            _model.selectedIDList = functions
-                                .getSelectedIdList(
-                                    _model.productList.toList(),
-                                    _model.paginatedDataTableController
-                                        .selectedRows
-                                        .toList())
+                            if (_model.paginatedDataTableController.selectedRows
                                 .toList()
-                                .cast<int>();
+                                .isNotEmpty) {
+                              _model.selectedIDList = functions
+                                  .getSelectedIdList(
+                                      _model.productList.toList(),
+                                      _model.paginatedDataTableController
+                                          .selectedRows
+                                          .toList())
+                                  .toList()
+                                  .cast<int>();
+                              setState(() {});
+                              _model.apiResult2sk =
+                                  await DeleteproductCall.call(
+                                token: currentUserData?.token,
+                                uid: currentUserData?.id?.toString(),
+                                id: (List<int> list) {
+                                  return list.join(',');
+                                }(_model.selectedIDList.toList()),
+                              );
+                              if ((_model.apiResult2sk?.succeeded ?? true)) {
+                                if (GeneralDataStruct.maybeFromMap(
+                                            (_model.apiResult2sk?.jsonBody ??
+                                                ''))
+                                        ?.status ==
+                                    1) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text(getJsonField(
+                                          (_model.apiResult2sk?.jsonBody ?? ''),
+                                          r'''$.msg''',
+                                        ).toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  _model.paginatedDataTableController
+                                      .paginatorController
+                                      .goToFirstPage();
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 500));
+                                  _model.pageIndex = 1;
+                                  _model.apiResultrcy22 =
+                                      await ProductlistCall.call(
+                                    sortField: _model.dropDownValue1,
+                                    sortKey: _model.dropDownValue2,
+                                    start: '0',
+                                    keyword: _model.textController.text,
+                                  );
+                                  if ((_model.apiResultrcy22?.succeeded ??
+                                      true)) {
+                                    _model.productList = getJsonField(
+                                      (_model.apiResultrcy22?.jsonBody ?? ''),
+                                      r'''$.data''',
+                                      true,
+                                    )!
+                                        .toList()
+                                        .cast<dynamic>();
+                                    _model.sortKey = _model.dropDownValue1!;
+                                    _model.sortField = _model.dropDownValue2!;
+                                    _model.pageTotal = getJsonField(
+                                      (_model.apiResultrcy22?.jsonBody ?? ''),
+                                      r'''$.total''',
+                                    );
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text(getJsonField(
+                                          (_model.apiResult2sk?.jsonBody ?? ''),
+                                          r'''$.msg''',
+                                        ).toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text((_model
+                                              .apiResult2sk?.exceptionMessage ??
+                                          '')),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            }
+
                             setState(() {});
                           },
                           text: 'ลบ',
@@ -819,7 +925,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                           id: getJsonField(
                                             productTmpListItem,
                                             r'''$.id''',
-                                          ),
+                                          ).toString(),
                                         );
                                         if ((_model.apiResulthok?.succeeded ??
                                             true)) {
