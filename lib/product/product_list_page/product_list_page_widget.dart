@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -419,8 +421,16 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                           ),
                         ),
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            _model.selectedIDList = functions
+                                .getSelectedIdList(
+                                    _model.productList.toList(),
+                                    _model.paginatedDataTableController
+                                        .selectedRows
+                                        .toList())
+                                .toList()
+                                .cast<int>();
+                            setState(() {});
                           },
                           text: 'ลบ',
                           icon: Icon(
@@ -604,7 +614,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                 softWrap: true,
                                 child: SelectionArea(
                                     child: Text(
-                                  'แก้ไข',
+                                  'จัดการ',
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -736,30 +746,198 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               )),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'ProductFormPage',
-                                    queryParameters: {
-                                      'id': serializeParam(
-                                        getJsonField(
-                                          productTmpListItem,
-                                          r'''$.id''',
-                                        ),
-                                        ParamType.int,
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 8.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'ProductFormPage',
+                                          queryParameters: {
+                                            'id': serializeParam(
+                                              getJsonField(
+                                                productTmpListItem,
+                                                r'''$.id''',
+                                              ),
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: Icon(
+                                        Icons.edit_rounded,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        size: 28.0,
                                       ),
-                                    }.withoutNulls,
-                                  );
-                                },
-                                child: Icon(
-                                  Icons.edit_rounded,
-                                  color: FlutterFlowTheme.of(context).error,
-                                  size: 28.0,
-                                ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('delete?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: Text('Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: Text('Confirm'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.apiResulthok =
+                                            await DeleteproductCall.call(
+                                          token: currentUserData?.token,
+                                          uid: currentUserData?.id?.toString(),
+                                          id: currentUserData?.id,
+                                        );
+                                        if ((_model.apiResulthok?.succeeded ??
+                                            true)) {
+                                          if (GeneralDataStruct.maybeFromMap(
+                                                      (_model.apiResulthok
+                                                              ?.jsonBody ??
+                                                          ''))
+                                                  ?.status ==
+                                              1) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResulthok
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            _model.paginatedDataTableController
+                                                .paginatorController
+                                                .goToFirstPage();
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 500));
+                                            _model.pageIndex = 1;
+                                            _model.apiResultrcy2 =
+                                                await ProductlistCall.call(
+                                              sortField: _model.dropDownValue1,
+                                              sortKey: _model.dropDownValue2,
+                                              start: '0',
+                                              keyword:
+                                                  _model.textController.text,
+                                            );
+                                            if ((_model
+                                                    .apiResultrcy2?.succeeded ??
+                                                true)) {
+                                              _model.productList = getJsonField(
+                                                (_model.apiResultrcy2
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$.data''',
+                                                true,
+                                              )!
+                                                  .toList()
+                                                  .cast<dynamic>();
+                                              _model.sortKey =
+                                                  _model.dropDownValue1!;
+                                              _model.sortField =
+                                                  _model.dropDownValue2!;
+                                              _model.pageTotal = getJsonField(
+                                                (_model.apiResultrcy2
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$.total''',
+                                              );
+                                            }
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResulthok
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text((_model.apiResulthok
+                                                        ?.exceptionMessage ??
+                                                    '')),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    child: Icon(
+                                      Icons.delete_rounded,
+                                      color: FlutterFlowTheme.of(context).error,
+                                      size: 28.0,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ].map((c) => DataCell(c)).toList(),
                           ),

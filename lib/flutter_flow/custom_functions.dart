@@ -30,3 +30,10 @@ List<FFUploadedFile>? addUploadImageNewList(
   currentList.addAll(newList);
   return currentList;
 }
+
+List<int> getSelectedIdList(
+  List<dynamic> list,
+  List<int> selectedIndexList,
+) {
+  return [];
+}
