@@ -714,7 +714,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         if (_model
                                             .uploadedLocalFiles.isNotEmpty) {
                                           _model.tmpImageList = _model
-                                              .tmpImageList
+                                              .uploadedLocalFiles
                                               .toList()
                                               .cast<FFUploadedFile>();
                                           setState(() {});
