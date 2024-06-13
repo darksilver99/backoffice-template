@@ -65,6 +65,10 @@ class ProductListPageModel extends FlutterFlowModel<ProductListPageWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (productlist)] action in Button widget.
   ApiCallResponse? apiResultrcy;
+  // Stores action output result for [Backend Call - API (deleteproduct)] action in Button widget.
+  ApiCallResponse? apiResult2sk;
+  // Stores action output result for [Backend Call - API (productlist)] action in Button widget.
+  ApiCallResponse? apiResultrcy22;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();

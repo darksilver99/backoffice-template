@@ -164,7 +164,7 @@ class DeleteproductCall {
     String? token =
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
     String? uid = '1',
-    int? id,
+    String? id = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'deleteproduct',
