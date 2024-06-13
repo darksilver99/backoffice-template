@@ -386,6 +386,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         _model.normalPriceTextController,
                                     focusNode: _model.normalPriceFocusNode,
                                     autofocus: false,
+                                    textCapitalization: TextCapitalization.none,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'ราคา',
@@ -447,13 +448,15 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
-                                    keyboardType: TextInputType.number,
+                                    keyboardType:
+                                        const TextInputType.numberWithOptions(
+                                            decimal: true),
                                     validator: _model
                                         .normalPriceTextControllerValidator
                                         .asValidator(context),
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
-                                          RegExp('[a-zA-Z0-9]'))
+                                          RegExp('r\'^\\d*\\.?\\d*\$\''))
                                     ],
                                   ),
                                 ),
@@ -532,7 +535,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         .asValidator(context),
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
-                                          RegExp('[a-zA-Z0-9]'))
+                                          RegExp('r\'^\\d*\\.?\\d*\$\''))
                                     ],
                                   ),
                                 ),
@@ -594,8 +597,12 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                               _model.detailTextController.text,
                                           normalPrice: double.tryParse(_model
                                               .normalPriceTextController.text),
-                                          specialPrice: double.tryParse(_model
-                                              .specialPriceTextController.text),
+                                          specialPrice: valueOrDefault<double>(
+                                            double.tryParse(_model
+                                                .specialPriceTextController
+                                                .text),
+                                            0.0,
+                                          ),
                                           uid: currentUserData?.id?.toString(),
                                           token: currentUserData?.token,
                                         );
