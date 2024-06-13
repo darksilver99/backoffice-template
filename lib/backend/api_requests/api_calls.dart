@@ -159,6 +159,34 @@ class UpdateproductCall {
   }
 }
 
+class DeleteproductCall {
+  static Future<ApiCallResponse> call({
+    String? token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
+    String? uid = '1',
+    int? id,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'deleteproduct',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/delete_product',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'uid': uid,
+        'id': id,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class RemoveimageCall {
   static Future<ApiCallResponse> call({
     String? token =
