@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'product_insert_page_model.dart';
@@ -130,39 +131,36 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      width: double.infinity,
-                      child: Form(
-                        key: _model.formKey,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 64.0, 0.0, 8.0),
-                                child: Container(
-                                  width: () {
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointMedium) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointLarge) {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    } else {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    }
-                                  }(),
+                      width: () {
+                        if (MediaQuery.sizeOf(context).width <
+                            kBreakpointSmall) {
+                          return MediaQuery.sizeOf(context).width;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointMedium) {
+                          return MediaQuery.sizeOf(context).width;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointLarge) {
+                          return (MediaQuery.sizeOf(context).width * 0.5);
+                        } else {
+                          return (MediaQuery.sizeOf(context).width * 0.5);
+                        }
+                      }(),
+                      decoration: BoxDecoration(),
+                      child: Container(
+                        width: double.infinity,
+                        child: Form(
+                          key: _model.formKey,
+                          autovalidateMode: AutovalidateMode.disabled,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 64.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.subjectTextController,
                                     focusNode: _model.subjectFocusNode,
@@ -233,29 +231,9 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Container(
-                                  width: () {
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointMedium) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointLarge) {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    } else {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    }
-                                  }(),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.productIDTextController,
                                     focusNode: _model.productIDFocusNode,
@@ -326,29 +304,9 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Container(
-                                  width: () {
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointMedium) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointLarge) {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    } else {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    }
-                                  }(),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.detailTextController,
                                     focusNode: _model.detailFocusNode,
@@ -420,29 +378,9 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Container(
-                                  width: () {
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointMedium) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointLarge) {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    } else {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    }
-                                  }(),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller:
                                         _model.normalPriceTextController,
@@ -509,34 +447,19 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
+                                    keyboardType: TextInputType.number,
                                     validator: _model
                                         .normalPriceTextControllerValidator
                                         .asValidator(context),
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[a-zA-Z0-9]'))
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 8.0),
-                                child: Container(
-                                  width: () {
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointMedium) {
-                                      return MediaQuery.sizeOf(context).width;
-                                    } else if (MediaQuery.sizeOf(context)
-                                            .width <
-                                        kBreakpointLarge) {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    } else {
-                                      return (MediaQuery.sizeOf(context).width *
-                                          0.5);
-                                    }
-                                  }(),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller:
                                         _model.specialPriceTextController,
@@ -603,24 +526,156 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
                                         ),
+                                    keyboardType: TextInputType.number,
                                     validator: _model
                                         .specialPriceTextControllerValidator
                                         .asValidator(context),
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[a-zA-Z0-9]'))
+                                    ],
                                   ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 8.0, 0.0),
-                                    child: FFButtonWidget(
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          context.safePop();
+                                        },
+                                        text: 'ยกเลิก',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ),
+                                    FFButtonWidget(
                                       onPressed: () async {
-                                        context.safePop();
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        _model.apiResulto60 =
+                                            await InsertproductCall.call(
+                                          productId: _model
+                                              .productIDTextController.text,
+                                          subject:
+                                              _model.subjectTextController.text,
+                                          detail:
+                                              _model.detailTextController.text,
+                                          normalPrice: double.tryParse(_model
+                                              .normalPriceTextController.text),
+                                          specialPrice: double.tryParse(_model
+                                              .specialPriceTextController.text),
+                                          uid: currentUserData?.id?.toString(),
+                                          token: currentUserData?.token,
+                                        );
+                                        if ((_model.apiResulto60?.succeeded ??
+                                            true)) {
+                                          if (GeneralDataStruct.maybeFromMap(
+                                                      (_model.apiResulto60
+                                                              ?.jsonBody ??
+                                                          ''))
+                                                  ?.status ==
+                                              1) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResulto60
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            context.safePop();
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResulto60
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text((_model.apiResulto60
+                                                        ?.exceptionMessage ??
+                                                    '')),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+
+                                        setState(() {});
                                       },
-                                      text: 'ยกเลิก',
+                                      text: 'บันทึก',
                                       options: FFButtonOptions(
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -628,8 +683,8 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -646,133 +701,10 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                  ),
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      _model.apiResulto60 =
-                                          await InsertproductCall.call(
-                                        productId:
-                                            _model.productIDTextController.text,
-                                        subject:
-                                            _model.subjectTextController.text,
-                                        detail:
-                                            _model.detailTextController.text,
-                                        normalPrice: double.tryParse(_model
-                                            .normalPriceTextController.text),
-                                        specialPrice: double.tryParse(_model
-                                            .specialPriceTextController.text),
-                                        uid: currentUserData?.id?.toString(),
-                                        token: currentUserData?.token,
-                                      );
-                                      if ((_model.apiResulto60?.succeeded ??
-                                          true)) {
-                                        if (GeneralDataStruct.maybeFromMap(
-                                                    (_model.apiResulto60
-                                                            ?.jsonBody ??
-                                                        ''))
-                                                ?.status ==
-                                            1) {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text(getJsonField(
-                                                  (_model.apiResulto60
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.msg''',
-                                                ).toString()),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                          context.safePop();
-                                        } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text(getJsonField(
-                                                  (_model.apiResulto60
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.msg''',
-                                                ).toString()),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        }
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text((_model.apiResulto60
-                                                      ?.exceptionMessage ??
-                                                  '')),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      }
-
-                                      setState(() {});
-                                    },
-                                    text: 'บันทึก',
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
