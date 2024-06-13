@@ -848,6 +848,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                                 ''))
                                                                             ?.status ==
                                                                         1) {
+                                                                      _model.removeFromCurrentImageList(
+                                                                          imageList2Item);
                                                                       setState(
                                                                           () {});
                                                                     } else {
@@ -1031,9 +1033,35 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                   Colors
                                                                       .transparent,
                                                               onTap: () async {
-                                                                _model.removeFromTmpImageList(
-                                                                    imageListItem);
-                                                                setState(() {});
+                                                                var confirmDialogResponse =
+                                                                    await showDialog<
+                                                                            bool>(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: Text('delete?'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                  child: Text('Cancel'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                  child: Text('Confirm'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        ) ??
+                                                                        false;
+                                                                if (confirmDialogResponse) {
+                                                                  _model.removeFromTmpImageList(
+                                                                      imageListItem);
+                                                                  setState(
+                                                                      () {});
+                                                                }
                                                               },
                                                               child: Icon(
                                                                 Icons
