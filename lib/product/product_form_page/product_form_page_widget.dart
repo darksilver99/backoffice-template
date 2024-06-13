@@ -576,7 +576,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         .asValidator(context),
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
-                                          RegExp('r\'^[0-9]*\\.?[0-9]*\$\''))
+                                          RegExp(r'^[0-9]*\.?[0-9]*$'))
                                     ],
                                   ),
                                 ),
@@ -655,7 +655,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         .asValidator(context),
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
-                                          RegExp('r\'^\\d*\\.?\\d*\$\''))
+                                          RegExp(r'^[0-9]*\.?[0-9]*$'))
                                     ],
                                   ),
                                 ),
