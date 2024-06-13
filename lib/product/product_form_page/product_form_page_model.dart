@@ -8,14 +8,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
-import 'product_insert_page_widget.dart' show ProductInsertPageWidget;
+import 'product_form_page_widget.dart' show ProductFormPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class ProductInsertPageModel extends FlutterFlowModel<ProductInsertPageWidget> {
+class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
   ///  Local state fields for this page.
 
   List<FFUploadedFile> tmpImageList = [];

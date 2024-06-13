@@ -101,10 +101,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProductListPageWidget(),
         ),
         FFRoute(
-          name: 'ProductInsertPage',
-          path: '/productInsertPage',
+          name: 'ProductFormPage',
+          path: '/productFormPage',
           requireAuth: true,
-          builder: (context, params) => ProductInsertPageWidget(),
+          builder: (context, params) => ProductFormPageWidget(
+            id: params.getParam(
+              'id',
+              ParamType.int,
+            ),
+          ),
         ),
         FFRoute(
           name: 'LoginPage',

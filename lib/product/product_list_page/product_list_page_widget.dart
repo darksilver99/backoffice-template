@@ -382,13 +382,49 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 8.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('ProductFormPage');
+                            },
+                            text: 'เพิ่ม',
+                            icon: Icon(
+                              Icons.add_rounded,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              width: 150.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
                         FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed('ProductInsertPage');
+                          onPressed: () {
+                            print('Button pressed ...');
                           },
-                          text: 'เพิ่ม',
+                          text: 'ลบ',
                           icon: Icon(
-                            Icons.add_rounded,
+                            Icons.delete_rounded,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(
@@ -398,7 +434,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -563,12 +599,31 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                 )),
                               ),
                             ),
+                            DataColumn2(
+                              label: DefaultTextStyle.merge(
+                                softWrap: true,
+                                child: SelectionArea(
+                                    child: Text(
+                                  'แก้ไข',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                              ),
+                            ),
                           ],
                           dataRowBuilder: (productTmpListItem,
                                   productTmpListIndex,
                                   selected,
                                   onSelectChanged) =>
                               DataRow(
+                            selected: selected,
+                            onSelectChanged: onSelectChanged,
                             color: MaterialStateProperty.all(
                               productTmpListIndex % 2 == 0
                                   ? FlutterFlowTheme.of(context)
@@ -681,6 +736,31 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               )),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'ProductFormPage',
+                                    queryParameters: {
+                                      'id': serializeParam(
+                                        getJsonField(
+                                          productTmpListItem,
+                                          r'''$.id''',
+                                        ),
+                                        ParamType.int,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.edit_rounded,
+                                  color: FlutterFlowTheme.of(context).error,
+                                  size: 28.0,
+                                ),
+                              ),
                             ].map((c) => DataCell(c)).toList(),
                           ),
                           onPageChanged: (currentRowIndex) async {
@@ -708,7 +788,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                             setState(() {});
                           },
                           paginated: true,
-                          selectable: false,
+                          selectable: true,
                           hidePaginator: false,
                           showFirstLastButtons: false,
                           minWidth: 800.0,
@@ -724,6 +804,11 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           horizontalDividerThickness: 1.0,
                           addVerticalDivider: false,
+                          checkboxUnselectedFillColor: Colors.transparent,
+                          checkboxSelectedFillColor: Colors.transparent,
+                          checkboxCheckColor: Color(0x8A000000),
+                          checkboxUnselectedBorderColor: Color(0x8A000000),
+                          checkboxSelectedBorderColor: Color(0x8A000000),
                         );
                       },
                     ),
