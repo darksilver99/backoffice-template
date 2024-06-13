@@ -1212,8 +1212,131 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
+                                              onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
+                                                _model.apiResultdgp =
+                                                    await UpdateproductCall
+                                                        .call(
+                                                  token: currentUserData?.token,
+                                                  uid: currentUserData?.id
+                                                      ?.toString(),
+                                                  subject: _model
+                                                      .subjectTextController
+                                                      .text,
+                                                  detail: _model
+                                                      .detailTextController
+                                                      .text,
+                                                  normalPrice: double.tryParse(
+                                                      _model
+                                                          .normalPriceTextController
+                                                          .text),
+                                                  specialPrice:
+                                                      valueOrDefault<double>(
+                                                    double.tryParse(_model
+                                                        .specialPriceTextController
+                                                        .text),
+                                                    0.0,
+                                                  ),
+                                                  imagesList:
+                                                      _model.tmpImageList,
+                                                  id: widget.id,
+                                                  uploadKey: getJsonField(
+                                                    (_model.apiResult6ha
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.data.uploadKey''',
+                                                  ).toString(),
+                                                );
+                                                if ((_model.apiResultdgp
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  if (GeneralDataStruct
+                                                              .maybeFromMap((_model
+                                                                      .apiResultdgp
+                                                                      ?.jsonBody ??
+                                                                  ''))
+                                                          ?.status ==
+                                                      1) {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text(getJsonField(
+                                                            (_model.apiResultdgp
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.msg''',
+                                                          ).toString()),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                    context.safePop();
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text(getJsonField(
+                                                            (_model.apiResultdgp
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.msg''',
+                                                          ).toString()),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text((_model
+                                                                .apiResultdgp
+                                                                ?.exceptionMessage ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+
+                                                setState(() {});
                                               },
                                               text: 'อัพเดท',
                                               options: FFButtonOptions(
