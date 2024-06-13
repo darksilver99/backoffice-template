@@ -425,60 +425,104 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                             if (_model.paginatedDataTableController.selectedRows
                                 .toList()
                                 .isNotEmpty) {
-                              _model.selectedIDList = functions
-                                  .getSelectedIdList(
-                                      _model.productList.toList(),
-                                      _model.paginatedDataTableController
-                                          .selectedRows
-                                          .toList())
-                                  .toList()
-                                  .cast<int>();
-                              setState(() {});
-                              _model.apiResult2sk =
-                                  await DeleteproductCall.call(
-                                token: currentUserData?.token,
-                                uid: currentUserData?.id?.toString(),
-                                id: (List<int> list) {
-                                  return list.join(',');
-                                }(_model.selectedIDList.toList()),
-                              );
-                              if ((_model.apiResult2sk?.succeeded ?? true)) {
-                                if (GeneralDataStruct.maybeFromMap(
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('delete ?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                _model.selectedIDList = functions
+                                    .getSelectedIdList(
+                                        _model.productList.toList(),
+                                        _model.paginatedDataTableController
+                                            .selectedRows
+                                            .toList())
+                                    .toList()
+                                    .cast<int>();
+                                setState(() {});
+                                _model.apiResult2sk =
+                                    await DeleteproductCall.call(
+                                  token: currentUserData?.token,
+                                  uid: currentUserData?.id?.toString(),
+                                  id: (List<int> list) {
+                                    return list.join(',');
+                                  }(_model.selectedIDList.toList()),
+                                );
+                                if ((_model.apiResult2sk?.succeeded ?? true)) {
+                                  if (GeneralDataStruct.maybeFromMap(
+                                              (_model.apiResult2sk?.jsonBody ??
+                                                  ''))
+                                          ?.status ==
+                                      1) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(getJsonField(
                                             (_model.apiResult2sk?.jsonBody ??
-                                                ''))
-                                        ?.status ==
-                                    1) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text(getJsonField(
-                                          (_model.apiResult2sk?.jsonBody ?? ''),
-                                          r'''$.msg''',
-                                        ).toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                  if (Navigator.of(context).canPop()) {
-                                    context.pop();
+                                                ''),
+                                            r'''$.msg''',
+                                          ).toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
+                                    context.pushNamed('ProductListPage');
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(getJsonField(
+                                            (_model.apiResult2sk?.jsonBody ??
+                                                ''),
+                                            r'''$.msg''',
+                                          ).toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
-                                  context.pushNamed('ProductListPage');
                                 } else {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text(getJsonField(
-                                          (_model.apiResult2sk?.jsonBody ?? ''),
-                                          r'''$.msg''',
-                                        ).toString()),
+                                        title: Text((_model.apiResult2sk
+                                                ?.exceptionMessage ??
+                                            '')),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
@@ -490,25 +534,23 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                     },
                                   );
                                 }
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text((_model
-                                              .apiResult2sk?.exceptionMessage ??
-                                          '')),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
                               }
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: Text('no selected row.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             }
 
                             setState(() {});
