@@ -1253,6 +1253,9 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                         ''),
                                                     r'''$.data.uploadKey''',
                                                   ).toString(),
+                                                  productId: _model
+                                                      .productIDTextController
+                                                      .text,
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??

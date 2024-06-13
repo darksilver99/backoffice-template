@@ -81,7 +81,6 @@ class InsertproductCall {
     String? detail = '',
     double? normalPrice,
     double? specialPrice,
-    String? displayImage = '',
     List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
   }) async {
@@ -101,7 +100,6 @@ class InsertproductCall {
         'detail': detail,
         'normal_price': normalPrice,
         'special_price': specialPrice,
-        'display_image': displayImage,
         'images[]': images,
         'display_image_index': displayImageIndex,
       },
@@ -124,11 +122,11 @@ class UpdateproductCall {
     String? detail = '',
     double? normalPrice,
     double? specialPrice,
-    String? displayImage = '',
     List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
     int? id,
     String? uploadKey = '',
+    String? productId = '',
   }) async {
     final images = imagesList ?? [];
 
@@ -145,11 +143,11 @@ class UpdateproductCall {
         'detail': detail,
         'normal_price': normalPrice,
         'special_price': specialPrice,
-        'display_image': displayImage,
         'images[]': images,
         'display_image_index': displayImageIndex,
         'id': id,
         'uploadKey': uploadKey,
+        'product_id': productId,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
