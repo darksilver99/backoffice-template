@@ -8,18 +8,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<List<String>> getCurrentImageList(
+Future<List<ImageDataStruct>> getCurrentImageList(
   List<dynamic> imageList,
   String? fieldName,
 ) async {
   // Add your function code here!
-
   if (imageList.isEmpty) {
     return [];
   }
-  List<String> tmp = [];
+  List<ImageDataStruct> tmp = [];
   for (var element in imageList) {
-    tmp.add(element[fieldName]);
+    ImageDataStruct imageData =
+        ImageDataStruct(id: element["id"], url: element[fieldName]);
+    tmp.add(imageData);
   }
   return tmp;
 }

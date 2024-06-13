@@ -1,5 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -31,14 +32,17 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
           int index, Function(FFUploadedFile) updateFn) =>
       tmpImageList[index] = updateFn(tmpImageList[index]);
 
-  List<String> currentImageList = [];
-  void addToCurrentImageList(String item) => currentImageList.add(item);
-  void removeFromCurrentImageList(String item) => currentImageList.remove(item);
+  List<ImageDataStruct> currentImageList = [];
+  void addToCurrentImageList(ImageDataStruct item) =>
+      currentImageList.add(item);
+  void removeFromCurrentImageList(ImageDataStruct item) =>
+      currentImageList.remove(item);
   void removeAtIndexFromCurrentImageList(int index) =>
       currentImageList.removeAt(index);
-  void insertAtIndexInCurrentImageList(int index, String item) =>
+  void insertAtIndexInCurrentImageList(int index, ImageDataStruct item) =>
       currentImageList.insert(index, item);
-  void updateCurrentImageListAtIndex(int index, Function(String) updateFn) =>
+  void updateCurrentImageListAtIndex(
+          int index, Function(ImageDataStruct) updateFn) =>
       currentImageList[index] = updateFn(currentImageList[index]);
 
   ///  State fields for stateful widgets in this page.
@@ -48,7 +52,7 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
   // Stores action output result for [Backend Call - API (productdetail)] action in ProductFormPage widget.
   ApiCallResponse? apiResult6ha;
   // Stores action output result for [Custom Action - getCurrentImageList] action in ProductFormPage widget.
-  List<String>? images;
+  List<ImageDataStruct>? images;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
   // State field(s) for Subject widget.
@@ -96,6 +100,8 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
   FocusNode? specialPriceFocusNode;
   TextEditingController? specialPriceTextController;
   String? Function(BuildContext, String?)? specialPriceTextControllerValidator;
+  // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
+  ApiCallResponse? apiResultwd5;
   bool isDataUploading = false;
   List<FFUploadedFile> uploadedLocalFiles = [];
 
