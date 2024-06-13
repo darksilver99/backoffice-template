@@ -1,5 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -109,7 +110,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
               )!,
               'file_path',
             );
-            _model.currentImageList = _model.images!.toList().cast<String>();
+            _model.currentImageList =
+                _model.images!.toList().cast<ImageDataStruct>();
             setState(() {});
           } else {
             await showDialog(
@@ -717,7 +719,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                     FlutterFlowExpandedImageView(
                                                                   image: Image
                                                                       .network(
-                                                                    imageList2Item,
+                                                                    imageList2Item
+                                                                        .url,
                                                                     fit: BoxFit
                                                                         .contain,
                                                                     errorBuilder: (context,
@@ -733,7 +736,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                   allowRotation:
                                                                       false,
                                                                   tag:
-                                                                      imageList2Item,
+                                                                      imageList2Item
+                                                                          .url,
                                                                   useHeroAnimation:
                                                                       true,
                                                                 ),
@@ -741,7 +745,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                             );
                                                           },
                                                           child: Hero(
-                                                            tag: imageList2Item,
+                                                            tag: imageList2Item
+                                                                .url,
                                                             transitionOnUserGestures:
                                                                 true,
                                                             child: ClipRRect(
@@ -751,7 +756,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                           8.0),
                                                               child:
                                                                   Image.network(
-                                                                imageList2Item,
+                                                                imageList2Item
+                                                                    .url,
                                                                 width: double
                                                                     .infinity,
                                                                 height: double
@@ -786,13 +792,117 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                         4.0,
                                                                         4.0,
                                                                         0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .remove_circle,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              size: 24.0,
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                var confirmDialogResponse =
+                                                                    await showDialog<
+                                                                            bool>(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return AlertDialog(
+                                                                              title: Text('delete?'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                  child: Text('Cancel'),
+                                                                                ),
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                  child: Text('Confirm'),
+                                                                                ),
+                                                                              ],
+                                                                            );
+                                                                          },
+                                                                        ) ??
+                                                                        false;
+                                                                if (confirmDialogResponse) {
+                                                                  _model.apiResultwd5 =
+                                                                      await RemoveimageCall
+                                                                          .call(
+                                                                    token: currentUserData
+                                                                        ?.token,
+                                                                    uid: currentUserData
+                                                                        ?.id
+                                                                        ?.toString(),
+                                                                    id: imageList2Item
+                                                                        .id,
+                                                                    table:
+                                                                        'product_attachment',
+                                                                  );
+                                                                  if ((_model
+                                                                          .apiResultwd5
+                                                                          ?.succeeded ??
+                                                                      true)) {
+                                                                    if (GeneralDataStruct.maybeFromMap((_model.apiResultwd5?.jsonBody ??
+                                                                                ''))
+                                                                            ?.status ==
+                                                                        1) {
+                                                                      setState(
+                                                                          () {});
+                                                                    } else {
+                                                                      await showDialog(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (alertDialogContext) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text(getJsonField(
+                                                                              (_model.apiResultwd5?.jsonBody ?? ''),
+                                                                              r'''$.msg''',
+                                                                            ).toString()),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    }
+                                                                  } else {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text((_model.apiResultwd5?.exceptionMessage ?? '')),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                  }
+                                                                }
+
+                                                                setState(() {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons
+                                                                    .remove_circle,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                size: 24.0,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
