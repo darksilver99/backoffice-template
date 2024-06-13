@@ -13,26 +13,30 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'product_insert_page_model.dart';
-export 'product_insert_page_model.dart';
+import 'product_form_page_model.dart';
+export 'product_form_page_model.dart';
 
-class ProductInsertPageWidget extends StatefulWidget {
-  const ProductInsertPageWidget({super.key});
+class ProductFormPageWidget extends StatefulWidget {
+  const ProductFormPageWidget({
+    super.key,
+    this.id,
+  });
+
+  final int? id;
 
   @override
-  State<ProductInsertPageWidget> createState() =>
-      _ProductInsertPageWidgetState();
+  State<ProductFormPageWidget> createState() => _ProductFormPageWidgetState();
 }
 
-class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
-  late ProductInsertPageModel _model;
+class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
+  late ProductFormPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductInsertPageModel());
+    _model = createModel(context, () => ProductFormPageModel());
 
     _model.subjectTextController ??= TextEditingController();
     _model.subjectFocusNode ??= FocusNode();
