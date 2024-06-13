@@ -816,7 +816,10 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                             await DeleteproductCall.call(
                                           token: currentUserData?.token,
                                           uid: currentUserData?.id?.toString(),
-                                          id: currentUserData?.id,
+                                          id: getJsonField(
+                                            productTmpListItem,
+                                            r'''$.id''',
+                                          ),
                                         );
                                         if ((_model.apiResulthok?.succeeded ??
                                             true)) {
