@@ -466,35 +466,10 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                       );
                                     },
                                   );
-                                  _model.paginatedDataTableController
-                                      .paginatorController
-                                      .goToFirstPage();
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 500));
-                                  _model.pageIndex = 1;
-                                  _model.apiResultrcy22 =
-                                      await ProductlistCall.call(
-                                    sortField: _model.dropDownValue1,
-                                    sortKey: _model.dropDownValue2,
-                                    start: '0',
-                                    keyword: _model.textController.text,
-                                  );
-                                  if ((_model.apiResultrcy22?.succeeded ??
-                                      true)) {
-                                    _model.productList = getJsonField(
-                                      (_model.apiResultrcy22?.jsonBody ?? ''),
-                                      r'''$.data''',
-                                      true,
-                                    )!
-                                        .toList()
-                                        .cast<dynamic>();
-                                    _model.sortKey = _model.dropDownValue1!;
-                                    _model.sortField = _model.dropDownValue2!;
-                                    _model.pageTotal = getJsonField(
-                                      (_model.apiResultrcy22?.jsonBody ?? ''),
-                                      r'''$.total''',
-                                    );
+                                  if (Navigator.of(context).canPop()) {
+                                    context.pop();
                                   }
+                                  context.pushNamed('ProductListPage');
                                 } else {
                                   await showDialog(
                                     context: context,
