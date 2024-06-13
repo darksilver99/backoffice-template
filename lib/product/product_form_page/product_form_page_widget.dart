@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -70,10 +71,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                       offset: _model.productIDTextController!.text.length);
             });
             setState(() {
-              _model.detailTextController?.text = getJsonField(
+              _model.detailTextController?.text =
+                  functions.checkEmptyOrNull(getJsonField(
                 (_model.apiResult6ha?.jsonBody ?? ''),
-                r'''$.detail''',
-              ).toString().toString();
+                r'''$.data.detail''',
+              ).toString().toString());
               _model.detailTextController?.selection = TextSelection.collapsed(
                   offset: _model.detailTextController!.text.length);
             });
