@@ -1122,8 +1122,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
 
                                         if (_model
                                             .uploadedLocalFiles.isNotEmpty) {
-                                          _model.tmpImageList = _model
-                                              .uploadedLocalFiles
+                                          _model.tmpImageList = functions
+                                              .addUploadImageNewList(
+                                                  _model.uploadedLocalFiles
+                                                      .toList(),
+                                                  _model.tmpImageList.toList())!
                                               .toList()
                                               .cast<FFUploadedFile>();
                                           setState(() {});
