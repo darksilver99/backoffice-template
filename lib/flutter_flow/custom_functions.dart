@@ -22,3 +22,11 @@ List<dynamic> addNewList(
 String checkEmptyOrNull(String? val) {
   return (val == null || val == "") ? "" : val;
 }
+
+List<FFUploadedFile>? addUploadImageNewList(
+  List<FFUploadedFile> newList,
+  List<FFUploadedFile> currentList,
+) {
+  currentList.addAll(newList);
+  return currentList;
+}
