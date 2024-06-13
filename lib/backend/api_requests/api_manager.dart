@@ -469,7 +469,7 @@ class ApiManager {
       result = ApiCallResponse(null, {}, -1, exception: e);
     }
 
-    try{
+    /*try{
       print("result.bodyText");
       var json = jsonDecode(result.bodyText);
       List<dynamic> data = json["data"];
@@ -483,7 +483,7 @@ class ApiManager {
       print(idList);
     }catch(e){
       print(e);
-    }
+    }*/
 
     return result;
   }
