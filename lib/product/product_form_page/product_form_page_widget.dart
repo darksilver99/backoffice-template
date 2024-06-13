@@ -717,14 +717,14 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                     FlutterFlowExpandedImageView(
                                                                   image: Image
                                                                       .network(
-                                                                    imageList2Item,
+                                                                    'https://picsum.photos/seed/880/600',
                                                                     fit: BoxFit
                                                                         .contain,
                                                                   ),
                                                                   allowRotation:
                                                                       false,
                                                                   tag:
-                                                                      imageList2Item,
+                                                                      'imageTag1',
                                                                   useHeroAnimation:
                                                                       true,
                                                                 ),
@@ -732,7 +732,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                             );
                                                           },
                                                           child: Hero(
-                                                            tag: imageList2Item,
+                                                            tag: 'imageTag1',
                                                             transitionOnUserGestures:
                                                                 true,
                                                             child: ClipRRect(
@@ -742,7 +742,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                           8.0),
                                                               child:
                                                                   Image.network(
-                                                                imageList2Item,
+                                                                'https://picsum.photos/seed/880/600',
                                                                 width: double
                                                                     .infinity,
                                                                 height: double
