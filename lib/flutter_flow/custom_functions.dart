@@ -18,3 +18,7 @@ List<dynamic> addNewList(
   currentList.addAll(newList);
   return currentList;
 }
+
+String checkEmptyOrNull(String? val) {
+  return (val == null || val == "") ? "" : val;
+}
