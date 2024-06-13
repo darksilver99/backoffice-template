@@ -647,12 +647,27 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                                                     4.0,
                                                                     4.0,
                                                                     0.0),
-                                                        child: Icon(
-                                                          Icons.remove_circle,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          size: 24.0,
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            _model.removeFromTmpImageList(
+                                                                imageListItem);
+                                                            setState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            Icons.remove_circle,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            size: 24.0,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
