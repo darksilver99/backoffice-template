@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'product_form_page_widget.dart' show ProductFormPageWidget;
 import 'package:flutter/material.dart';
@@ -30,12 +31,24 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
           int index, Function(FFUploadedFile) updateFn) =>
       tmpImageList[index] = updateFn(tmpImageList[index]);
 
+  List<String> currentImageList = [];
+  void addToCurrentImageList(String item) => currentImageList.add(item);
+  void removeFromCurrentImageList(String item) => currentImageList.remove(item);
+  void removeAtIndexFromCurrentImageList(int index) =>
+      currentImageList.removeAt(index);
+  void insertAtIndexInCurrentImageList(int index, String item) =>
+      currentImageList.insert(index, item);
+  void updateCurrentImageListAtIndex(int index, Function(String) updateFn) =>
+      currentImageList[index] = updateFn(currentImageList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - API (productdetail)] action in ProductFormPage widget.
   ApiCallResponse? apiResult6ha;
+  // Stores action output result for [Custom Action - getCurrentImageList] action in ProductFormPage widget.
+  List<String>? images;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
   // State field(s) for Subject widget.
