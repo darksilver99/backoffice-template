@@ -105,6 +105,8 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
   bool isDataUploading = false;
   List<FFUploadedFile> uploadedLocalFiles = [];
 
+  // Stores action output result for [Backend Call - API (updateproduct)] action in Button widget.
+  ApiCallResponse? apiResultdgp;
   // Stores action output result for [Backend Call - API (insertproduct)] action in Button widget.
   ApiCallResponse? apiResulto60;
   // Model for MenuButtonView component.
