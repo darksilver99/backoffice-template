@@ -14,7 +14,9 @@ class GeneralDataStruct extends BaseStruct {
   int? _status;
   int get status => _status ?? 0;
   set status(int? val) => _status = val;
-  void incrementStatus(int amount) => _status = status + amount;
+
+  void incrementStatus(int amount) => status = status + amount;
+
   bool hasStatus() => _status != null;
 
   static GeneralDataStruct fromMap(Map<String, dynamic> data) =>

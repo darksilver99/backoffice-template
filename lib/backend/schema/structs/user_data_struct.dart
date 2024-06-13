@@ -26,43 +26,51 @@ class UserDataStruct extends BaseStruct {
   String? _firstName;
   String get firstName => _firstName ?? '';
   set firstName(String? val) => _firstName = val;
+
   bool hasFirstName() => _firstName != null;
 
   // "last_name" field.
   String? _lastName;
   String get lastName => _lastName ?? '';
   set lastName(String? val) => _lastName = val;
+
   bool hasLastName() => _lastName != null;
 
   // "email" field.
   String? _email;
   String get email => _email ?? '';
   set email(String? val) => _email = val;
+
   bool hasEmail() => _email != null;
 
   // "phone" field.
   String? _phone;
   String get phone => _phone ?? '';
   set phone(String? val) => _phone = val;
+
   bool hasPhone() => _phone != null;
 
   // "photo" field.
   String? _photo;
   String get photo => _photo ?? '';
   set photo(String? val) => _photo = val;
+
   bool hasPhoto() => _photo != null;
 
   // "token" field.
   String? _token;
   String get token => _token ?? '';
   set token(String? val) => _token = val;
+
   bool hasToken() => _token != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static UserDataStruct fromMap(Map<String, dynamic> data) => UserDataStruct(
