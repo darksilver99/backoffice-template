@@ -2,17 +2,32 @@ import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/menu_button_view_widget.dart';
 import '/components/menu_view_widget.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import 'product_insert_page_widget.dart' show ProductInsertPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class ProductInsertPageModel extends FlutterFlowModel<ProductInsertPageWidget> {
+  ///  Local state fields for this page.
+
+  List<FFUploadedFile> tmpImageList = [];
+  void addToTmpImageList(FFUploadedFile item) => tmpImageList.add(item);
+  void removeFromTmpImageList(FFUploadedFile item) => tmpImageList.remove(item);
+  void removeAtIndexFromTmpImageList(int index) => tmpImageList.removeAt(index);
+  void insertAtIndexInTmpImageList(int index, FFUploadedFile item) =>
+      tmpImageList.insert(index, item);
+  void updateTmpImageListAtIndex(
+          int index, Function(FFUploadedFile) updateFn) =>
+      tmpImageList[index] = updateFn(tmpImageList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -64,6 +79,9 @@ class ProductInsertPageModel extends FlutterFlowModel<ProductInsertPageWidget> {
   FocusNode? specialPriceFocusNode;
   TextEditingController? specialPriceTextController;
   String? Function(BuildContext, String?)? specialPriceTextControllerValidator;
+  bool isDataUploading = false;
+  List<FFUploadedFile> uploadedLocalFiles = [];
+
   // Stores action output result for [Backend Call - API (insertproduct)] action in Button widget.
   ApiCallResponse? apiResulto60;
   // Model for MenuButtonView component.
