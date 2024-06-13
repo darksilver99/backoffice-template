@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -37,6 +38,103 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProductFormPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.id != null) {
+        _model.apiResult6ha = await ProductdetailCall.call(
+          id: widget.id,
+          uid: currentUserData?.id,
+          token: currentUserData?.token,
+        );
+        if ((_model.apiResult6ha?.succeeded ?? true)) {
+          if (GeneralDataStruct.maybeFromMap(
+                      (_model.apiResult6ha?.jsonBody ?? ''))
+                  ?.status ==
+              1) {
+            setState(() {
+              _model.subjectTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.subject''',
+              ).toString().toString();
+              _model.subjectTextController?.selection = TextSelection.collapsed(
+                  offset: _model.subjectTextController!.text.length);
+            });
+            setState(() {
+              _model.productIDTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.product_id''',
+              ).toString().toString();
+              _model.productIDTextController?.selection =
+                  TextSelection.collapsed(
+                      offset: _model.productIDTextController!.text.length);
+            });
+            setState(() {
+              _model.detailTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.detail''',
+              ).toString().toString();
+              _model.detailTextController?.selection = TextSelection.collapsed(
+                  offset: _model.detailTextController!.text.length);
+            });
+            setState(() {
+              _model.normalPriceTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.normal_price''',
+              ).toString().toString();
+              _model.normalPriceTextController?.selection =
+                  TextSelection.collapsed(
+                      offset: _model.normalPriceTextController!.text.length);
+            });
+            setState(() {
+              _model.specialPriceTextController?.text = valueOrDefault<String>(
+                getJsonField(
+                  (_model.apiResult6ha?.jsonBody ?? ''),
+                  r'''$.data.special_price''',
+                )?.toString()?.toString(),
+                '0',
+              );
+              _model.specialPriceTextController?.selection =
+                  TextSelection.collapsed(
+                      offset: _model.specialPriceTextController!.text.length);
+            });
+          } else {
+            await showDialog(
+              context: context,
+              builder: (alertDialogContext) {
+                return AlertDialog(
+                  title: Text(getJsonField(
+                    (_model.apiResult6ha?.jsonBody ?? ''),
+                    r'''$.msg''',
+                  ).toString().toString()),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+        } else {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text((_model.apiResult6ha?.exceptionMessage ?? '')),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      }
+    });
 
     _model.subjectTextController ??= TextEditingController();
     _model.subjectFocusNode ??= FocusNode();
@@ -811,135 +909,198 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         ),
                                       ),
                                     ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        _model.apiResulto60 =
-                                            await InsertproductCall.call(
-                                          productId: _model
-                                              .productIDTextController.text,
-                                          subject:
-                                              _model.subjectTextController.text,
-                                          detail:
-                                              _model.detailTextController.text,
-                                          normalPrice: double.tryParse(_model
-                                              .normalPriceTextController.text),
-                                          specialPrice: valueOrDefault<double>(
-                                            double.tryParse(_model
-                                                .specialPriceTextController
-                                                .text),
-                                            0.0,
-                                          ),
-                                          uid: currentUserData?.id?.toString(),
-                                          token: currentUserData?.token,
-                                          imagesList: _model.tmpImageList,
-                                        );
-                                        if ((_model.apiResulto60?.succeeded ??
-                                            true)) {
-                                          if (GeneralDataStruct.maybeFromMap(
-                                                      (_model.apiResulto60
-                                                              ?.jsonBody ??
-                                                          ''))
-                                                  ?.status ==
-                                              1) {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text(getJsonField(
-                                                    (_model.apiResulto60
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.msg''',
-                                                  ).toString()),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
+                                    Builder(
+                                      builder: (context) {
+                                        if (widget.id != null) {
+                                          return Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () {
+                                                print('Button pressed ...');
                                               },
-                                            );
-                                            context.safePop();
-                                          } else {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text(getJsonField(
-                                                    (_model.apiResulto60
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.msg''',
-                                                  ).toString()),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          }
+                                              text: 'อัพเดท',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: Colors.white,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                          );
                                         } else {
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text((_model.apiResulto60
-                                                        ?.exceptionMessage ??
-                                                    '')),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
+                                          return FFButtonWidget(
+                                            onPressed: () async {
+                                              if (_model.formKey.currentState ==
+                                                      null ||
+                                                  !_model.formKey.currentState!
+                                                      .validate()) {
+                                                return;
+                                              }
+                                              _model.apiResulto60 =
+                                                  await InsertproductCall.call(
+                                                productId: _model
+                                                    .productIDTextController
+                                                    .text,
+                                                subject: _model
+                                                    .subjectTextController.text,
+                                                detail: _model
+                                                    .detailTextController.text,
+                                                normalPrice: double.tryParse(
+                                                    _model
+                                                        .normalPriceTextController
+                                                        .text),
+                                                specialPrice:
+                                                    valueOrDefault<double>(
+                                                  double.tryParse(_model
+                                                      .specialPriceTextController
+                                                      .text),
+                                                  0.0,
+                                                ),
+                                                uid: currentUserData?.id
+                                                    ?.toString(),
+                                                token: currentUserData?.token,
+                                                imagesList: _model.tmpImageList,
                                               );
+                                              if ((_model.apiResulto60
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                if (GeneralDataStruct
+                                                            .maybeFromMap((_model
+                                                                    .apiResulto60
+                                                                    ?.jsonBody ??
+                                                                ''))
+                                                        ?.status ==
+                                                    1) {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title:
+                                                            Text(getJsonField(
+                                                          (_model.apiResulto60
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.msg''',
+                                                        ).toString()),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                  context.safePop();
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title:
+                                                            Text(getJsonField(
+                                                          (_model.apiResulto60
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$.msg''',
+                                                        ).toString()),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text((_model
+                                                              .apiResulto60
+                                                              ?.exceptionMessage ??
+                                                          '')),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              setState(() {});
                                             },
+                                            text: 'บันทึก',
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           );
                                         }
-
-                                        setState(() {});
                                       },
-                                      text: 'บันทึก',
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
                                     ),
                                   ],
                                 ),

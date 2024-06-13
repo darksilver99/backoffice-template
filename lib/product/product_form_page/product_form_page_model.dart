@@ -10,6 +10,7 @@ import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import 'product_form_page_widget.dart' show ProductFormPageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -32,6 +33,8 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Backend Call - API (productdetail)] action in ProductFormPage widget.
+  ApiCallResponse? apiResult6ha;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
   // State field(s) for Subject widget.
