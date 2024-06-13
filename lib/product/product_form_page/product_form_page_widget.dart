@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -100,6 +101,16 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                   TextSelection.collapsed(
                       offset: _model.specialPriceTextController!.text.length);
             });
+            _model.images = await actions.getCurrentImageList(
+              getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.image_list''',
+                true,
+              )!,
+              'file_path',
+            );
+            _model.currentImageList = _model.images!.toList().cast<String>();
+            setState(() {});
           } else {
             await showDialog(
               context: context,
@@ -650,108 +661,42 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final imageList =
-                                              _model.tmpImageList.toList();
-                                          return Wrap(
-                                            spacing: 8.0,
-                                            runSpacing: 8.0,
-                                            alignment: WrapAlignment.start,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.start,
-                                            direction: Axis.horizontal,
-                                            runAlignment: WrapAlignment.start,
-                                            verticalDirection:
-                                                VerticalDirection.down,
-                                            clipBehavior: Clip.none,
-                                            children:
-                                                List.generate(imageList.length,
-                                                    (imageListIndex) {
-                                              final imageListItem =
-                                                  imageList[imageListIndex];
-                                              return Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                child: Stack(
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            child:
-                                                                FlutterFlowExpandedImageView(
-                                                              image:
-                                                                  Image.memory(
-                                                                imageListItem
-                                                                        .bytes ??
-                                                                    Uint8List
-                                                                        .fromList(
-                                                                            []),
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                              allowRotation:
-                                                                  false,
-                                                              tag: 'imageTag',
-                                                              useHeroAnimation:
-                                                                  true,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Hero(
-                                                        tag: 'imageTag',
-                                                        transitionOnUserGestures:
-                                                            true,
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.memory(
-                                                            imageListItem
-                                                                    .bytes ??
-                                                                Uint8List
-                                                                    .fromList(
-                                                                        []),
-                                                            width:
-                                                                double.infinity,
-                                                            height:
-                                                                double.infinity,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, -1.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    4.0,
-                                                                    0.0),
-                                                        child: InkWell(
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 8.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final imageList2 = _model
+                                                  .currentImageList
+                                                  .toList();
+                                              return Wrap(
+                                                spacing: 8.0,
+                                                runSpacing: 8.0,
+                                                alignment: WrapAlignment.start,
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                direction: Axis.horizontal,
+                                                runAlignment:
+                                                    WrapAlignment.start,
+                                                verticalDirection:
+                                                    VerticalDirection.down,
+                                                clipBehavior: Clip.none,
+                                                children: List.generate(
+                                                    imageList2.length,
+                                                    (imageList2Index) {
+                                                  final imageList2Item =
+                                                      imageList2[
+                                                          imageList2Index];
+                                                  return Container(
+                                                    width: 100.0,
+                                                    height: 100.0,
+                                                    child: Stack(
+                                                      children: [
+                                                        InkWell(
                                                           splashColor: Colors
                                                               .transparent,
                                                           focusColor: Colors
@@ -761,27 +706,224 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            _model.removeFromTmpImageList(
-                                                                imageListItem);
-                                                            setState(() {});
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                child:
+                                                                    FlutterFlowExpandedImageView(
+                                                                  image: Image
+                                                                      .network(
+                                                                    imageList2Item,
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                  ),
+                                                                  allowRotation:
+                                                                      false,
+                                                                  tag:
+                                                                      imageList2Item,
+                                                                  useHeroAnimation:
+                                                                      true,
+                                                                ),
+                                                              ),
+                                                            );
                                                           },
-                                                          child: Icon(
-                                                            Icons.remove_circle,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            size: 24.0,
+                                                          child: Hero(
+                                                            tag: imageList2Item,
+                                                            transitionOnUserGestures:
+                                                                true,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.network(
+                                                                imageList2Item,
+                                                                width: double
+                                                                    .infinity,
+                                                                height: double
+                                                                    .infinity,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        4.0,
+                                                                        0.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .remove_circle,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              size: 24.0,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
+                                                  );
+                                                }),
                                               );
-                                            }),
-                                          );
-                                        },
-                                      ),
+                                            },
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 8.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final imageList =
+                                                  _model.tmpImageList.toList();
+                                              return Wrap(
+                                                spacing: 8.0,
+                                                runSpacing: 8.0,
+                                                alignment: WrapAlignment.start,
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                direction: Axis.horizontal,
+                                                runAlignment:
+                                                    WrapAlignment.start,
+                                                verticalDirection:
+                                                    VerticalDirection.down,
+                                                clipBehavior: Clip.none,
+                                                children: List.generate(
+                                                    imageList.length,
+                                                    (imageListIndex) {
+                                                  final imageListItem =
+                                                      imageList[imageListIndex];
+                                                  return Container(
+                                                    width: 100.0,
+                                                    height: 100.0,
+                                                    child: Stack(
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                child:
+                                                                    FlutterFlowExpandedImageView(
+                                                                  image: Image
+                                                                      .memory(
+                                                                    imageListItem
+                                                                            .bytes ??
+                                                                        Uint8List.fromList(
+                                                                            []),
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                  ),
+                                                                  allowRotation:
+                                                                      false,
+                                                                  tag:
+                                                                      'imageTag2',
+                                                                  useHeroAnimation:
+                                                                      true,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: Hero(
+                                                            tag: 'imageTag2',
+                                                            transitionOnUserGestures:
+                                                                true,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.memory(
+                                                                imageListItem
+                                                                        .bytes ??
+                                                                    Uint8List
+                                                                        .fromList(
+                                                                            []),
+                                                                width: double
+                                                                    .infinity,
+                                                                height: double
+                                                                    .infinity,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1.0, -1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        4.0,
+                                                                        0.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                _model.removeFromTmpImageList(
+                                                                    imageListItem);
+                                                                setState(() {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons
+                                                                    .remove_circle,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                size: 24.0,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                }),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
