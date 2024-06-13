@@ -818,6 +818,7 @@ class _ProductInsertPageWidgetState extends State<ProductInsertPageWidget> {
                                           ),
                                           uid: currentUserData?.id?.toString(),
                                           token: currentUserData?.token,
+                                          imagesList: _model.tmpImageList,
                                         );
                                         if ((_model.apiResulto60?.succeeded ??
                                             true)) {

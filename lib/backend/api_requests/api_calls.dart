@@ -55,9 +55,11 @@ class InsertproductCall {
     double? normalPrice,
     double? specialPrice,
     String? displayImage = '',
-    FFUploadedFile? images,
+    List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
   }) async {
+    final images = imagesList ?? [];
+
     return ApiManager.instance.makeApiCall(
       callName: 'insertproduct',
       apiUrl: 'https://ecommerce-template.silver-api.com/api/insert_product',
