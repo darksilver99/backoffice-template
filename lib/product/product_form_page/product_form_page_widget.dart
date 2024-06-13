@@ -720,6 +720,15 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                     imageList2Item,
                                                                     fit: BoxFit
                                                                         .contain,
+                                                                    errorBuilder: (context,
+                                                                            error,
+                                                                            stackTrace) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      'assets/images/error_image.jpg',
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
                                                                   ),
                                                                   allowRotation:
                                                                       false,
@@ -749,6 +758,18 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                     .infinity,
                                                                 fit: BoxFit
                                                                     .cover,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.jpg',
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: double
+                                                                      .infinity,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
