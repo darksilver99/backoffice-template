@@ -388,132 +388,191 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 8.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                context.pushNamed('ProductFormPage');
-                              },
-                              text: 'เพิ่ม',
-                              icon: Icon(
-                                Icons.add_rounded,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                width: 150.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).secondary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
+                          Expanded(
+                            child: Wrap(
+                              spacing: 0.0,
+                              runSpacing: 0.0,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 8.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed('ProductFormPage');
+                                    },
+                                    text: 'เพิ่ม',
+                                    icon: Icon(
+                                      Icons.add_rounded,
+                                      size: 15.0,
                                     ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                    options: FFButtonOptions(
+                                      width: 150.0,
+                                      height: 40.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              if (_model
-                                  .paginatedDataTableController.selectedRows
-                                  .toList()
-                                  .isNotEmpty) {
-                                var confirmDialogResponse =
-                                    await showDialog<bool>(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('delete ?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: Text('Cancel'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: Text('Confirm'),
-                                                ),
-                                              ],
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    if (_model.paginatedDataTableController
+                                        .selectedRows
+                                        .toList()
+                                        .isNotEmpty) {
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('delete ?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: Text('Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: Text('Confirm'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.selectedIDList = functions
+                                            .getSelectedIdList(
+                                                _model.productList.toList(),
+                                                _model
+                                                    .paginatedDataTableController
+                                                    .selectedRows
+                                                    .toList())
+                                            .toList()
+                                            .cast<int>();
+                                        setState(() {});
+                                        _model.apiResult2sk =
+                                            await DeleteproductCall.call(
+                                          token: currentUserData?.token,
+                                          uid: currentUserData?.id?.toString(),
+                                          id: (List<int> list) {
+                                            return list.join(',');
+                                          }(_model.selectedIDList.toList()),
+                                        );
+                                        if ((_model.apiResult2sk?.succeeded ??
+                                            true)) {
+                                          if (GeneralDataStruct.maybeFromMap(
+                                                      (_model.apiResult2sk
+                                                              ?.jsonBody ??
+                                                          ''))
+                                                  ?.status ==
+                                              1) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResult2sk
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
                                             );
-                                          },
-                                        ) ??
-                                        false;
-                                if (confirmDialogResponse) {
-                                  _model.selectedIDList = functions
-                                      .getSelectedIdList(
-                                          _model.productList.toList(),
-                                          _model.paginatedDataTableController
-                                              .selectedRows
-                                              .toList())
-                                      .toList()
-                                      .cast<int>();
-                                  setState(() {});
-                                  _model.apiResult2sk =
-                                      await DeleteproductCall.call(
-                                    token: currentUserData?.token,
-                                    uid: currentUserData?.id?.toString(),
-                                    id: (List<int> list) {
-                                      return list.join(',');
-                                    }(_model.selectedIDList.toList()),
-                                  );
-                                  if ((_model.apiResult2sk?.succeeded ??
-                                      true)) {
-                                    if (GeneralDataStruct.maybeFromMap((_model
-                                                    .apiResult2sk?.jsonBody ??
-                                                ''))
-                                            ?.status ==
-                                        1) {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text(getJsonField(
-                                              (_model.apiResult2sk?.jsonBody ??
-                                                  ''),
-                                              r'''$.msg''',
-                                            ).toString()),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context
+                                                .pushNamed('ProductListPage');
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(getJsonField(
+                                                    (_model.apiResult2sk
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.msg''',
+                                                  ).toString()),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text((_model.apiResult2sk
+                                                        ?.exceptionMessage ??
+                                                    '')),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           );
-                                        },
-                                      );
-                                      if (Navigator.of(context).canPop()) {
-                                        context.pop();
+                                        }
                                       }
-                                      context.pushNamed('ProductListPage');
                                     } else {
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text(getJsonField(
-                                              (_model.apiResult2sk?.jsonBody ??
-                                                  ''),
-                                              r'''$.msg''',
-                                            ).toString()),
+                                            title: Text('no selected row.'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
@@ -525,72 +584,38 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                         },
                                       );
                                     }
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text((_model.apiResult2sk
-                                                  ?.exceptionMessage ??
-                                              '')),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-                                }
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('no selected row.'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
 
-                              setState(() {});
-                            },
-                            text: 'ลบ',
-                            icon: Icon(
-                              Icons.delete_rounded,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 150.0,
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).error,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
+                                    setState(() {});
+                                  },
+                                  text: 'ลบ',
+                                  icon: Icon(
+                                    Icons.delete_rounded,
+                                    size: 15.0,
                                   ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
+                                  options: FFButtonOptions(
+                                    width: 150.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).error,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
