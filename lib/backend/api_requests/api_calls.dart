@@ -196,6 +196,7 @@ class InsertdataCall {
     String? cmd = '',
     String? status = '1',
     String? api = '',
+    String? isRecommend = '0',
   }) async {
     final images = imagesList ?? [];
 
@@ -214,6 +215,7 @@ class InsertdataCall {
         'display_image_index': displayImageIndex,
         'cmd': cmd,
         'status': status,
+        'is_recommend': isRecommend,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -288,6 +290,7 @@ class UpdatedataCall {
     String? cmd = '',
     String? status = '1',
     String? api = '',
+    String? isRecommend = '0',
   }) async {
     final images = imagesList ?? [];
 
@@ -308,6 +311,7 @@ class UpdatedataCall {
         'uploadKey': uploadKey,
         'cmd': cmd,
         'status': status,
+        'is_recommend': isRecommend,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

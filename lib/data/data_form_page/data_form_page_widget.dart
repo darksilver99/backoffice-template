@@ -1117,6 +1117,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                           ? '1'
                                                           : '0',
                                                   api: FFAppConstants.apiPath,
+                                                  isRecommend: _model
+                                                          .recommendSwitchValue!
+                                                      ? '1'
+                                                      : '0',
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1259,6 +1263,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         ? '1'
                                                         : '0',
                                                 api: FFAppConstants.apiPath,
+                                                isRecommend:
+                                                    _model.recommendSwitchValue!
+                                                        ? '1'
+                                                        : '0',
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??
