@@ -58,3 +58,11 @@ String getStatusText(String status) {
       return "-";
   }
 }
+
+String removeAPIPath(
+  String val,
+  String from,
+  String replace,
+) {
+  return val.replaceAll(from, replace);
+}

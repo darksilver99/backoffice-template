@@ -1277,7 +1277,11 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                       ? '1'
                                                       : '0',
                                                   displayImage:
-                                                      _model.displayImage,
+                                                      functions.removeAPIPath(
+                                                          _model.displayImage!,
+                                                          FFAppConstants
+                                                              .apiPath,
+                                                          ''),
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1425,7 +1429,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         ? '1'
                                                         : '0',
                                                 displayImage:
-                                                    _model.displayImage,
+                                                    functions.removeAPIPath(
+                                                        _model.displayImage!,
+                                                        FFAppConstants.apiPath,
+                                                        ''),
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??
