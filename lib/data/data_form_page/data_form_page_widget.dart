@@ -1078,16 +1078,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         );
                                                       },
                                                     );
-
-                                                    context.goNamed(
-                                                      'DataListPage',
-                                                      queryParameters: {
-                                                        'cmd': serializeParam(
-                                                          widget.cmd,
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
+                                                    context.safePop();
                                                   } else {
                                                     await showDialog(
                                                       context: context,
@@ -1227,16 +1218,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                       );
                                                     },
                                                   );
-
-                                                  context.goNamed(
-                                                    'DataListPage',
-                                                    queryParameters: {
-                                                      'cmd': serializeParam(
-                                                        widget.cmd,
-                                                        ParamType.String,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
+                                                  context.safePop();
                                                 } else {
                                                   await showDialog(
                                                     context: context,

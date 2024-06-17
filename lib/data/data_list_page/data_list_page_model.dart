@@ -65,6 +65,8 @@ class DataListPageModel extends FlutterFlowModel<DataListPageWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (datalist)] action in Button widget.
   ApiCallResponse? apiResultrcy;
+  // Stores action output result for [Backend Call - API (datalist)] action in Button widget.
+  ApiCallResponse? apiResultmmq2;
   // Stores action output result for [Backend Call - API (deletedata)] action in Button widget.
   ApiCallResponse? apiResult2sk;
   // State field(s) for PaginatedDataTable widget.
@@ -72,6 +74,8 @@ class DataListPageModel extends FlutterFlowModel<DataListPageWidget> {
       FlutterFlowDataTableController<dynamic>();
   // Stores action output result for [Backend Call - API (datalist)] action in PaginatedDataTable widget.
   ApiCallResponse? apiResultyhb;
+  // Stores action output result for [Backend Call - API (datalist)] action in Icon widget.
+  ApiCallResponse? apiResultmmq3;
   // Stores action output result for [Backend Call - API (deletedata)] action in Icon widget.
   ApiCallResponse? apiResulthok;
   // Stores action output result for [Backend Call - API (datalist)] action in Icon widget.

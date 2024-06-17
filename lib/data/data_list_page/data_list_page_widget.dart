@@ -61,6 +61,21 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
           r'''$.total''',
         );
         setState(() {});
+      } else {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text((_model.apiResultmmq?.exceptionMessage ?? '')),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
 
@@ -416,6 +431,50 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         ),
                                       }.withoutNulls,
                                     );
+
+                                    _model.apiResultmmq2 =
+                                        await DatalistCall.call(
+                                      start: '0',
+                                      sortField: _model.dropDownValue1,
+                                      sortKey: _model.dropDownValue2,
+                                      keyword: _model.textController.text,
+                                      cmd: widget.cmd,
+                                    );
+                                    if ((_model.apiResultmmq2?.succeeded ??
+                                        true)) {
+                                      _model.dataList = getJsonField(
+                                        (_model.apiResultmmq2?.jsonBody ?? ''),
+                                        r'''$.data''',
+                                        true,
+                                      )!
+                                          .toList()
+                                          .cast<dynamic>();
+                                      _model.pageTotal = getJsonField(
+                                        (_model.apiResultmmq2?.jsonBody ?? ''),
+                                        r'''$.total''',
+                                      );
+                                      setState(() {});
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text((_model.apiResultmmq2
+                                                    ?.exceptionMessage ??
+                                                '')),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+
+                                    setState(() {});
                                   },
                                   text: 'เพิ่ม',
                                   icon: Icon(
@@ -857,6 +916,55 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               ),
                                             }.withoutNulls,
                                           );
+
+                                          _model.apiResultmmq3 =
+                                              await DatalistCall.call(
+                                            start: '0',
+                                            sortField: _model.dropDownValue1,
+                                            sortKey: _model.dropDownValue2,
+                                            keyword: _model.textController.text,
+                                            cmd: widget.cmd,
+                                          );
+                                          if ((_model
+                                                  .apiResultmmq3?.succeeded ??
+                                              true)) {
+                                            _model.dataList = getJsonField(
+                                              (_model.apiResultmmq3?.jsonBody ??
+                                                  ''),
+                                              r'''$.data''',
+                                              true,
+                                            )!
+                                                .toList()
+                                                .cast<dynamic>();
+                                            _model.pageTotal = getJsonField(
+                                              (_model.apiResultmmq3?.jsonBody ??
+                                                  ''),
+                                              r'''$.total''',
+                                            );
+                                            setState(() {});
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text((_model
+                                                          .apiResultmmq3
+                                                          ?.exceptionMessage ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+
+                                          setState(() {});
                                         },
                                         child: Icon(
                                           Icons.edit_rounded,
