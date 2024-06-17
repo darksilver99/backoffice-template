@@ -75,9 +75,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                   offset: _model.detailTextController!.text.length);
             });
             setState(() {
-              _model.switchValue = (GeneralDataStruct.maybeFromMap(
-                          (_model.apiResult6ha?.jsonBody ?? ''))
-                      ?.status ==
+              _model.switchValue = (GeneralDataStruct.maybeFromMap(getJsonField(
+                    (_model.apiResult6ha?.jsonBody ?? ''),
+                    r'''$.data''',
+                  ))?.status ==
                   1);
             });
             _model.images = await actions.getCurrentImageList(
