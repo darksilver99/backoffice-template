@@ -10,23 +10,23 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'product_list_page_widget.dart' show ProductListPageWidget;
+import 'data_list_page_widget.dart' show DataListPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ProductListPageModel extends FlutterFlowModel<ProductListPageWidget> {
+class DataListPageModel extends FlutterFlowModel<DataListPageWidget> {
   ///  Local state fields for this page.
 
-  List<dynamic> productList = [];
-  void addToProductList(dynamic item) => productList.add(item);
-  void removeFromProductList(dynamic item) => productList.remove(item);
-  void removeAtIndexFromProductList(int index) => productList.removeAt(index);
-  void insertAtIndexInProductList(int index, dynamic item) =>
-      productList.insert(index, item);
-  void updateProductListAtIndex(int index, Function(dynamic) updateFn) =>
-      productList[index] = updateFn(productList[index]);
+  List<dynamic> dataList = [];
+  void addToDataList(dynamic item) => dataList.add(item);
+  void removeFromDataList(dynamic item) => dataList.remove(item);
+  void removeAtIndexFromDataList(int index) => dataList.removeAt(index);
+  void insertAtIndexInDataList(int index, dynamic item) =>
+      dataList.insert(index, item);
+  void updateDataListAtIndex(int index, Function(dynamic) updateFn) =>
+      dataList[index] = updateFn(dataList[index]);
 
   int? pageTotal;
 
@@ -49,7 +49,7 @@ class ProductListPageModel extends FlutterFlowModel<ProductListPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (productlist)] action in ProductListPage widget.
+  // Stores action output result for [Backend Call - API (datalist)] action in DataListPage widget.
   ApiCallResponse? apiResultmmq;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
@@ -63,18 +63,18 @@ class ProductListPageModel extends FlutterFlowModel<ProductListPageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (productlist)] action in Button widget.
+  // Stores action output result for [Backend Call - API (datalist)] action in Button widget.
   ApiCallResponse? apiResultrcy;
-  // Stores action output result for [Backend Call - API (deleteproduct)] action in Button widget.
+  // Stores action output result for [Backend Call - API (deletedata)] action in Button widget.
   ApiCallResponse? apiResult2sk;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
-  // Stores action output result for [Backend Call - API (productlist)] action in PaginatedDataTable widget.
+  // Stores action output result for [Backend Call - API (datalist)] action in PaginatedDataTable widget.
   ApiCallResponse? apiResultyhb;
-  // Stores action output result for [Backend Call - API (deleteproduct)] action in Icon widget.
+  // Stores action output result for [Backend Call - API (deletedata)] action in Icon widget.
   ApiCallResponse? apiResulthok;
-  // Stores action output result for [Backend Call - API (productlist)] action in Icon widget.
+  // Stores action output result for [Backend Call - API (datalist)] action in Icon widget.
   ApiCallResponse? apiResultrcy2;
   // Model for MenuButtonView component.
   late MenuButtonViewModel menuButtonViewModel;

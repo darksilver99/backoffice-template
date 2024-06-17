@@ -115,6 +115,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'LoginPage',
           path: '/loginPage',
           builder: (context, params) => LoginPageWidget(),
+        ),
+        FFRoute(
+          name: 'DataListPage',
+          path: '/dataListPage',
+          requireAuth: true,
+          builder: (context, params) => DataListPageWidget(
+            cmd: params.getParam(
+              'cmd',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'DataFormPage',
+          path: '/dataFormPage',
+          requireAuth: true,
+          builder: (context, params) => DataFormPageWidget(
+            id: params.getParam(
+              'id',
+              ParamType.int,
+            ),
+            cmd: params.getParam(
+              'cmd',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

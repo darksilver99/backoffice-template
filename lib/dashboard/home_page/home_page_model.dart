@@ -1,6 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
-import '/components/menu_button_view_widget.dart';
-import '/components/menu_view_widget.dart';
+import '/component/menu_button_view/menu_button_view_widget.dart';
+import '/component/menu_view/menu_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';

@@ -14,36 +14,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'product_list_page_model.dart';
-export 'product_list_page_model.dart';
+import 'data_list_page_model.dart';
+export 'data_list_page_model.dart';
 
-class ProductListPageWidget extends StatefulWidget {
-  const ProductListPageWidget({super.key});
+class DataListPageWidget extends StatefulWidget {
+  const DataListPageWidget({
+    super.key,
+    required this.cmd,
+  });
+
+  final String? cmd;
 
   @override
-  State<ProductListPageWidget> createState() => _ProductListPageWidgetState();
+  State<DataListPageWidget> createState() => _DataListPageWidgetState();
 }
 
-class _ProductListPageWidgetState extends State<ProductListPageWidget> {
-  late ProductListPageModel _model;
+class _DataListPageWidgetState extends State<DataListPageWidget> {
+  late DataListPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductListPageModel());
+    _model = createModel(context, () => DataListPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultmmq = await ProductlistCall.call(
-        keyword: _model.textController.text,
-        start: '0',
+      _model.apiResultmmq = await DatalistCall.call(
+        start: _model.pageIndex.toString(),
         sortField: _model.dropDownValue1,
         sortKey: _model.dropDownValue2,
+        keyword: _model.textController.text,
+        cmd: widget.cmd,
       );
       if ((_model.apiResultmmq?.succeeded ?? true)) {
-        _model.productList = getJsonField(
+        _model.dataList = getJsonField(
           (_model.apiResultmmq?.jsonBody ?? ''),
           r'''$.data''',
           true,
@@ -125,7 +131,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Product',
+            'News',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -171,9 +177,8 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                             FormFieldController<String>(
                                       _model.dropDownValue1 ??= 'create_date',
                                     ),
-                                    options: List<String>.from(
-                                        ['create_date', 'normal_price']),
-                                    optionLabels: ['วันที่สร้างข้อมูล', 'ราคา'],
+                                    options: List<String>.from(['create_date']),
+                                    optionLabels: ['วันที่สร้างข้อมูล'],
                                     onChanged: (val) => setState(
                                         () => _model.dropDownValue1 = val),
                                     width: 300.0,
@@ -328,7 +333,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                         const Duration(milliseconds: 500));
                                     _model.pageIndex = 1;
                                     _model.apiResultrcy =
-                                        await ProductlistCall.call(
+                                        await DatalistCall.call(
                                       sortField: _model.dropDownValue1,
                                       sortKey: _model.dropDownValue2,
                                       start: '0',
@@ -336,7 +341,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                     );
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
-                                      _model.productList = getJsonField(
+                                      _model.dataList = getJsonField(
                                         (_model.apiResultrcy?.jsonBody ?? ''),
                                         r'''$.data''',
                                         true,
@@ -401,7 +406,15 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('ProductFormPage');
+                                    context.pushNamed(
+                                      'DataFormPage',
+                                      queryParameters: {
+                                        'cmd': serializeParam(
+                                          widget.cmd,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                   text: 'เพิ่ม',
                                   icon: Icon(
@@ -467,7 +480,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                       if (confirmDialogResponse) {
                                         _model.selectedIDList = functions
                                             .getSelectedIdList(
-                                                _model.productList.toList(),
+                                                _model.dataList.toList(),
                                                 _model
                                                     .paginatedDataTableController
                                                     .selectedRows
@@ -476,12 +489,13 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                             .cast<int>();
                                         setState(() {});
                                         _model.apiResult2sk =
-                                            await DeleteproductCall.call(
+                                            await DeletedataCall.call(
                                           token: currentUserData?.token,
                                           uid: currentUserData?.id?.toString(),
                                           id: (List<int> list) {
                                             return list.join(',');
                                           }(_model.selectedIDList.toList()),
+                                          cmd: widget.cmd,
                                         );
                                         if ((_model.apiResult2sk?.succeeded ??
                                             true)) {
@@ -516,8 +530,15 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                 .canPop()) {
                                               context.pop();
                                             }
-                                            context
-                                                .pushNamed('ProductListPage');
+                                            context.pushNamed(
+                                              'DataListPage',
+                                              queryParameters: {
+                                                'cmd': serializeParam(
+                                                  'news',
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           } else {
                                             await showDialog(
                                               context: context,
@@ -621,7 +642,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                       decoration: BoxDecoration(),
                       child: Builder(
                         builder: (context) {
-                          final productTmpList = _model.productList.toList();
+                          final productTmpList = _model.dataList.toList();
                           return FlutterFlowDataTable<dynamic>(
                             controller: _model.paginatedDataTableController,
                             data: productTmpList,
@@ -650,23 +671,6 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                   softWrap: true,
                                   child: SelectionArea(
                                       child: Text(
-                                    'รหัสสินค้า',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  )),
-                                ),
-                              ),
-                              DataColumn2(
-                                label: DefaultTextStyle.merge(
-                                  softWrap: true,
-                                  child: SelectionArea(
-                                      child: Text(
                                     'หัวข้อ',
                                     style: FlutterFlowTheme.of(context)
                                         .labelLarge
@@ -684,58 +688,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                   softWrap: true,
                                   child: SelectionArea(
                                       child: Text(
-                                    'ราคา',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  )),
-                                ),
-                              ),
-                              DataColumn2(
-                                label: DefaultTextStyle.merge(
-                                  softWrap: true,
-                                  child: SelectionArea(
-                                      child: Text(
-                                    'ราคาพิเศษ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  )),
-                                ),
-                              ),
-                              DataColumn2(
-                                label: DefaultTextStyle.merge(
-                                  softWrap: true,
-                                  child: SelectionArea(
-                                      child: Text(
                                     'วันที่สร้างข้อมูล',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  )),
-                                ),
-                              ),
-                              DataColumn2(
-                                label: DefaultTextStyle.merge(
-                                  softWrap: true,
-                                  child: SelectionArea(
-                                      child: Text(
-                                    'สร้างโดย',
                                     style: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .override(
@@ -814,19 +767,6 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                     child: Text(
                                   getJsonField(
                                     productTmpListItem,
-                                    r'''$.product_id''',
-                                  ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                )),
-                                SelectionArea(
-                                    child: Text(
-                                  getJsonField(
-                                    productTmpListItem,
                                     r'''$.subject''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
@@ -840,46 +780,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                     child: Text(
                                   getJsonField(
                                     productTmpListItem,
-                                    r'''$.normal_price''',
-                                  ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                )),
-                                SelectionArea(
-                                    child: Text(
-                                  getJsonField(
-                                    productTmpListItem,
-                                    r'''$.special_price''',
-                                  ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                )),
-                                SelectionArea(
-                                    child: Text(
-                                  getJsonField(
-                                    productTmpListItem,
                                     r'''$.create_date''',
-                                  ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                )),
-                                SelectionArea(
-                                    child: Text(
-                                  getJsonField(
-                                    productTmpListItem,
-                                    r'''$.create_by''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -914,7 +815,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.pushNamed(
-                                            'ProductFormPage',
+                                            'DataFormPage',
                                             queryParameters: {
                                               'id': serializeParam(
                                                 getJsonField(
@@ -922,6 +823,10 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                   r'''$.id''',
                                                 ),
                                                 ParamType.int,
+                                              ),
+                                              'cmd': serializeParam(
+                                                widget.cmd,
+                                                ParamType.String,
                                               ),
                                             }.withoutNulls,
                                           );
@@ -970,7 +875,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                 false;
                                         if (confirmDialogResponse) {
                                           _model.apiResulthok =
-                                              await DeleteproductCall.call(
+                                              await DeletedataCall.call(
                                             token: currentUserData?.token,
                                             uid:
                                                 currentUserData?.id?.toString(),
@@ -1017,7 +922,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                       milliseconds: 500));
                                               _model.pageIndex = 1;
                                               _model.apiResultrcy2 =
-                                                  await ProductlistCall.call(
+                                                  await DatalistCall.call(
                                                 sortField:
                                                     _model.dropDownValue1,
                                                 sortKey: _model.dropDownValue2,
@@ -1028,16 +933,15 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
                                                   true)) {
-                                                _model.productList =
-                                                    getJsonField(
+                                                _model.dataList = getJsonField(
                                                   (_model.apiResultrcy2
                                                           ?.jsonBody ??
                                                       ''),
                                                   r'''$.data''',
                                                   true,
                                                 )!
-                                                        .toList()
-                                                        .cast<dynamic>();
+                                                    .toList()
+                                                    .cast<dynamic>();
                                                 _model.sortKey =
                                                     _model.dropDownValue1!;
                                                 _model.sortField =
@@ -1109,7 +1013,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                               ].map((c) => DataCell(c)).toList(),
                             ),
                             onPageChanged: (currentRowIndex) async {
-                              _model.apiResultyhb = await ProductlistCall.call(
+                              _model.apiResultyhb = await DatalistCall.call(
                                 start: _model.pageIndex.toString(),
                                 sortField: _model.dropDownValue1,
                                 sortKey: _model.dropDownValue2,
@@ -1117,7 +1021,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                               );
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;
-                                _model.productList = functions
+                                _model.dataList = functions
                                     .addNewList(
                                         productTmpList.toList(),
                                         getJsonField(

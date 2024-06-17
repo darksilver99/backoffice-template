@@ -11,15 +11,14 @@ import '/flutter_flow/upload_data.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'product_form_page_widget.dart' show ProductFormPageWidget;
+import 'data_form_page_widget.dart' show DataFormPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
+class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   ///  Local state fields for this page.
 
   List<FFUploadedFile> tmpImageList = [];
@@ -49,9 +48,9 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Backend Call - API (datadetail)] action in ProductFormPage widget.
+  // Stores action output result for [Backend Call - API (datadetail)] action in DataFormPage widget.
   ApiCallResponse? apiResult6ha;
-  // Stores action output result for [Custom Action - getCurrentImageList] action in ProductFormPage widget.
+  // Stores action output result for [Custom Action - getCurrentImageList] action in DataFormPage widget.
   List<ImageDataStruct>? images;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
@@ -67,47 +66,18 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
     return null;
   }
 
-  // State field(s) for ProductID widget.
-  FocusNode? productIDFocusNode;
-  TextEditingController? productIDTextController;
-  String? Function(BuildContext, String?)? productIDTextControllerValidator;
-  String? _productIDTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for Detail widget.
   FocusNode? detailFocusNode;
   TextEditingController? detailTextController;
   String? Function(BuildContext, String?)? detailTextControllerValidator;
-  // State field(s) for NormalPrice widget.
-  FocusNode? normalPriceFocusNode;
-  TextEditingController? normalPriceTextController;
-  String? Function(BuildContext, String?)? normalPriceTextControllerValidator;
-  String? _normalPriceTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for SpecialPrice widget.
-  FocusNode? specialPriceFocusNode;
-  TextEditingController? specialPriceTextController;
-  String? Function(BuildContext, String?)? specialPriceTextControllerValidator;
   // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
   ApiCallResponse? apiResultwd5;
   bool isDataUploading = false;
   List<FFUploadedFile> uploadedLocalFiles = [];
 
-  // Stores action output result for [Backend Call - API (updateproduct)] action in Button widget.
+  // Stores action output result for [Backend Call - API (updatedata)] action in Button widget.
   ApiCallResponse? apiResultdgp;
-  // Stores action output result for [Backend Call - API (insertproduct)] action in Button widget.
+  // Stores action output result for [Backend Call - API (insertdata)] action in Button widget.
   ApiCallResponse? apiResulto60;
   // Model for MenuButtonView component.
   late MenuButtonViewModel menuButtonViewModel;
@@ -116,8 +86,6 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
   void initState(BuildContext context) {
     menuViewModel = createModel(context, () => MenuViewModel());
     subjectTextControllerValidator = _subjectTextControllerValidator;
-    productIDTextControllerValidator = _productIDTextControllerValidator;
-    normalPriceTextControllerValidator = _normalPriceTextControllerValidator;
     menuButtonViewModel = createModel(context, () => MenuButtonViewModel());
   }
 
@@ -128,17 +96,8 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
     subjectFocusNode?.dispose();
     subjectTextController?.dispose();
 
-    productIDFocusNode?.dispose();
-    productIDTextController?.dispose();
-
     detailFocusNode?.dispose();
     detailTextController?.dispose();
-
-    normalPriceFocusNode?.dispose();
-    normalPriceTextController?.dispose();
-
-    specialPriceFocusNode?.dispose();
-    specialPriceTextController?.dispose();
 
     menuButtonViewModel.dispose();
   }

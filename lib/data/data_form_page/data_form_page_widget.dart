@@ -13,39 +13,45 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'product_form_page_model.dart';
-export 'product_form_page_model.dart';
+import 'data_form_page_model.dart';
+export 'data_form_page_model.dart';
 
-class ProductFormPageWidget extends StatefulWidget {
-  const ProductFormPageWidget({
+class DataFormPageWidget extends StatefulWidget {
+  const DataFormPageWidget({
     super.key,
     this.id,
+    required this.cmd,
   });
 
   final int? id;
+  final String? cmd;
 
   @override
-  State<ProductFormPageWidget> createState() => _ProductFormPageWidgetState();
+  State<DataFormPageWidget> createState() => _DataFormPageWidgetState();
 }
 
-class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
-  late ProductFormPageModel _model;
+class _DataFormPageWidgetState extends State<DataFormPageWidget> {
+  late DataFormPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductFormPageModel());
+    _model = createModel(context, () => DataFormPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.id != null) {
-        _model.apiResult6ha = await DatadetailCall.call();
+        _model.apiResult6ha = await DatadetailCall.call(
+          id: widget.id,
+          uid: currentUserData?.id,
+          token: currentUserData?.token,
+          cmd: widget.cmd,
+        );
         if ((_model.apiResult6ha?.succeeded ?? true)) {
           if (GeneralDataStruct.maybeFromMap(
                       (_model.apiResult6ha?.jsonBody ?? ''))
@@ -60,15 +66,6 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                   offset: _model.subjectTextController!.text.length);
             });
             setState(() {
-              _model.productIDTextController?.text = getJsonField(
-                (_model.apiResult6ha?.jsonBody ?? ''),
-                r'''$.data.product_id''',
-              ).toString().toString();
-              _model.productIDTextController?.selection =
-                  TextSelection.collapsed(
-                      offset: _model.productIDTextController!.text.length);
-            });
-            setState(() {
               _model.detailTextController?.text =
                   functions.checkEmptyOrNull(getJsonField(
                 (_model.apiResult6ha?.jsonBody ?? ''),
@@ -76,27 +73,6 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
               ).toString().toString());
               _model.detailTextController?.selection = TextSelection.collapsed(
                   offset: _model.detailTextController!.text.length);
-            });
-            setState(() {
-              _model.normalPriceTextController?.text = getJsonField(
-                (_model.apiResult6ha?.jsonBody ?? ''),
-                r'''$.data.normal_price''',
-              ).toString().toString();
-              _model.normalPriceTextController?.selection =
-                  TextSelection.collapsed(
-                      offset: _model.normalPriceTextController!.text.length);
-            });
-            setState(() {
-              _model.specialPriceTextController?.text = valueOrDefault<String>(
-                getJsonField(
-                  (_model.apiResult6ha?.jsonBody ?? ''),
-                  r'''$.data.special_price''',
-                )?.toString()?.toString(),
-                '0',
-              );
-              _model.specialPriceTextController?.selection =
-                  TextSelection.collapsed(
-                      offset: _model.specialPriceTextController!.text.length);
             });
             _model.images = await actions.getCurrentImageList(
               getJsonField(
@@ -150,17 +126,8 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
     _model.subjectTextController ??= TextEditingController();
     _model.subjectFocusNode ??= FocusNode();
 
-    _model.productIDTextController ??= TextEditingController();
-    _model.productIDFocusNode ??= FocusNode();
-
     _model.detailTextController ??= TextEditingController();
     _model.detailFocusNode ??= FocusNode();
-
-    _model.normalPriceTextController ??= TextEditingController();
-    _model.normalPriceFocusNode ??= FocusNode();
-
-    _model.specialPriceTextController ??= TextEditingController(text: '0');
-    _model.specialPriceFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -283,7 +250,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'ชื่อสินค้า',
+                                      labelText: 'หัวข้อ',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -344,79 +311,6 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         ),
                                     validator: _model
                                         .subjectTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: TextFormField(
-                                    controller: _model.productIDTextController,
-                                    focusNode: _model.productIDFocusNode,
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'รหัสสินค้า',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .productIDTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -492,167 +386,6 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                     validator: _model
                                         .detailTextControllerValidator
                                         .asValidator(context),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: TextFormField(
-                                    controller:
-                                        _model.normalPriceTextController,
-                                    focusNode: _model.normalPriceFocusNode,
-                                    autofocus: false,
-                                    textCapitalization: TextCapitalization.none,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'ราคา',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    keyboardType:
-                                        const TextInputType.numberWithOptions(
-                                            decimal: true),
-                                    validator: _model
-                                        .normalPriceTextControllerValidator
-                                        .asValidator(context),
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp('r\'^[0-9]*\\.?[0-9]*\$\''))
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: TextFormField(
-                                    controller:
-                                        _model.specialPriceTextController,
-                                    focusNode: _model.specialPriceFocusNode,
-                                    autofocus: false,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'ราคาพิเศษ',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    keyboardType: TextInputType.number,
-                                    validator: _model
-                                        .specialPriceTextControllerValidator
-                                        .asValidator(context),
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp('r\'^\\d*\\.?\\d*\$\''))
-                                    ],
                                   ),
                                 ),
                                 Column(
@@ -1218,8 +951,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   return;
                                                 }
                                                 _model.apiResultdgp =
-                                                    await UpdateproductCall
-                                                        .call(
+                                                    await UpdatedataCall.call(
                                                   token: currentUserData?.token,
                                                   uid: currentUserData?.id
                                                       ?.toString(),
@@ -1229,17 +961,6 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   detail: _model
                                                       .detailTextController
                                                       .text,
-                                                  normalPrice: double.tryParse(
-                                                      _model
-                                                          .normalPriceTextController
-                                                          .text),
-                                                  specialPrice:
-                                                      valueOrDefault<double>(
-                                                    double.tryParse(_model
-                                                        .specialPriceTextController
-                                                        .text),
-                                                    0.0,
-                                                  ),
                                                   imagesList:
                                                       _model.tmpImageList,
                                                   id: widget.id,
@@ -1249,9 +970,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                         ''),
                                                     r'''$.data.uploadKey''',
                                                   ).toString(),
-                                                  productId: _model
-                                                      .productIDTextController
-                                                      .text,
+                                                  cmd: widget.cmd,
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1379,29 +1098,16 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                 return;
                                               }
                                               _model.apiResulto60 =
-                                                  await InsertproductCall.call(
-                                                productId: _model
-                                                    .productIDTextController
-                                                    .text,
+                                                  await InsertdataCall.call(
+                                                token: currentUserData?.token,
+                                                uid: currentUserData?.id
+                                                    ?.toString(),
                                                 subject: _model
                                                     .subjectTextController.text,
                                                 detail: _model
                                                     .detailTextController.text,
-                                                normalPrice: double.tryParse(
-                                                    _model
-                                                        .normalPriceTextController
-                                                        .text),
-                                                specialPrice:
-                                                    valueOrDefault<double>(
-                                                  double.tryParse(_model
-                                                      .specialPriceTextController
-                                                      .text),
-                                                  0.0,
-                                                ),
-                                                uid: currentUserData?.id
-                                                    ?.toString(),
-                                                token: currentUserData?.token,
                                                 imagesList: _model.tmpImageList,
+                                                cmd: widget.cmd,
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??

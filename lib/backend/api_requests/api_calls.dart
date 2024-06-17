@@ -44,6 +44,41 @@ class ProductlistCall {
   }
 }
 
+class DatalistCall {
+  static Future<ApiCallResponse> call({
+    String? rows = '',
+    String? start = '',
+    String? uid = '',
+    String? keyword = '',
+    String? ids = '',
+    String? sortField = '',
+    String? sortKey = '',
+    String? cmd = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'datalist',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/data_list',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'rows': rows,
+        'start': start,
+        'uid': uid,
+        'keyword': keyword,
+        'ids': ids,
+        'sort_field': sortField,
+        'sort_key': sortKey,
+        'cmd': cmd,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ProductdetailCall {
   static Future<ApiCallResponse> call({
     int? id,
@@ -61,6 +96,35 @@ class ProductdetailCall {
         'id': id,
         'uid': uid,
         'token': token,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DatadetailCall {
+  static Future<ApiCallResponse> call({
+    int? id,
+    int? uid,
+    String? token = '',
+    String? cmd = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'datadetail',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/data_detail',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'id': id,
+        'uid': uid,
+        'token': token,
+        'cmd': cmd,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -102,6 +166,44 @@ class InsertproductCall {
         'special_price': specialPrice,
         'images[]': images,
         'display_image_index': displayImageIndex,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class InsertdataCall {
+  static Future<ApiCallResponse> call({
+    String? token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
+    String? uid = '1',
+    String? subject = '',
+    String? detail = '',
+    List<FFUploadedFile>? imagesList,
+    int? displayImageIndex = 0,
+    String? cmd = '',
+  }) async {
+    final images = imagesList ?? [];
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'insertdata',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/insert_data',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'uid': uid,
+        'subject': subject,
+        'detail': detail,
+        'images[]': images,
+        'display_image_index': displayImageIndex,
+        'cmd': cmd,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -159,6 +261,48 @@ class UpdateproductCall {
   }
 }
 
+class UpdatedataCall {
+  static Future<ApiCallResponse> call({
+    String? token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
+    String? uid = '1',
+    String? subject = '',
+    String? detail = '',
+    List<FFUploadedFile>? imagesList,
+    int? displayImageIndex = 0,
+    int? id,
+    String? uploadKey = '',
+    String? cmd = '',
+  }) async {
+    final images = imagesList ?? [];
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'updatedata',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/update_data',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'uid': uid,
+        'subject': subject,
+        'detail': detail,
+        'images[]': images,
+        'display_image_index': displayImageIndex,
+        'id': id,
+        'uploadKey': uploadKey,
+        'cmd': cmd,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class DeleteproductCall {
   static Future<ApiCallResponse> call({
     String? token =
@@ -176,6 +320,36 @@ class DeleteproductCall {
       params: {
         'uid': uid,
         'id': id,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DeletedataCall {
+  static Future<ApiCallResponse> call({
+    String? token =
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
+    String? uid = '1',
+    String? id = '',
+    String? cmd = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'deletedata',
+      apiUrl: 'https://ecommerce-template.silver-api.com/api/delete_data',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'uid': uid,
+        'id': id,
+        'cmd': cmd,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
