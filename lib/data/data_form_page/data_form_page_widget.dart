@@ -592,6 +592,16 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                 _model.removeFromCurrentImageList(
                                                                     imageList2Item);
                                                                 setState(() {});
+                                                                if (_model
+                                                                        .displayImage ==
+                                                                    getJsonField(
+                                                                      imageList2Item
+                                                                          .toMap(),
+                                                                      r'''$.url''',
+                                                                    ).toString()) {
+                                                                  _model.displayImage =
+                                                                      null;
+                                                                }
                                                               } else {
                                                                 await showDialog(
                                                                   context:
