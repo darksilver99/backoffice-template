@@ -216,7 +216,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Product',
+            'News',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -1276,6 +1276,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                           .recommendSwitchValue!
                                                       ? '1'
                                                       : '0',
+                                                  displayImage:
+                                                      _model.displayImage,
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1422,6 +1424,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                     _model.recommendSwitchValue!
                                                         ? '1'
                                                         : '0',
+                                                displayImage:
+                                                    _model.displayImage,
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??
