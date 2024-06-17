@@ -819,8 +819,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                   ?.toString(),
                                                               id: imageList2Item
                                                                   .id,
-                                                              table:
-                                                                  'product_attachment',
+                                                              cmd: 'product',
                                                             );
                                                             if ((_model
                                                                     .apiResultwd5

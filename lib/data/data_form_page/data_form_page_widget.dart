@@ -552,8 +552,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                   ?.toString(),
                                                               id: imageList2Item
                                                                   .id,
-                                                              table:
-                                                                  'product_attachment',
+                                                              cmd: widget.cmd,
                                                             );
                                                             if ((_model
                                                                     .apiResultwd5
