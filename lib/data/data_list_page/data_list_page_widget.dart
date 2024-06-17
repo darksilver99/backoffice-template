@@ -714,7 +714,6 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         ),
                                   )),
                                 ),
-                                fixedWidth: 500.0,
                               ),
                               DataColumn2(
                                 label: DefaultTextStyle.merge(
@@ -1004,6 +1003,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                 keyword:
                                                     _model.textController.text,
                                                 cmd: widget.cmd,
+                                                api: FFAppConstants.apiPath,
                                               );
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??

@@ -1028,6 +1028,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                 start: '0',
                                                 keyword:
                                                     _model.textController.text,
+                                                api: FFAppConstants.apiPath,
                                               );
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
