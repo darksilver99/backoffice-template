@@ -20,10 +20,11 @@ class ProductlistCall {
     String? ids = '',
     String? sortField = '',
     String? sortKey = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'productlist',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/product_list',
+      apiUrl: '${api}product_list',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -54,10 +55,11 @@ class DatalistCall {
     String? sortField = '',
     String? sortKey = '',
     String? cmd = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datalist',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/data_list',
+      apiUrl: '${api}data_list',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -84,10 +86,11 @@ class ProductdetailCall {
     int? id,
     int? uid,
     String? token = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'productdetail',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/product_detail',
+      apiUrl: '${api}product_detail',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -112,10 +115,11 @@ class DatadetailCall {
     int? uid,
     String? token = '',
     String? cmd = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datadetail',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/data_detail',
+      apiUrl: '${api}data_detail',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -148,12 +152,13 @@ class InsertproductCall {
     List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
     String? status = '1',
+    String? api = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'insertproduct',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/insert_product',
+      apiUrl: '${api}insert_product',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -190,12 +195,13 @@ class InsertdataCall {
     int? displayImageIndex = 0,
     String? cmd = '',
     String? status = '1',
+    String? api = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'insertdata',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/insert_data',
+      apiUrl: '${api}insert_data',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -234,12 +240,13 @@ class UpdateproductCall {
     String? uploadKey = '',
     String? productId = '',
     String? status = '1',
+    String? api = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'updateproduct',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/update_product',
+      apiUrl: '${api}update_product',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -280,12 +287,13 @@ class UpdatedataCall {
     String? uploadKey = '',
     String? cmd = '',
     String? status = '1',
+    String? api = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'updatedata',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/update_data',
+      apiUrl: '${api}update_data',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -317,10 +325,11 @@ class DeleteproductCall {
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
     String? uid = '1',
     String? id = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'deleteproduct',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/delete_product',
+      apiUrl: '${api}delete_product',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -346,10 +355,11 @@ class DeletedataCall {
     String? uid = '1',
     String? id = '',
     String? cmd = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'deletedata',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/delete_data',
+      apiUrl: '${api}delete_data',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -376,10 +386,11 @@ class RemoveimageCall {
     String? uid = '1',
     int? id,
     String? cmd = '',
+    String? api = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'removeimage',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/remove_image',
+      apiUrl: '${api}remove_image',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -403,6 +414,7 @@ class LoginCall {
   static Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
+    String? api = '',
   }) async {
     final ffApiRequestBody = '''
 {
@@ -411,7 +423,7 @@ class LoginCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
-      apiUrl: 'https://ecommerce-template.silver-api.com/api/login',
+      apiUrl: '${api}login',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

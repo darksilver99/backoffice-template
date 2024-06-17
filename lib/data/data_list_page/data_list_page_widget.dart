@@ -47,6 +47,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
         sortKey: _model.dropDownValue2,
         keyword: _model.textController.text,
         cmd: widget.cmd,
+        api: FFAppConstants.apiPath,
       );
       if ((_model.apiResultmmq?.succeeded ?? true)) {
         _model.dataList = getJsonField(
@@ -354,6 +355,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                       start: '0',
                                       keyword: _model.textController.text,
                                       cmd: widget.cmd,
+                                      api: FFAppConstants.apiPath,
                                     );
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
@@ -525,6 +527,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                             return list.join(',');
                                           }(_model.selectedIDList.toList()),
                                           cmd: widget.cmd,
+                                          api: FFAppConstants.apiPath,
                                         );
                                         if ((_model.apiResult2sk?.succeeded ??
                                             true)) {
@@ -711,6 +714,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         ),
                                   )),
                                 ),
+                                fixedWidth: 500.0,
                               ),
                               DataColumn2(
                                 label: DefaultTextStyle.merge(
@@ -952,6 +956,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               r'''$.id''',
                                             ).toString(),
                                             cmd: widget.cmd,
+                                            api: FFAppConstants.apiPath,
                                           );
                                           if ((_model.apiResulthok?.succeeded ??
                                               true)) {
@@ -1089,6 +1094,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 sortKey: _model.dropDownValue2,
                                 keyword: _model.textController.text,
                                 cmd: widget.cmd,
+                                api: FFAppConstants.apiPath,
                               );
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;

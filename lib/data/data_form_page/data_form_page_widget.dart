@@ -51,6 +51,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
           uid: currentUserData?.id,
           token: currentUserData?.token,
           cmd: widget.cmd,
+          api: FFAppConstants.apiPath,
         );
         if ((_model.apiResult6ha?.succeeded ?? true)) {
           if (GeneralDataStruct.maybeFromMap(
@@ -75,11 +76,20 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                   offset: _model.detailTextController!.text.length);
             });
             setState(() {
-              _model.switchValue = (GeneralDataStruct.maybeFromMap(getJsonField(
-                    (_model.apiResult6ha?.jsonBody ?? ''),
-                    r'''$.data''',
-                  ))?.status ==
-                  1);
+              _model.statusSwitchValue =
+                  (GeneralDataStruct.maybeFromMap(getJsonField(
+                        (_model.apiResult6ha?.jsonBody ?? ''),
+                        r'''$.data''',
+                      ))?.status ==
+                      1);
+            });
+            setState(() {
+              _model.recommendSwitchValue =
+                  (GeneralDataStruct.maybeFromMap(getJsonField(
+                        (_model.apiResult6ha?.jsonBody ?? ''),
+                        r'''$.data''',
+                      ))?.isRecommend ==
+                      1);
             });
             _model.images = await actions.getCurrentImageList(
               getJsonField(
@@ -136,7 +146,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
     _model.detailTextController ??= TextEditingController();
     _model.detailFocusNode ??= FocusNode();
 
-    _model.switchValue = true;
+    _model.recommendSwitchValue = true;
+    _model.statusSwitchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -563,6 +574,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                 id: imageList2Item
                                                                     .id,
                                                                 cmd: widget.cmd,
+                                                                api: FFAppConstants
+                                                                    .apiPath,
                                                               );
                                                               if ((_model
                                                                       .apiResultwd5
@@ -916,35 +929,36 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Flexible(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 8.0, 0.0),
-                                          child: Text(
-                                            'สถานะแสดงผล',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Text(
+                                              'รายการแนะนำ',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Flexible(
-                                        child: Switch.adaptive(
-                                          value: _model.switchValue!,
+                                        Switch.adaptive(
+                                          value: _model.recommendSwitchValue!,
                                           onChanged: (newValue) async {
                                             setState(() =>
-                                                _model.switchValue = newValue!);
+                                                _model.recommendSwitchValue =
+                                                    newValue!);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -959,9 +973,66 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .secondaryText,
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                      ],
+                                    ),
+                                    Divider(
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: Text(
+                                              'สถานะแสดงผล',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                        Switch.adaptive(
+                                          value: _model.statusSwitchValue!,
+                                          onChanged: (newValue) async {
+                                            setState(() => _model
+                                                .statusSwitchValue = newValue!);
+                                          },
+                                          activeColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          activeTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          inactiveTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          inactiveThumbColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
+                                  ],
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1041,9 +1112,11 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                     r'''$.data.uploadKey''',
                                                   ).toString(),
                                                   cmd: widget.cmd,
-                                                  status: _model.switchValue!
-                                                      ? '1'
-                                                      : '0',
+                                                  status:
+                                                      _model.statusSwitchValue!
+                                                          ? '1'
+                                                          : '0',
+                                                  api: FFAppConstants.apiPath,
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1181,9 +1254,11 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                     .detailTextController.text,
                                                 imagesList: _model.tmpImageList,
                                                 cmd: widget.cmd,
-                                                status: _model.switchValue!
-                                                    ? '1'
-                                                    : '0',
+                                                status:
+                                                    _model.statusSwitchValue!
+                                                        ? '1'
+                                                        : '0',
+                                                api: FFAppConstants.apiPath,
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??

@@ -45,7 +45,12 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.id != null) {
-        _model.apiResult6ha = await DatadetailCall.call();
+        _model.apiResult6ha = await ProductdetailCall.call(
+          id: widget.id,
+          uid: currentUserData?.id,
+          token: currentUserData?.token,
+          api: FFAppConstants.apiPath,
+        );
         if ((_model.apiResult6ha?.succeeded ?? true)) {
           if (GeneralDataStruct.maybeFromMap(
                       (_model.apiResult6ha?.jsonBody ?? ''))
@@ -820,6 +825,9 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                               id: imageList2Item
                                                                   .id,
                                                               cmd: 'product',
+                                                              api:
+                                                                  FFAppConstants
+                                                                      .apiPath,
                                                             );
                                                             if ((_model
                                                                     .apiResultwd5
@@ -1251,6 +1259,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   productId: _model
                                                       .productIDTextController
                                                       .text,
+                                                  api: FFAppConstants.apiPath,
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1401,6 +1410,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                     ?.toString(),
                                                 token: currentUserData?.token,
                                                 imagesList: _model.tmpImageList,
+                                                api: FFAppConstants.apiPath,
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??

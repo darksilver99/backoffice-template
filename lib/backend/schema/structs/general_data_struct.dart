@@ -8,7 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class GeneralDataStruct extends BaseStruct {
   GeneralDataStruct({
     int? status,
-  }) : _status = status;
+    int? isRecommend,
+  })  : _status = status,
+        _isRecommend = isRecommend;
 
   // "status" field.
   int? _status;
@@ -19,9 +21,19 @@ class GeneralDataStruct extends BaseStruct {
 
   bool hasStatus() => _status != null;
 
+  // "is_recommend" field.
+  int? _isRecommend;
+  int get isRecommend => _isRecommend ?? 0;
+  set isRecommend(int? val) => _isRecommend = val;
+
+  void incrementIsRecommend(int amount) => isRecommend = isRecommend + amount;
+
+  bool hasIsRecommend() => _isRecommend != null;
+
   static GeneralDataStruct fromMap(Map<String, dynamic> data) =>
       GeneralDataStruct(
         status: castToType<int>(data['status']),
+        isRecommend: castToType<int>(data['is_recommend']),
       );
 
   static GeneralDataStruct? maybeFromMap(dynamic data) => data is Map
@@ -30,12 +42,17 @@ class GeneralDataStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'status': _status,
+        'is_recommend': _isRecommend,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
         'status': serializeParam(
           _status,
+          ParamType.int,
+        ),
+        'is_recommend': serializeParam(
+          _isRecommend,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -47,6 +64,11 @@ class GeneralDataStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        isRecommend: deserializeParam(
+          data['is_recommend'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -54,16 +76,20 @@ class GeneralDataStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is GeneralDataStruct && status == other.status;
+    return other is GeneralDataStruct &&
+        status == other.status &&
+        isRecommend == other.isRecommend;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([status]);
+  int get hashCode => const ListEquality().hash([status, isRecommend]);
 }
 
 GeneralDataStruct createGeneralDataStruct({
   int? status,
+  int? isRecommend,
 }) =>
     GeneralDataStruct(
       status: status,
+      isRecommend: isRecommend,
     );

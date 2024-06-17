@@ -49,7 +49,7 @@ class ProductFormPageModel extends FlutterFlowModel<ProductFormPageWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Backend Call - API (datadetail)] action in ProductFormPage widget.
+  // Stores action output result for [Backend Call - API (productdetail)] action in ProductFormPage widget.
   ApiCallResponse? apiResult6ha;
   // Stores action output result for [Custom Action - getCurrentImageList] action in ProductFormPage widget.
   List<ImageDataStruct>? images;
