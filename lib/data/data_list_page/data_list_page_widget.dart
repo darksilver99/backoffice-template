@@ -792,15 +792,41 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 )),
                                 SelectionArea(
                                     child: Text(
-                                  getJsonField(
+                                  functions.getStatusText(getJsonField(
                                     productTmpListItem,
                                     r'''$.status''',
-                                  ).toString(),
+                                  ).toString()),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: () {
+                                          if (GeneralDataStruct.maybeFromMap(
+                                                      productTmpListItem)
+                                                  ?.status ==
+                                              0) {
+                                            return FlutterFlowTheme.of(context)
+                                                .tertiary;
+                                          } else if (GeneralDataStruct
+                                                      .maybeFromMap(
+                                                          productTmpListItem)
+                                                  ?.status ==
+                                              1) {
+                                            return FlutterFlowTheme.of(context)
+                                                .success;
+                                          } else if (GeneralDataStruct
+                                                      .maybeFromMap(
+                                                          productTmpListItem)
+                                                  ?.status ==
+                                              2) {
+                                            return FlutterFlowTheme.of(context)
+                                                .error;
+                                          } else {
+                                            return Color(0x00000000);
+                                          }
+                                        }(),
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                 )),
                                 Row(

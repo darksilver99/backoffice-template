@@ -45,3 +45,16 @@ List<int> getSelectedIdList(
   }
   return tmp;
 }
+
+String getStatusText(String status) {
+  switch (status) {
+    case '0':
+      return "ไม่แสดง";
+    case '1':
+      return "แสดงข้อมูล";
+    case '2':
+      return "ลบแล้ว";
+    default:
+      return "-";
+  }
+}
