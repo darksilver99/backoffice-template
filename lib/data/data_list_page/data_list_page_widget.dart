@@ -42,7 +42,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResultmmq = await DatalistCall.call(
-        start: _model.pageIndex.toString(),
+        start: '0',
         sortField: _model.dropDownValue1,
         sortKey: _model.dropDownValue2,
         keyword: _model.textController.text,
