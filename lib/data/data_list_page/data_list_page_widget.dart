@@ -338,6 +338,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                       sortKey: _model.dropDownValue2,
                                       start: '0',
                                       keyword: _model.textController.text,
+                                      cmd: widget.cmd,
                                     );
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
