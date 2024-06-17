@@ -44,6 +44,8 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
           int index, Function(ImageDataStruct) updateFn) =>
       currentImageList[index] = updateFn(currentImageList[index]);
 
+  String? displayImage;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

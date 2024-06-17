@@ -410,8 +410,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Expanded(
+                          Flexible(
                             child: Wrap(
                               spacing: 8.0,
                               runSpacing: 8.0,

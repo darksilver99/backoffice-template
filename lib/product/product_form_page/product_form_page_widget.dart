@@ -1165,6 +1165,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                             BorderRadius.circular(8.0),
                                       ),
                                     ),
+                                    Divider(
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
                                   ],
                                 ),
                                 Row(
