@@ -1276,7 +1276,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                       functions.removeAPIPath(
                                                           _model.displayImage!,
                                                           FFAppConstants
-                                                              .apiPath,
+                                                              .baseURL,
                                                           ''),
                                                 );
                                                 if ((_model.apiResultdgp
@@ -1427,7 +1427,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                 displayImage:
                                                     functions.removeAPIPath(
                                                         _model.displayImage!,
-                                                        FFAppConstants.apiPath,
+                                                        FFAppConstants.baseURL,
                                                         ''),
                                               );
                                               if ((_model.apiResulto60
