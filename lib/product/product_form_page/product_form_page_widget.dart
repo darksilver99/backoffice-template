@@ -8,11 +8,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'product_form_page_model.dart';
 export 'product_form_page_model.dart';
 
@@ -92,7 +96,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                 getJsonField(
                   (_model.apiResult6ha?.jsonBody ?? ''),
                   r'''$.data.special_price''',
-                )?.toString().toString(),
+                )?.toString()?.toString(),
                 '0',
               );
               _model.specialPriceTextController?.selection =
@@ -122,7 +126,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
-                      child: const Text('Ok'),
+                      child: Text('Ok'),
                     ),
                   ],
                 );
@@ -138,7 +142,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext),
-                    child: const Text('Ok'),
+                    child: Text('Ok'),
                   ),
                 ],
               );
@@ -192,7 +196,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -217,7 +221,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                 child: wrapWithModel(
                   model: _model.menuViewModel,
                   updateCallback: () => setState(() {}),
-                  child: const MenuViewWidget(),
+                  child: MenuViewWidget(),
                 ),
               ),
             ],
@@ -235,7 +239,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -262,21 +266,21 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                           return (MediaQuery.sizeOf(context).width * 0.5);
                         }
                       }(),
-                      decoration: const BoxDecoration(),
-                      child: SizedBox(
+                      decoration: BoxDecoration(),
+                      child: Container(
                         width: double.infinity,
                         child: Form(
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 64.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.subjectTextController,
@@ -349,7 +353,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.productIDTextController,
@@ -422,7 +426,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.detailTextController,
@@ -496,7 +500,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller:
@@ -578,7 +582,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller:
@@ -680,7 +684,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   (imageList2Index) {
                                             final imageList2Item =
                                                 imageList2[imageList2Index];
-                                            return SizedBox(
+                                            return Container(
                                               width: 100.0,
                                               height: 100.0,
                                               child: Stack(
@@ -760,11 +764,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -788,20 +792,20 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                     builder:
                                                                         (alertDialogContext) {
                                                                       return AlertDialog(
-                                                                        title: const Text(
+                                                                        title: Text(
                                                                             'delete?'),
                                                                         actions: [
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, false),
                                                                             child:
-                                                                                const Text('Cancel'),
+                                                                                Text('Cancel'),
                                                                           ),
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, true),
                                                                             child:
-                                                                                const Text('Confirm'),
+                                                                                Text('Confirm'),
                                                                           ),
                                                                         ],
                                                                       );
@@ -817,7 +821,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                       ?.token,
                                                               uid: currentUserData
                                                                   ?.id
-                                                                  .toString(),
+                                                                  ?.toString(),
                                                               id: imageList2Item
                                                                   .id,
                                                               cmd: 'product',
@@ -855,7 +859,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                           onPressed: () =>
                                                                               Navigator.pop(alertDialogContext),
                                                                           child:
-                                                                              const Text('Ok'),
+                                                                              Text('Ok'),
                                                                         ),
                                                                       ],
                                                                     );
@@ -878,7 +882,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                         onPressed:
                                                                             () =>
                                                                                 Navigator.pop(alertDialogContext),
-                                                                        child: const Text(
+                                                                        child: Text(
                                                                             'Ok'),
                                                                       ),
                                                                     ],
@@ -914,7 +918,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                             .alternate,
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 8.0),
                                       child: Builder(
                                         builder: (context) {
@@ -936,7 +940,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                     (imageListIndex) {
                                               final imageListItem =
                                                   imageList[imageListIndex];
-                                              return SizedBox(
+                                              return Container(
                                                 width: 100.0,
                                                 height: 100.0,
                                                 child: Stack(
@@ -1004,11 +1008,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, -1.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1033,15 +1037,15 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                           (alertDialogContext) {
                                                                         return AlertDialog(
                                                                           title:
-                                                                              const Text('delete?'),
+                                                                              Text('delete?'),
                                                                           actions: [
                                                                             TextButton(
                                                                               onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: const Text('Cancel'),
+                                                                              child: Text('Cancel'),
                                                                             ),
                                                                             TextButton(
                                                                               onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: const Text('Confirm'),
+                                                                              child: Text('Confirm'),
                                                                             ),
                                                                           ],
                                                                         );
@@ -1138,10 +1142,10 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                       text: 'upload',
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1153,7 +1157,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -1173,7 +1177,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -1183,10 +1187,10 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .error,
@@ -1199,7 +1203,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -1213,7 +1217,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                         if (widget.id != null) {
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
@@ -1230,7 +1234,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                         .call(
                                                   token: currentUserData?.token,
                                                   uid: currentUserData?.id
-                                                      .toString(),
+                                                      ?.toString(),
                                                   subject: _model
                                                       .subjectTextController
                                                       .text,
@@ -1289,7 +1293,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: const Text('Ok'),
+                                                              child: Text('Ok'),
                                                             ),
                                                           ],
                                                         );
@@ -1314,7 +1318,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: const Text('Ok'),
+                                                              child: Text('Ok'),
                                                             ),
                                                           ],
                                                         );
@@ -1336,7 +1340,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1349,11 +1353,11 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                               text: 'อัพเดท',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -1369,7 +1373,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1408,7 +1412,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                   0.0,
                                                 ),
                                                 uid: currentUserData?.id
-                                                    .toString(),
+                                                    ?.toString(),
                                                 token: currentUserData?.token,
                                                 imagesList: _model.tmpImageList,
                                                 api: FFAppConstants.apiPath,
@@ -1440,7 +1444,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1465,7 +1469,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1487,7 +1491,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext),
-                                                          child: const Text('Ok'),
+                                                          child: Text('Ok'),
                                                         ),
                                                       ],
                                                     );
@@ -1500,10 +1504,10 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                             text: 'บันทึก',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1518,7 +1522,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1547,7 +1551,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
               wrapWithModel(
                 model: _model.menuButtonViewModel,
                 updateCallback: () => setState(() {}),
-                child: const MenuButtonViewWidget(),
+                child: MenuButtonViewWidget(),
               ),
             ],
           ),

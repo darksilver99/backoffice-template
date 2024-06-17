@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -91,7 +93,7 @@ class ProductdetailCall {
       apiUrl: '${api}product_detail',
       callType: ApiCallType.GET,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'id': id,
@@ -120,7 +122,7 @@ class DatadetailCall {
       apiUrl: '${api}data_detail',
       callType: ApiCallType.GET,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'id': id,
@@ -159,7 +161,7 @@ class InsertproductCall {
       apiUrl: '${api}insert_product',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -203,7 +205,7 @@ class InsertdataCall {
       apiUrl: '${api}insert_data',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -249,7 +251,7 @@ class UpdateproductCall {
       apiUrl: '${api}update_product',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -297,7 +299,7 @@ class UpdatedataCall {
       apiUrl: '${api}update_data',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -334,7 +336,7 @@ class DeleteproductCall {
       apiUrl: '${api}delete_product',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -364,7 +366,7 @@ class DeletedataCall {
       apiUrl: '${api}delete_data',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -395,7 +397,7 @@ class RemoveimageCall {
       apiUrl: '${api}remove_image',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '$token',
+        'Authorization': '${token}',
       },
       params: {
         'uid': uid,
@@ -420,8 +422,8 @@ class LoginCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "username": "$username",
-  "password": "$password"
+  "username": "${username}",
+  "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',

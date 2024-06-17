@@ -12,6 +12,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'data_list_page_model.dart';
 export 'data_list_page_model.dart';
 
@@ -69,7 +71,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
-                  child: const Text('Ok'),
+                  child: Text('Ok'),
                 ),
               ],
             );
@@ -110,7 +112,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -135,7 +137,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                 child: wrapWithModel(
                   model: _model.menuViewModel,
                   updateCallback: () => setState(() {}),
-                  child: const MenuViewWidget(),
+                  child: MenuViewWidget(),
                 ),
               ),
             ],
@@ -153,7 +155,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -167,7 +169,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 64.0, 8.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 64.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -183,7 +185,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                               clipBehavior: Clip.none,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 8.0),
                                   child: FlutterFlowDropDown<String>(
                                     controller:
@@ -192,7 +194,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                       _model.dropDownValue1 ??= 'create_date',
                                     ),
                                     options: List<String>.from(['create_date']),
-                                    optionLabels: const ['วันที่สร้างข้อมูล'],
+                                    optionLabels: ['วันที่สร้างข้อมูล'],
                                     onChanged: (val) => setState(
                                         () => _model.dropDownValue1 = val),
                                     width: 300.0,
@@ -217,7 +219,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     borderWidth: 2.0,
                                     borderRadius: 8.0,
-                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                    margin: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 4.0, 16.0, 4.0),
                                     hidesUnderline: true,
                                     isOverButton: true,
@@ -226,7 +228,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 8.0),
                                   child: FlutterFlowDropDown<String>(
                                     controller:
@@ -235,7 +237,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                       _model.dropDownValue2 ??= 'desc',
                                     ),
                                     options: List<String>.from(['desc', 'asc']),
-                                    optionLabels: const [
+                                    optionLabels: [
                                       'จากมากไปน้อย',
                                       'จากน้อยไปมาก'
                                     ],
@@ -263,7 +265,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                     borderWidth: 2.0,
                                     borderRadius: 8.0,
-                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                    margin: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 4.0, 16.0, 4.0),
                                     hidesUnderline: true,
                                     isOverButton: true,
@@ -272,7 +274,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 8.0, 8.0),
                                   child: Container(
                                     width: 300.0,
@@ -377,9 +379,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                   text: 'Search',
                                   options: FFButtonOptions(
                                     height: 56.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -390,7 +392,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -405,7 +407,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -447,16 +449,16 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                     );
                                   },
                                   text: 'เพิ่ม',
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add_rounded,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: 150.0,
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color:
                                         FlutterFlowTheme.of(context).secondary,
@@ -468,7 +470,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -486,21 +488,21 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                 context: context,
                                                 builder: (alertDialogContext) {
                                                   return AlertDialog(
-                                                    title: const Text('delete ?'),
+                                                    title: Text('delete ?'),
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 false),
-                                                        child: const Text('Cancel'),
+                                                        child: Text('Cancel'),
                                                       ),
                                                       TextButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext,
                                                                 true),
-                                                        child: const Text('Confirm'),
+                                                        child: Text('Confirm'),
                                                       ),
                                                     ],
                                                   );
@@ -521,7 +523,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         _model.apiResult2sk =
                                             await DeletedataCall.call(
                                           token: currentUserData?.token,
-                                          uid: currentUserData?.id.toString(),
+                                          uid: currentUserData?.id?.toString(),
                                           id: (List<int> list) {
                                             return list.join(',');
                                           }(_model.selectedIDList.toList()),
@@ -551,7 +553,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: const Text('Ok'),
+                                                      child: Text('Ok'),
                                                     ),
                                                   ],
                                                 );
@@ -586,7 +588,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: const Text('Ok'),
+                                                      child: Text('Ok'),
                                                     ),
                                                   ],
                                                 );
@@ -606,7 +608,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: const Text('Ok'),
+                                                    child: Text('Ok'),
                                                   ),
                                                 ],
                                               );
@@ -619,12 +621,12 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('no selected row.'),
+                                            title: Text('no selected row.'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext),
-                                                child: const Text('Ok'),
+                                                child: Text('Ok'),
                                               ),
                                             ],
                                           );
@@ -635,16 +637,16 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                     setState(() {});
                                   },
                                   text: 'ลบ',
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.delete_rounded,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: 150.0,
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).error,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -655,7 +657,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -670,7 +672,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                     ),
                     Container(
                       height: 650.0,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Builder(
                         builder: (context) {
                           final productTmpList = _model.dataList.toList();
@@ -852,7 +854,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                             return FlutterFlowTheme.of(context)
                                                 .error;
                                           } else {
-                                            return const Color(0x00000000);
+                                            return Color(0x00000000);
                                           }
                                         }(),
                                         letterSpacing: 0.0,
@@ -863,7 +865,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -921,14 +923,14 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                   builder:
                                                       (alertDialogContext) {
                                                     return AlertDialog(
-                                                      title: const Text('delete?'),
+                                                      title: Text('delete?'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext,
                                                                   false),
-                                                          child: const Text('Cancel'),
+                                                          child: Text('Cancel'),
                                                         ),
                                                         TextButton(
                                                           onPressed: () =>
@@ -936,7 +938,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                                   alertDialogContext,
                                                                   true),
                                                           child:
-                                                              const Text('Confirm'),
+                                                              Text('Confirm'),
                                                         ),
                                                       ],
                                                     );
@@ -948,7 +950,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               await DeletedataCall.call(
                                             token: currentUserData?.token,
                                             uid:
-                                                currentUserData?.id.toString(),
+                                                currentUserData?.id?.toString(),
                                             id: getJsonField(
                                               productTmpListItem,
                                               r'''$.id''',
@@ -979,7 +981,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext),
-                                                        child: const Text('Ok'),
+                                                        child: Text('Ok'),
                                                       ),
                                                     ],
                                                   );
@@ -1043,7 +1045,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext),
-                                                        child: const Text('Ok'),
+                                                        child: Text('Ok'),
                                                       ),
                                                     ],
                                                   );
@@ -1064,7 +1066,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: const Text('Ok'),
+                                                      child: Text('Ok'),
                                                     ),
                                                   ],
                                                 );
@@ -1132,9 +1134,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                             addVerticalDivider: false,
                             checkboxUnselectedFillColor: Colors.transparent,
                             checkboxSelectedFillColor: Colors.transparent,
-                            checkboxCheckColor: const Color(0x8A000000),
-                            checkboxUnselectedBorderColor: const Color(0x8A000000),
-                            checkboxSelectedBorderColor: const Color(0x8A000000),
+                            checkboxCheckColor: Color(0x8A000000),
+                            checkboxUnselectedBorderColor: Color(0x8A000000),
+                            checkboxSelectedBorderColor: Color(0x8A000000),
                           );
                         },
                       ),
@@ -1145,7 +1147,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
               wrapWithModel(
                 model: _model.menuButtonViewModel,
                 updateCallback: () => setState(() {}),
-                child: const MenuButtonViewWidget(),
+                child: MenuButtonViewWidget(),
               ),
             ],
           ),

@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'menu_button_view_model.dart';
 export 'menu_button_view_model.dart';
 
@@ -38,7 +40,7 @@ class _MenuButtonViewWidgetState extends State<MenuButtonViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
       child: InkWell(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
@@ -50,7 +52,7 @@ class _MenuButtonViewWidgetState extends State<MenuButtonViewWidget> {
         child: Material(
           color: Colors.transparent,
           elevation: 3.0,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(8.0),
@@ -63,7 +65,7 @@ class _MenuButtonViewWidgetState extends State<MenuButtonViewWidget> {
             height: 32.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0.0),
                 bottomRight: Radius.circular(8.0),
                 topLeft: Radius.circular(0.0),
