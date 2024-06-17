@@ -74,6 +74,12 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
               _model.detailTextController?.selection = TextSelection.collapsed(
                   offset: _model.detailTextController!.text.length);
             });
+            setState(() {
+              _model.switchValue = (GeneralDataStruct.maybeFromMap(
+                          (_model.apiResult6ha?.jsonBody ?? ''))
+                      ?.status ==
+                  1);
+            });
             _model.images = await actions.getCurrentImageList(
               getJsonField(
                 (_model.apiResult6ha?.jsonBody ?? ''),
@@ -129,6 +135,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
     _model.detailTextController ??= TextEditingController();
     _model.detailFocusNode ??= FocusNode();
 
+    _model.switchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -388,267 +395,18 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Builder(
-                                      builder: (context) {
-                                        final imageList2 =
-                                            _model.currentImageList.toList();
-                                        return Wrap(
-                                          spacing: 8.0,
-                                          runSpacing: 8.0,
-                                          alignment: WrapAlignment.start,
-                                          crossAxisAlignment:
-                                              WrapCrossAlignment.start,
-                                          direction: Axis.horizontal,
-                                          runAlignment: WrapAlignment.start,
-                                          verticalDirection:
-                                              VerticalDirection.down,
-                                          clipBehavior: Clip.none,
-                                          children:
-                                              List.generate(imageList2.length,
-                                                  (imageList2Index) {
-                                            final imageList2Item =
-                                                imageList2[imageList2Index];
-                                            return Container(
-                                              width: 100.0,
-                                              height: 100.0,
-                                              child: Stack(
-                                                children: [
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          child:
-                                                              FlutterFlowExpandedImageView(
-                                                            image:
-                                                                Image.network(
-                                                              imageList2Item
-                                                                  .url,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                              errorBuilder: (context,
-                                                                      error,
-                                                                      stackTrace) =>
-                                                                  Image.asset(
-                                                                'assets/images/error_image.jpg',
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                            ),
-                                                            allowRotation:
-                                                                false,
-                                                            tag: imageList2Item
-                                                                .url,
-                                                            useHeroAnimation:
-                                                                true,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                    child: Hero(
-                                                      tag: imageList2Item.url,
-                                                      transitionOnUserGestures:
-                                                          true,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          imageList2Item.url,
-                                                          width:
-                                                              double.infinity,
-                                                          height:
-                                                              double.infinity,
-                                                          fit: BoxFit.cover,
-                                                          errorBuilder: (context,
-                                                                  error,
-                                                                  stackTrace) =>
-                                                              Image.asset(
-                                                            'assets/images/error_image.jpg',
-                                                            width:
-                                                                double.infinity,
-                                                            height:
-                                                                double.infinity,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            1.0, -1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  4.0,
-                                                                  0.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          var confirmDialogResponse =
-                                                              await showDialog<
-                                                                      bool>(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'delete?'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, false),
-                                                                            child:
-                                                                                Text('Cancel'),
-                                                                          ),
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, true),
-                                                                            child:
-                                                                                Text('Confirm'),
-                                                                          ),
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                  ) ??
-                                                                  false;
-                                                          if (confirmDialogResponse) {
-                                                            _model.apiResultwd5 =
-                                                                await RemoveimageCall
-                                                                    .call(
-                                                              token:
-                                                                  currentUserData
-                                                                      ?.token,
-                                                              uid: currentUserData
-                                                                  ?.id
-                                                                  ?.toString(),
-                                                              id: imageList2Item
-                                                                  .id,
-                                                              cmd: widget.cmd,
-                                                            );
-                                                            if ((_model
-                                                                    .apiResultwd5
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              if (GeneralDataStruct.maybeFromMap(
-                                                                          (_model.apiResultwd5?.jsonBody ??
-                                                                              ''))
-                                                                      ?.status ==
-                                                                  1) {
-                                                                _model.removeFromCurrentImageList(
-                                                                    imageList2Item);
-                                                                setState(() {});
-                                                              } else {
-                                                                await showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          getJsonField(
-                                                                        (_model.apiResultwd5?.jsonBody ??
-                                                                            ''),
-                                                                        r'''$.msg''',
-                                                                      ).toString()),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                              }
-                                                            } else {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text((_model
-                                                                            .apiResultwd5
-                                                                            ?.exceptionMessage ??
-                                                                        '')),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                            }
-                                                          }
-
-                                                          setState(() {});
-                                                        },
-                                                        child: Icon(
-                                                          Icons.remove_circle,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          size: 24.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          }),
-                                        );
-                                      },
-                                    ),
-                                    if (_model.currentImageList.isNotEmpty)
-                                      Divider(
-                                        thickness: 1.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                      ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 8.0, 8.0),
-                                      child: Builder(
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Builder(
                                         builder: (context) {
-                                          final imageList =
-                                              _model.tmpImageList.toList();
+                                          final imageList2 =
+                                              _model.currentImageList.toList();
                                           return Wrap(
                                             spacing: 8.0,
                                             runSpacing: 8.0,
@@ -661,10 +419,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                 VerticalDirection.down,
                                             clipBehavior: Clip.none,
                                             children:
-                                                List.generate(imageList.length,
-                                                    (imageListIndex) {
-                                              final imageListItem =
-                                                  imageList[imageListIndex];
+                                                List.generate(imageList2.length,
+                                                    (imageList2Index) {
+                                              final imageList2Item =
+                                                  imageList2[imageList2Index];
                                               return Container(
                                                 width: 100.0,
                                                 height: 100.0,
@@ -689,18 +447,25 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                             child:
                                                                 FlutterFlowExpandedImageView(
                                                               image:
-                                                                  Image.memory(
-                                                                imageListItem
-                                                                        .bytes ??
-                                                                    Uint8List
-                                                                        .fromList(
-                                                                            []),
+                                                                  Image.network(
+                                                                imageList2Item
+                                                                    .url,
                                                                 fit: BoxFit
                                                                     .contain,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.jpg',
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                ),
                                                               ),
                                                               allowRotation:
                                                                   false,
-                                                              tag: 'imageTag2',
+                                                              tag:
+                                                                  imageList2Item
+                                                                      .url,
                                                               useHeroAnimation:
                                                                   true,
                                                             ),
@@ -708,7 +473,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         );
                                                       },
                                                       child: Hero(
-                                                        tag: 'imageTag2',
+                                                        tag: imageList2Item.url,
                                                         transitionOnUserGestures:
                                                             true,
                                                         child: ClipRRect(
@@ -716,17 +481,24 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                               BorderRadius
                                                                   .circular(
                                                                       8.0),
-                                                          child: Image.memory(
-                                                            imageListItem
-                                                                    .bytes ??
-                                                                Uint8List
-                                                                    .fromList(
-                                                                        []),
+                                                          child: Image.network(
+                                                            imageList2Item.url,
                                                             width:
                                                                 double.infinity,
                                                             height:
                                                                 double.infinity,
                                                             fit: BoxFit.cover,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.jpg',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -778,10 +550,82 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                     ) ??
                                                                     false;
                                                             if (confirmDialogResponse) {
-                                                              _model.removeFromTmpImageList(
-                                                                  imageListItem);
-                                                              setState(() {});
+                                                              _model.apiResultwd5 =
+                                                                  await RemoveimageCall
+                                                                      .call(
+                                                                token:
+                                                                    currentUserData
+                                                                        ?.token,
+                                                                uid: currentUserData
+                                                                    ?.id
+                                                                    ?.toString(),
+                                                                id: imageList2Item
+                                                                    .id,
+                                                                cmd: widget.cmd,
+                                                              );
+                                                              if ((_model
+                                                                      .apiResultwd5
+                                                                      ?.succeeded ??
+                                                                  true)) {
+                                                                if (GeneralDataStruct.maybeFromMap((_model.apiResultwd5?.jsonBody ??
+                                                                            ''))
+                                                                        ?.status ==
+                                                                    1) {
+                                                                  _model.removeFromCurrentImageList(
+                                                                      imageList2Item);
+                                                                  setState(
+                                                                      () {});
+                                                                } else {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            getJsonField(
+                                                                          (_model.apiResultwd5?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.msg''',
+                                                                        ).toString()),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                }
+                                                              } else {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text((_model
+                                                                              .apiResultwd5
+                                                                              ?.exceptionMessage ??
+                                                                          '')),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              }
                                                             }
+
+                                                            setState(() {});
                                                           },
                                                           child: Icon(
                                                             Icons.remove_circle,
@@ -800,97 +644,323 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                           );
                                         },
                                       ),
-                                    ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        final selectedMedia = await selectMedia(
-                                          maxWidth: 900.00,
-                                          imageQuality: 80,
-                                          mediaSource: MediaSource.photoGallery,
-                                          multiImage: true,
-                                        );
-                                        if (selectedMedia != null &&
-                                            selectedMedia.every((m) =>
-                                                validateFileFormat(
-                                                    m.storagePath, context))) {
-                                          setState(() =>
-                                              _model.isDataUploading = true);
-                                          var selectedUploadedFiles =
-                                              <FFUploadedFile>[];
-
-                                          try {
-                                            selectedUploadedFiles =
-                                                selectedMedia
-                                                    .map((m) => FFUploadedFile(
-                                                          name: m.storagePath
-                                                              .split('/')
-                                                              .last,
-                                                          bytes: m.bytes,
-                                                          height: m.dimensions
-                                                              ?.height,
-                                                          width: m.dimensions
-                                                              ?.width,
-                                                          blurHash: m.blurHash,
-                                                        ))
-                                                    .toList();
-                                          } finally {
-                                            _model.isDataUploading = false;
-                                          }
-                                          if (selectedUploadedFiles.length ==
-                                              selectedMedia.length) {
-                                            setState(() {
-                                              _model.uploadedLocalFiles =
-                                                  selectedUploadedFiles;
-                                            });
-                                          } else {
-                                            setState(() {});
-                                            return;
-                                          }
-                                        }
-
-                                        if (_model
-                                            .uploadedLocalFiles.isNotEmpty) {
-                                          _model.tmpImageList = functions
-                                              .addUploadImageNewList(
-                                                  _model.uploadedLocalFiles
-                                                      .toList(),
-                                                  _model.tmpImageList.toList())!
-                                              .toList()
-                                              .cast<FFUploadedFile>();
-                                          setState(() {});
-                                          setState(() {
-                                            _model.isDataUploading = false;
-                                            _model.uploadedLocalFiles = [];
-                                          });
-                                        }
-                                      },
-                                      text: 'upload',
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                      if (_model.currentImageList.isNotEmpty)
+                                        Divider(
+                                          thickness: 1.0,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 8.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final imageList =
+                                                _model.tmpImageList.toList();
+                                            return Wrap(
+                                              spacing: 8.0,
+                                              runSpacing: 8.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: List.generate(
+                                                  imageList.length,
+                                                  (imageListIndex) {
+                                                final imageListItem =
+                                                    imageList[imageListIndex];
+                                                return Container(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  child: Stack(
+                                                    children: [
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                              child:
+                                                                  FlutterFlowExpandedImageView(
+                                                                image: Image
+                                                                    .memory(
+                                                                  imageListItem
+                                                                          .bytes ??
+                                                                      Uint8List
+                                                                          .fromList(
+                                                                              []),
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                ),
+                                                                allowRotation:
+                                                                    false,
+                                                                tag:
+                                                                    'imageTag2',
+                                                                useHeroAnimation:
+                                                                    true,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Hero(
+                                                          tag: 'imageTag2',
+                                                          transitionOnUserGestures:
+                                                              true,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child: Image.memory(
+                                                              imageListItem
+                                                                      .bytes ??
+                                                                  Uint8List
+                                                                      .fromList(
+                                                                          []),
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1.0, -1.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      4.0,
+                                                                      0.0),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              var confirmDialogResponse =
+                                                                  await showDialog<
+                                                                          bool>(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (alertDialogContext) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text('delete?'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                child: Text('Cancel'),
+                                                                              ),
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                child: Text('Confirm'),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      ) ??
+                                                                      false;
+                                                              if (confirmDialogResponse) {
+                                                                _model.removeFromTmpImageList(
+                                                                    imageListItem);
+                                                                setState(() {});
+                                                              }
+                                                            },
+                                                            child: Icon(
+                                                              Icons
+                                                                  .remove_circle,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              size: 24.0,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          final selectedMedia =
+                                              await selectMedia(
+                                            maxWidth: 900.00,
+                                            imageQuality: 80,
+                                            mediaSource:
+                                                MediaSource.photoGallery,
+                                            multiImage: true,
+                                          );
+                                          if (selectedMedia != null &&
+                                              selectedMedia.every((m) =>
+                                                  validateFileFormat(
+                                                      m.storagePath,
+                                                      context))) {
+                                            setState(() =>
+                                                _model.isDataUploading = true);
+                                            var selectedUploadedFiles =
+                                                <FFUploadedFile>[];
+
+                                            try {
+                                              selectedUploadedFiles =
+                                                  selectedMedia
+                                                      .map(
+                                                          (m) => FFUploadedFile(
+                                                                name: m
+                                                                    .storagePath
+                                                                    .split('/')
+                                                                    .last,
+                                                                bytes: m.bytes,
+                                                                height: m
+                                                                    .dimensions
+                                                                    ?.height,
+                                                                width: m
+                                                                    .dimensions
+                                                                    ?.width,
+                                                                blurHash:
+                                                                    m.blurHash,
+                                                              ))
+                                                      .toList();
+                                            } finally {
+                                              _model.isDataUploading = false;
+                                            }
+                                            if (selectedUploadedFiles.length ==
+                                                selectedMedia.length) {
+                                              setState(() {
+                                                _model.uploadedLocalFiles =
+                                                    selectedUploadedFiles;
+                                              });
+                                            } else {
+                                              setState(() {});
+                                              return;
+                                            }
+                                          }
+
+                                          if (_model
+                                              .uploadedLocalFiles.isNotEmpty) {
+                                            _model.tmpImageList = functions
+                                                .addUploadImageNewList(
+                                                    _model.uploadedLocalFiles
+                                                        .toList(),
+                                                    _model.tmpImageList
+                                                        .toList())!
+                                                .toList()
+                                                .cast<FFUploadedFile>();
+                                            setState(() {});
+                                            setState(() {
+                                              _model.isDataUploading = false;
+                                              _model.uploadedLocalFiles = [];
+                                            });
+                                          }
+                                        },
+                                        text: 'upload',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Flexible(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 8.0, 0.0),
+                                          child: Text(
+                                            'สถานะแสดงผล',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        child: Switch.adaptive(
+                                          value: _model.switchValue!,
+                                          onChanged: (newValue) async {
+                                            setState(() =>
+                                                _model.switchValue = newValue!);
+                                          },
+                                          activeColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          activeTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          inactiveTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          inactiveThumbColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -970,6 +1040,9 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                     r'''$.data.uploadKey''',
                                                   ).toString(),
                                                   cmd: widget.cmd,
+                                                  status: _model.switchValue!
+                                                      ? '1'
+                                                      : '0',
                                                 );
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
@@ -1107,6 +1180,9 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                     .detailTextController.text,
                                                 imagesList: _model.tmpImageList,
                                                 cmd: widget.cmd,
+                                                status: _model.switchValue!
+                                                    ? '1'
+                                                    : '0',
                                               );
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??

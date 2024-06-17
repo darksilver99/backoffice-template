@@ -147,6 +147,7 @@ class InsertproductCall {
     double? specialPrice,
     List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
+    String? status = '1',
   }) async {
     final images = imagesList ?? [];
 
@@ -166,6 +167,7 @@ class InsertproductCall {
         'special_price': specialPrice,
         'images[]': images,
         'display_image_index': displayImageIndex,
+        'status': status,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -187,6 +189,7 @@ class InsertdataCall {
     List<FFUploadedFile>? imagesList,
     int? displayImageIndex = 0,
     String? cmd = '',
+    String? status = '1',
   }) async {
     final images = imagesList ?? [];
 
@@ -204,6 +207,7 @@ class InsertdataCall {
         'images[]': images,
         'display_image_index': displayImageIndex,
         'cmd': cmd,
+        'status': status,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -229,6 +233,7 @@ class UpdateproductCall {
     int? id,
     String? uploadKey = '',
     String? productId = '',
+    String? status = '1',
   }) async {
     final images = imagesList ?? [];
 
@@ -250,6 +255,7 @@ class UpdateproductCall {
         'id': id,
         'uploadKey': uploadKey,
         'product_id': productId,
+        'status': status,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -273,6 +279,7 @@ class UpdatedataCall {
     int? id,
     String? uploadKey = '',
     String? cmd = '',
+    String? status = '1',
   }) async {
     final images = imagesList ?? [];
 
@@ -292,6 +299,7 @@ class UpdatedataCall {
         'id': id,
         'uploadKey': uploadKey,
         'cmd': cmd,
+        'status': status,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

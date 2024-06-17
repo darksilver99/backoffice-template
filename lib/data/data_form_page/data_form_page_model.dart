@@ -75,6 +75,8 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   bool isDataUploading = false;
   List<FFUploadedFile> uploadedLocalFiles = [];
 
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // Stores action output result for [Backend Call - API (updatedata)] action in Button widget.
   ApiCallResponse? apiResultdgp;
   // Stores action output result for [Backend Call - API (insertdata)] action in Button widget.
