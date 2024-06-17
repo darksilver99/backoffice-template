@@ -91,6 +91,10 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                       ))?.isRecommend ==
                       1);
             });
+            _model.displayImage = getJsonField(
+              (_model.apiResult6ha?.jsonBody ?? ''),
+              r'''$.data.display_image''',
+            ).toString().toString();
             _model.images = await actions.getCurrentImageList(
               getJsonField(
                 (_model.apiResult6ha?.jsonBody ?? ''),
