@@ -64,5 +64,8 @@ String removeAPIPath(
   String from,
   String replace,
 ) {
+  if (val == "") {
+    return "";
+  }
   return val.replaceAll(from, replace);
 }
