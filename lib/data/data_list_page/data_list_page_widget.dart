@@ -884,6 +884,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               productTmpListItem,
                                               r'''$.id''',
                                             ).toString(),
+                                            cmd: widget.cmd,
                                           );
                                           if ((_model.apiResulthok?.succeeded ??
                                               true)) {
@@ -930,6 +931,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                 start: '0',
                                                 keyword:
                                                     _model.textController.text,
+                                                cmd: widget.cmd,
                                               );
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
@@ -1019,6 +1021,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 sortField: _model.dropDownValue1,
                                 sortKey: _model.dropDownValue2,
                                 keyword: _model.textController.text,
+                                cmd: widget.cmd,
                               );
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;
