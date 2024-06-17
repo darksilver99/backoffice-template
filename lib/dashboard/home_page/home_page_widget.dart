@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -56,7 +54,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -81,7 +79,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 child: wrapWithModel(
                   model: _model.menuViewModel,
                   updateCallback: () => setState(() {}),
-                  child: MenuViewWidget(),
+                  child: const MenuViewWidget(),
                 ),
               ),
             ],
@@ -99,7 +97,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -108,14 +106,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 65.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 65.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'uid : ${valueOrDefault<String>(
-                        currentUserData?.id?.toString(),
+                        currentUserData?.id.toString(),
                         '-',
                       )}',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -184,10 +182,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       text: 'Button',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -196,7 +194,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -209,7 +207,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               wrapWithModel(
                 model: _model.menuButtonViewModel,
                 updateCallback: () => setState(() {}),
-                child: MenuButtonViewWidget(),
+                child: const MenuButtonViewWidget(),
               ),
             ],
           ),
