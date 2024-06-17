@@ -60,11 +60,11 @@ String getStatusText(String status) {
 }
 
 String removeAPIPath(
-  String val,
+  String? val,
   String from,
   String replace,
 ) {
-  if (val == "") {
+  if (val == "" || val == null) {
     return "";
   }
   return val.replaceAll(from, replace);

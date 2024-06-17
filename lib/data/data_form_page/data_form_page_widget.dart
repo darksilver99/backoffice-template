@@ -1288,7 +1288,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                       : '0',
                                                   displayImage:
                                                       functions.removeAPIPath(
-                                                          _model.displayImage!,
+                                                          _model.displayImage,
                                                           FFAppConstants
                                                               .baseURL,
                                                           ''),
@@ -1440,7 +1440,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         : '0',
                                                 displayImage:
                                                     functions.removeAPIPath(
-                                                        _model.displayImage!,
+                                                        _model.displayImage,
                                                         FFAppConstants.baseURL,
                                                         ''),
                                               );
