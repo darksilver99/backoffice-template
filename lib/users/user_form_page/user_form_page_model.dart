@@ -80,6 +80,10 @@ class UserFormPageModel extends FlutterFlowModel<UserFormPageWidget> {
   FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
+  // State field(s) for createDate widget.
+  FocusNode? createDateFocusNode;
+  TextEditingController? createDateTextController;
+  String? Function(BuildContext, String?)? createDateTextControllerValidator;
   // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
   ApiCallResponse? apiResultwd5;
   bool isDataUploading = false;
@@ -116,6 +120,9 @@ class UserFormPageModel extends FlutterFlowModel<UserFormPageWidget> {
 
     emailFocusNode?.dispose();
     emailTextController?.dispose();
+
+    createDateFocusNode?.dispose();
+    createDateTextController?.dispose();
 
     menuButtonViewModel.dispose();
   }

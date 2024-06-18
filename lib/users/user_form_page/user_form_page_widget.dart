@@ -84,6 +84,31 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                       ))?.status ==
                       1);
             });
+            setState(() {
+              _model.phoneTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.phone''',
+              ).toString().toString();
+              _model.phoneTextController?.selection = TextSelection.collapsed(
+                  offset: _model.phoneTextController!.text.length);
+            });
+            setState(() {
+              _model.emailTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.email''',
+              ).toString().toString();
+              _model.emailTextController?.selection = TextSelection.collapsed(
+                  offset: _model.emailTextController!.text.length);
+            });
+            setState(() {
+              _model.createDateTextController?.text = getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.create_date''',
+              ).toString().toString();
+              _model.createDateTextController?.selection =
+                  TextSelection.collapsed(
+                      offset: _model.createDateTextController!.text.length);
+            });
             _model.displayImage = getJsonField(
               (_model.apiResult6ha?.jsonBody ?? ''),
               r'''$.data.display_image''',
@@ -148,6 +173,9 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
 
     _model.emailTextController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
+
+    _model.createDateTextController ??= TextEditingController();
+    _model.createDateFocusNode ??= FocusNode();
 
     _model.statusSwitchValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -555,6 +583,80 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                         ),
                                     validator: _model
                                         .emailTextControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: TextFormField(
+                                    controller: _model.createDateTextController,
+                                    focusNode: _model.createDateFocusNode,
+                                    autofocus: false,
+                                    readOnly: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'วันที่สร้างข้อมูล',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    validator: _model
+                                        .createDateTextControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
