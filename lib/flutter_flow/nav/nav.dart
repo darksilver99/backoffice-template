@@ -152,6 +152,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'UserFormPage',
+          path: '/userFormPage',
+          requireAuth: true,
+          builder: (context, params) => UserFormPageWidget(
+            id: params.getParam(
+              'id',
+              ParamType.int,
+            ),
+            cmd: params.getParam(
+              'cmd',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

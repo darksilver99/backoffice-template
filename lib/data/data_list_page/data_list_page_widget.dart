@@ -675,10 +675,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                       decoration: BoxDecoration(),
                       child: Builder(
                         builder: (context) {
-                          final productTmpList = _model.dataList.toList();
+                          final dataTmpList = _model.dataList.toList();
                           return FlutterFlowDataTable<dynamic>(
                             controller: _model.paginatedDataTableController,
-                            data: productTmpList,
+                            data: dataTmpList,
                             numRows: _model.pageTotal,
                             columnsBuilder: (onSortChanged) => [
                               DataColumn2(
@@ -768,15 +768,13 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 ),
                               ),
                             ],
-                            dataRowBuilder: (productTmpListItem,
-                                    productTmpListIndex,
-                                    selected,
-                                    onSelectChanged) =>
+                            dataRowBuilder: (dataTmpListItem, dataTmpListIndex,
+                                    selected, onSelectChanged) =>
                                 DataRow(
                               selected: selected,
                               onSelectChanged: onSelectChanged,
                               color: MaterialStateProperty.all(
-                                productTmpListIndex % 2 == 0
+                                dataTmpListIndex % 2 == 0
                                     ? FlutterFlowTheme.of(context)
                                         .secondaryBackground
                                     : FlutterFlowTheme.of(context)
@@ -786,7 +784,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 SelectionArea(
                                     child: Text(
                                   getJsonField(
-                                    productTmpListItem,
+                                    dataTmpListItem,
                                     r'''$.id''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
@@ -799,7 +797,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 SelectionArea(
                                     child: Text(
                                   getJsonField(
-                                    productTmpListItem,
+                                    dataTmpListItem,
                                     r'''$.subject''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
@@ -812,7 +810,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 SelectionArea(
                                     child: Text(
                                   getJsonField(
-                                    productTmpListItem,
+                                    dataTmpListItem,
                                     r'''$.create_date''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
@@ -825,7 +823,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 SelectionArea(
                                     child: Text(
                                   functions.getStatusText(getJsonField(
-                                    productTmpListItem,
+                                    dataTmpListItem,
                                     r'''$.status''',
                                   ).toString()),
                                   style: FlutterFlowTheme.of(context)
@@ -834,21 +832,21 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: () {
                                           if (GeneralDataStruct.maybeFromMap(
-                                                      productTmpListItem)
+                                                      dataTmpListItem)
                                                   ?.status ==
                                               0) {
                                             return FlutterFlowTheme.of(context)
                                                 .tertiary;
                                           } else if (GeneralDataStruct
                                                       .maybeFromMap(
-                                                          productTmpListItem)
+                                                          dataTmpListItem)
                                                   ?.status ==
                                               1) {
                                             return FlutterFlowTheme.of(context)
                                                 .success;
                                           } else if (GeneralDataStruct
                                                       .maybeFromMap(
-                                                          productTmpListItem)
+                                                          dataTmpListItem)
                                                   ?.status ==
                                               2) {
                                             return FlutterFlowTheme.of(context)
@@ -878,7 +876,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                             queryParameters: {
                                               'id': serializeParam(
                                                 getJsonField(
-                                                  productTmpListItem,
+                                                  dataTmpListItem,
                                                   r'''$.id''',
                                                 ),
                                                 ParamType.int,
@@ -952,7 +950,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                             uid:
                                                 currentUserData?.id?.toString(),
                                             id: getJsonField(
-                                              productTmpListItem,
+                                              dataTmpListItem,
                                               r'''$.id''',
                                             ).toString(),
                                             cmd: widget.cmd,
@@ -1101,7 +1099,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 _model.pageIndex = _model.pageIndex + 1;
                                 _model.dataList = functions
                                     .addNewList(
-                                        productTmpList.toList(),
+                                        dataTmpList.toList(),
                                         getJsonField(
                                           (_model.apiResultyhb?.jsonBody ?? ''),
                                           r'''$.data''',
