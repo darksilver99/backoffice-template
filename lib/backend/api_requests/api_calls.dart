@@ -418,12 +418,13 @@ class LoginCall {
   static Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
-    String? api = '',
+    String? api = 'https://ecommerce-template.silver-api.com/api/',
   }) async {
     final ffApiRequestBody = '''
 {
   "username": "${username}",
-  "password": "${password}"
+  "password": "${password}",
+  "backend": 1
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'login',
