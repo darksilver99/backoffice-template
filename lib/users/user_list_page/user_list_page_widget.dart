@@ -308,7 +308,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                                       fontFamily: 'Readex Pro',
                                                       letterSpacing: 0.0,
                                                     ),
-                                            hintText: 'ชื่อ, รายละเอียด',
+                                            hintText: 'ชื่อ, นามสกุล',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -667,6 +667,40 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                   softWrap: true,
                                   child: SelectionArea(
                                       child: Text(
+                                    'เบอร์โทร',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  )),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: SelectionArea(
+                                      child: Text(
+                                    'อีเมล',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  )),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: SelectionArea(
+                                      child: Text(
                                     'วันที่สร้างข้อมูล',
                                     style: FlutterFlowTheme.of(context)
                                         .labelLarge
@@ -757,6 +791,32 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                     child: Text(
                                   getJsonField(
                                     dataTmpListItem,
+                                    r'''$.phone''',
+                                  ).toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                                SelectionArea(
+                                    child: Text(
+                                  getJsonField(
+                                    dataTmpListItem,
+                                    r'''$.email''',
+                                  ).toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                )),
+                                SelectionArea(
+                                    child: Text(
+                                  getJsonField(
+                                    dataTmpListItem,
                                     r'''$.create_date''',
                                   ).toString(),
                                   style: FlutterFlowTheme.of(context)
@@ -768,7 +828,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                 )),
                                 SelectionArea(
                                     child: Text(
-                                  functions.getStatusText(getJsonField(
+                                  functions.getUsersStatus(getJsonField(
                                     dataTmpListItem,
                                     r'''$.status''',
                                   ).toString()),

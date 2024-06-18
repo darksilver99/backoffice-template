@@ -69,3 +69,16 @@ String removeAPIPath(
   }
   return val.replaceAll(from, replace);
 }
+
+String getUsersStatus(String status) {
+  switch (status) {
+    case '0':
+      return "ปิดการใข้งาน";
+    case '1':
+      return "ใช้งาน";
+    case '2':
+      return "ลบแล้ว";
+    default:
+      return "-";
+  }
+}
