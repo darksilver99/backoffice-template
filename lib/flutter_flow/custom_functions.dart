@@ -83,6 +83,26 @@ String getUsersStatus(String status) {
   }
 }
 
+int getFileByte(FFUploadedFile file) {
+  return file.bytes!.length;
+}
+
+String formatFileSize(int bytes) {
+  const int kB = 1024;
+  const int mB = kB * 1024;
+  const int gB = mB * 1024;
+
+  if (bytes >= gB) {
+    return '${(bytes / gB).toStringAsFixed(2)} GB';
+  } else if (bytes >= mB) {
+    return '${(bytes / mB).toStringAsFixed(2)} MB';
+  } else if (bytes >= kB) {
+    return '${(bytes / kB).toStringAsFixed(2)} KB';
+  } else {
+    return '$bytes bytes';
+  }
+}
+
 String getFileDetail(FFUploadedFile file) {
-  return file.width.toString();
+  return "a";
 }

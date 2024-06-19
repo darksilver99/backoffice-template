@@ -1351,7 +1351,9 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              'sss.zip',
+                                                              functions
+                                                                  .getFileDetail(
+                                                                      fileListItem),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1371,9 +1373,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                   ),
                                                             ),
                                                             Text(
-                                                              functions
-                                                                  .getFileDetail(
-                                                                      fileListItem),
+                                                              '(${functions.formatFileSize(functions.getFileByte(fileListItem))})',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
