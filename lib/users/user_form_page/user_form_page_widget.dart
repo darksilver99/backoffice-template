@@ -54,6 +54,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
           token: currentUserData?.token,
           cmd: widget.cmd,
           api: FFAppConstants.apiPath,
+          functionName: widget.functionName,
         );
 
         if ((_model.apiResult6ha?.succeeded ?? true)) {
