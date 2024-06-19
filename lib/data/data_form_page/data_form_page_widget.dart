@@ -24,10 +24,12 @@ class DataFormPageWidget extends StatefulWidget {
     super.key,
     this.id,
     required this.cmd,
+    required this.functionName,
   });
 
   final int? id;
   final String? cmd;
+  final String? functionName;
 
   @override
   State<DataFormPageWidget> createState() => _DataFormPageWidgetState();
@@ -52,6 +54,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
           token: currentUserData?.token,
           cmd: widget.cmd,
           api: FFAppConstants.apiPath,
+          functionName: widget.functionName,
         );
 
         if ((_model.apiResult6ha?.succeeded ?? true)) {
@@ -1294,6 +1297,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                           FFAppConstants
                                                               .baseURL,
                                                           ''),
+                                                  updateFunction:
+                                                      _model.updateFunction,
                                                 );
 
                                                 if ((_model.apiResultdgp
@@ -1446,6 +1451,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         _model.displayImage,
                                                         FFAppConstants.baseURL,
                                                         ''),
+                                                insertFunction:
+                                                    _model.insertFunction,
                                               );
 
                                               if ((_model.apiResulto60

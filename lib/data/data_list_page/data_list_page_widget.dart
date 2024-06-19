@@ -438,6 +438,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           widget.cmd,
                                           ParamType.String,
                                         ),
+                                        'functionName': serializeParam(
+                                          _model.functionDetail,
+                                          ParamType.String,
+                                        ),
                                       }.withoutNulls,
                                     );
 
@@ -898,6 +902,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               ),
                                               'cmd': serializeParam(
                                                 widget.cmd,
+                                                ParamType.String,
+                                              ),
+                                              'functionName': serializeParam(
+                                                _model.functionDetail,
                                                 ParamType.String,
                                               ),
                                             }.withoutNulls,

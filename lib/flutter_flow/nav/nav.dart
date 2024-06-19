@@ -144,6 +144,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'cmd',
               ParamType.String,
             ),
+            functionName: params.getParam(
+              'functionName',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

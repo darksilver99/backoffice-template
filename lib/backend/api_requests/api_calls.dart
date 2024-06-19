@@ -206,12 +206,13 @@ class InsertdataCall {
     String? status = '1',
     String? api = '',
     String? isRecommend = '0',
+    String? insertFunction = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'insertdata',
-      apiUrl: '${api}insert_data',
+      apiUrl: '${api}${insertFunction}',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -225,6 +226,7 @@ class InsertdataCall {
         'cmd': cmd,
         'status': status,
         'is_recommend': isRecommend,
+        'insert_function': insertFunction,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -302,12 +304,13 @@ class UpdatedataCall {
     String? status = '1',
     String? api = '',
     String? isRecommend = '0',
+    String? updateFunction = '',
   }) async {
     final images = imagesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'updatedata',
-      apiUrl: '${api}update_data',
+      apiUrl: '${api}${updateFunction}',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -323,6 +326,7 @@ class UpdatedataCall {
         'cmd': cmd,
         'status': status,
         'is_recommend': isRecommend,
+        'update_function': updateFunction,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
