@@ -21,9 +21,11 @@ class DataListPageWidget extends StatefulWidget {
   const DataListPageWidget({
     super.key,
     required this.cmd,
+    required this.functionName,
   });
 
   final String? cmd;
+  final String? functionName;
 
   @override
   State<DataListPageWidget> createState() => _DataListPageWidgetState();
@@ -48,7 +50,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
         keyword: _model.textController.text,
         cmd: widget.cmd,
         api: FFAppConstants.apiPath,
+        functionName: widget.functionName,
       );
+
       if ((_model.apiResultmmq?.succeeded ?? true)) {
         _model.dataList = getJsonField(
           (_model.apiResultmmq?.jsonBody ?? ''),
@@ -356,7 +360,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                       keyword: _model.textController.text,
                                       cmd: widget.cmd,
                                       api: FFAppConstants.apiPath,
+                                      functionName: widget.functionName,
                                     );
+
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
                                       _model.dataList = getJsonField(
@@ -445,6 +451,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           widget.cmd,
                                           ParamType.String,
                                         ),
+                                        'functionName': serializeParam(
+                                          widget.functionName,
+                                          ParamType.String,
+                                        ),
                                       }.withoutNulls,
                                     );
                                   },
@@ -530,6 +540,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                           cmd: widget.cmd,
                                           api: FFAppConstants.apiPath,
                                         );
+
                                         if ((_model.apiResult2sk?.succeeded ??
                                             true)) {
                                           if (GeneralDataStruct.maybeFromMap(
@@ -568,6 +579,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                               queryParameters: {
                                                 'cmd': serializeParam(
                                                   'news',
+                                                  ParamType.String,
+                                                ),
+                                                'functionName': serializeParam(
+                                                  widget.functionName,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
@@ -898,6 +913,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                 widget.cmd,
                                                 ParamType.String,
                                               ),
+                                              'functionName': serializeParam(
+                                                widget.functionName,
+                                                ParamType.String,
+                                              ),
                                             }.withoutNulls,
                                           );
                                         },
@@ -956,6 +975,7 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                             cmd: widget.cmd,
                                             api: FFAppConstants.apiPath,
                                           );
+
                                           if ((_model.apiResulthok?.succeeded ??
                                               true)) {
                                             if (GeneralDataStruct.maybeFromMap(
@@ -1003,7 +1023,10 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                                     _model.textController.text,
                                                 cmd: widget.cmd,
                                                 api: FFAppConstants.apiPath,
+                                                functionName:
+                                                    widget.functionName,
                                               );
+
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
                                                   true)) {
@@ -1094,7 +1117,9 @@ class _DataListPageWidgetState extends State<DataListPageWidget> {
                                 keyword: _model.textController.text,
                                 cmd: widget.cmd,
                                 api: FFAppConstants.apiPath,
+                                functionName: widget.functionName,
                               );
+
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;
                                 _model.dataList = functions

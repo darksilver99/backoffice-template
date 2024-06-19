@@ -40,6 +40,7 @@ class ProductlistCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -56,10 +57,11 @@ class DatalistCall {
     String? sortKey = '',
     String? cmd = '',
     String? api = '',
+    String? functionName = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datalist',
-      apiUrl: '${api}data_list',
+      apiUrl: '${api}${functionName}',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -71,11 +73,13 @@ class DatalistCall {
         'sort_field': sortField,
         'sort_key': sortKey,
         'cmd': cmd,
+        'function_name': functionName,
       },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -104,6 +108,7 @@ class ProductdetailCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -116,10 +121,11 @@ class DatadetailCall {
     String? token = '',
     String? cmd = '',
     String? api = '',
+    String? functionName = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datadetail',
-      apiUrl: '${api}data_detail',
+      apiUrl: '${api}${functionName}',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -129,11 +135,13 @@ class DatadetailCall {
         'uid': uid,
         'token': token,
         'cmd': cmd,
+        'function_name': functionName,
       },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -179,6 +187,7 @@ class InsertproductCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -222,6 +231,7 @@ class InsertdataCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -271,6 +281,7 @@ class UpdateproductCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -318,6 +329,7 @@ class UpdatedataCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -347,6 +359,7 @@ class DeleteproductCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -378,6 +391,7 @@ class DeletedataCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -409,6 +423,7 @@ class RemoveimageCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -438,6 +453,7 @@ class LoginCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }

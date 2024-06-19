@@ -49,6 +49,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
         cmd: widget.cmd,
         api: FFAppConstants.apiPath,
       );
+
       if ((_model.apiResultmmq?.succeeded ?? true)) {
         _model.dataList = getJsonField(
           (_model.apiResultmmq?.jsonBody ?? ''),
@@ -357,6 +358,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                       cmd: widget.cmd,
                                       api: FFAppConstants.apiPath,
                                     );
+
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
                                       _model.dataList = getJsonField(
@@ -476,6 +478,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                           cmd: widget.cmd,
                                           api: FFAppConstants.apiPath,
                                         );
+
                                         if ((_model.apiResult2sk?.succeeded ??
                                             true)) {
                                           if (GeneralDataStruct.maybeFromMap(
@@ -962,6 +965,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                             cmd: widget.cmd,
                                             api: FFAppConstants.apiPath,
                                           );
+
                                           if ((_model.apiResulthok?.succeeded ??
                                               true)) {
                                             if (GeneralDataStruct.maybeFromMap(
@@ -1010,6 +1014,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                                 cmd: widget.cmd,
                                                 api: FFAppConstants.apiPath,
                                               );
+
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
                                                   true)) {
@@ -1101,6 +1106,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                 cmd: widget.cmd,
                                 api: FFAppConstants.apiPath,
                               );
+
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;
                                 _model.dataList = functions

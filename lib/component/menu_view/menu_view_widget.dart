@@ -187,6 +187,10 @@ class _MenuViewWidgetState extends State<MenuViewWidget> {
                     'news',
                     ParamType.String,
                   ),
+                  'functionName': serializeParam(
+                    'data_list',
+                    ParamType.String,
+                  ),
                 }.withoutNulls,
               );
             },

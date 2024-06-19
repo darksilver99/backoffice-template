@@ -51,6 +51,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
           token: currentUserData?.token,
           api: FFAppConstants.apiPath,
         );
+
         if ((_model.apiResult6ha?.succeeded ?? true)) {
           if (GeneralDataStruct.maybeFromMap(
                       (_model.apiResult6ha?.jsonBody ?? ''))
@@ -829,6 +830,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                                   FFAppConstants
                                                                       .apiPath,
                                                             );
+
                                                             if ((_model
                                                                     .apiResultwd5
                                                                     ?.succeeded ??
@@ -1266,6 +1268,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                       .text,
                                                   api: FFAppConstants.apiPath,
                                                 );
+
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
                                                     true)) {
@@ -1417,6 +1420,7 @@ class _ProductFormPageWidgetState extends State<ProductFormPageWidget> {
                                                 imagesList: _model.tmpImageList,
                                                 api: FFAppConstants.apiPath,
                                               );
+
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??
                                                   true)) {

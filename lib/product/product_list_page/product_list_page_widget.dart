@@ -43,6 +43,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
         sortKey: _model.dropDownValue2,
         api: FFAppConstants.apiPath,
       );
+
       if ((_model.apiResultmmq?.succeeded ?? true)) {
         _model.productList = getJsonField(
           (_model.apiResultmmq?.jsonBody ?? ''),
@@ -336,6 +337,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                       keyword: _model.textController.text,
                                       api: FFAppConstants.apiPath,
                                     );
+
                                     if ((_model.apiResultrcy?.succeeded ??
                                         true)) {
                                       _model.productList = getJsonField(
@@ -486,6 +488,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                           }(_model.selectedIDList.toList()),
                                           api: FFAppConstants.apiPath,
                                         );
+
                                         if ((_model.apiResult2sk?.succeeded ??
                                             true)) {
                                           if (GeneralDataStruct.maybeFromMap(
@@ -983,6 +986,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                             ).toString(),
                                             api: FFAppConstants.apiPath,
                                           );
+
                                           if ((_model.apiResulthok?.succeeded ??
                                               true)) {
                                             if (GeneralDataStruct.maybeFromMap(
@@ -1030,6 +1034,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                                     _model.textController.text,
                                                 api: FFAppConstants.apiPath,
                                               );
+
                                               if ((_model.apiResultrcy2
                                                       ?.succeeded ??
                                                   true)) {
@@ -1121,6 +1126,7 @@ class _ProductListPageWidgetState extends State<ProductListPageWidget> {
                                 keyword: _model.textController.text,
                                 api: FFAppConstants.apiPath,
                               );
+
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
                                 _model.pageIndex = _model.pageIndex + 1;
                                 _model.productList = functions

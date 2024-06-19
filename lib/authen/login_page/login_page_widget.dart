@@ -266,6 +266,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           _model.passwordTextController.text,
                                       api: FFAppConstants.apiPath,
                                     );
+
                                     if ((_model.apiResult8v9?.succeeded ??
                                         true)) {
                                       if (GeneralDataStruct.maybeFromMap((_model

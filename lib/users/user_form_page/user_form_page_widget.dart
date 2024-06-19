@@ -53,6 +53,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
           cmd: widget.cmd,
           api: FFAppConstants.apiPath,
         );
+
         if ((_model.apiResult6ha?.succeeded ?? true)) {
           if (GeneralDataStruct.maybeFromMap(
                       (_model.apiResult6ha?.jsonBody ?? ''))
@@ -829,6 +830,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                   FFAppConstants
                                                                       .apiPath,
                                                             );
+
                                                             if ((_model
                                                                     .apiResultwd5
                                                                     ?.succeeded ??
@@ -1495,6 +1497,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                               .baseURL,
                                                           ''),
                                                 );
+
                                                 if ((_model.apiResultdgp
                                                         ?.succeeded ??
                                                     true)) {
@@ -1641,6 +1644,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                         FFAppConstants.baseURL,
                                                         ''),
                                               );
+
                                               if ((_model.apiResulto60
                                                       ?.succeeded ??
                                                   true)) {
