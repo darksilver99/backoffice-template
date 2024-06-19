@@ -46,6 +46,8 @@ class UserFormPageModel extends FlutterFlowModel<UserFormPageWidget> {
 
   String? displayImage;
 
+  String updateFunction = 'update_data';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

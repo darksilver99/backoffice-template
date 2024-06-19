@@ -263,6 +263,10 @@ class _MenuViewWidgetState extends State<MenuViewWidget> {
                     'users',
                     ParamType.String,
                   ),
+                  'functionName': serializeParam(
+                    'data_list',
+                    ParamType.String,
+                  ),
                 }.withoutNulls,
               );
             },

@@ -24,10 +24,12 @@ class UserFormPageWidget extends StatefulWidget {
     super.key,
     this.id,
     required this.cmd,
+    required this.functionName,
   });
 
   final int? id;
   final String? cmd;
+  final String? functionName;
 
   @override
   State<UserFormPageWidget> createState() => _UserFormPageWidgetState();
@@ -1496,6 +1498,8 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                           FFAppConstants
                                                               .baseURL,
                                                           ''),
+                                                  updateFunction:
+                                                      _model.updateFunction,
                                                 );
 
                                                 if ((_model.apiResultdgp

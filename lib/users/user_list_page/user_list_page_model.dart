@@ -46,6 +46,8 @@ class UserListPageModel extends FlutterFlowModel<UserListPageWidget> {
   void updateSelectedIDListAtIndex(int index, Function(int) updateFn) =>
       selectedIDList[index] = updateFn(selectedIDList[index]);
 
+  String functionDetail = 'data_detail';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

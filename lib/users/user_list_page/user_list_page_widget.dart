@@ -21,9 +21,11 @@ class UserListPageWidget extends StatefulWidget {
   const UserListPageWidget({
     super.key,
     required this.cmd,
+    required this.functionName,
   });
 
   final String? cmd;
+  final String? functionName;
 
   @override
   State<UserListPageWidget> createState() => _UserListPageWidgetState();
@@ -48,6 +50,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
         keyword: _model.textController.text,
         cmd: widget.cmd,
         api: FFAppConstants.apiPath,
+        functionName: widget.functionName,
       );
 
       if ((_model.apiResultmmq?.succeeded ?? true)) {
@@ -357,6 +360,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                       keyword: _model.textController.text,
                                       cmd: widget.cmd,
                                       api: FFAppConstants.apiPath,
+                                      functionName: widget.functionName,
                                     );
 
                                     if ((_model.apiResultrcy?.succeeded ??
@@ -517,6 +521,10 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                               queryParameters: {
                                                 'cmd': serializeParam(
                                                   'news',
+                                                  ParamType.String,
+                                                ),
+                                                'functionName': serializeParam(
+                                                  widget.functionName,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
@@ -894,6 +902,10 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                                 widget.cmd,
                                                 ParamType.String,
                                               ),
+                                              'functionName': serializeParam(
+                                                _model.functionDetail,
+                                                ParamType.String,
+                                              ),
                                             }.withoutNulls,
                                           );
 
@@ -905,6 +917,10 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                             queryParameters: {
                                               'cmd': serializeParam(
                                                 widget.cmd,
+                                                ParamType.String,
+                                              ),
+                                              'functionName': serializeParam(
+                                                widget.functionName,
                                                 ParamType.String,
                                               ),
                                             }.withoutNulls,
@@ -1105,6 +1121,7 @@ class _UserListPageWidgetState extends State<UserListPageWidget> {
                                 keyword: _model.textController.text,
                                 cmd: widget.cmd,
                                 api: FFAppConstants.apiPath,
+                                functionName: widget.functionName,
                               );
 
                               if ((_model.apiResultyhb?.succeeded ?? true)) {
