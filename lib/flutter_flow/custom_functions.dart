@@ -82,3 +82,7 @@ String getUsersStatus(String status) {
       return "-";
   }
 }
+
+String getFileDetail(FFUploadedFile file) {
+  return file.width.toString();
+}

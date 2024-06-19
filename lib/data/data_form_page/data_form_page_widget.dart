@@ -13,6 +13,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -419,6 +420,20 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: Text(
+                                        'ภาพแนบ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
                                     Builder(
                                       builder: (context) {
                                         final imageList2 =
@@ -1016,7 +1031,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                 validateFileFormat(
                                                     m.storagePath, context))) {
                                           setState(() =>
-                                              _model.isDataUploading = true);
+                                              _model.isDataUploading1 = true);
                                           var selectedUploadedFiles =
                                               <FFUploadedFile>[];
 
@@ -1036,12 +1051,12 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         ))
                                                     .toList();
                                           } finally {
-                                            _model.isDataUploading = false;
+                                            _model.isDataUploading1 = false;
                                           }
                                           if (selectedUploadedFiles.length ==
                                               selectedMedia.length) {
                                             setState(() {
-                                              _model.uploadedLocalFiles =
+                                              _model.uploadedLocalFiles1 =
                                                   selectedUploadedFiles;
                                             });
                                           } else {
@@ -1051,22 +1066,456 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                         }
 
                                         if (_model
-                                            .uploadedLocalFiles.isNotEmpty) {
+                                            .uploadedLocalFiles1.isNotEmpty) {
                                           _model.tmpImageList = functions
                                               .addUploadImageNewList(
-                                                  _model.uploadedLocalFiles
+                                                  _model.uploadedLocalFiles1
                                                       .toList(),
                                                   _model.tmpImageList.toList())!
                                               .toList()
                                               .cast<FFUploadedFile>();
                                           setState(() {});
                                           setState(() {
-                                            _model.isDataUploading = false;
-                                            _model.uploadedLocalFiles = [];
+                                            _model.isDataUploading1 = false;
+                                            _model.uploadedLocalFiles1 = [];
                                           });
                                         }
                                       },
-                                      text: 'upload',
+                                      text: 'Select Image',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 8.0),
+                                      child: Text(
+                                        'เอกสารแนบ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                    Builder(
+                                      builder: (context) {
+                                        final fileList2 =
+                                            _model.currentFileList.toList();
+                                        return Wrap(
+                                          spacing: 8.0,
+                                          runSpacing: 8.0,
+                                          alignment: WrapAlignment.start,
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.start,
+                                          direction: Axis.horizontal,
+                                          runAlignment: WrapAlignment.start,
+                                          verticalDirection:
+                                              VerticalDirection.down,
+                                          clipBehavior: Clip.none,
+                                          children:
+                                              List.generate(fileList2.length,
+                                                  (fileList2Index) {
+                                            final fileList2Item =
+                                                fileList2[fileList2Index];
+                                            return Container(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              child: Stack(
+                                                children: [
+                                                  Material(
+                                                    color: Colors.transparent,
+                                                    elevation: 3.0,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: Container(
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        8.0),
+                                                            child: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .file,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 32.0,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'sss.zip',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            '(20KB.)',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize: 8.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  4.0,
+                                                                  0.0),
+                                                      child: Icon(
+                                                        Icons.remove_circle,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        size: 24.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    ),
+                                    if (_model.currentFileList.isNotEmpty)
+                                      Divider(
+                                        thickness: 1.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 8.0),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final fileList =
+                                              _model.tmpFileList.toList();
+                                          return Wrap(
+                                            spacing: 8.0,
+                                            runSpacing: 8.0,
+                                            alignment: WrapAlignment.start,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.start,
+                                            direction: Axis.horizontal,
+                                            runAlignment: WrapAlignment.start,
+                                            verticalDirection:
+                                                VerticalDirection.down,
+                                            clipBehavior: Clip.none,
+                                            children:
+                                                List.generate(fileList.length,
+                                                    (fileListIndex) {
+                                              final fileListItem =
+                                                  fileList[fileListIndex];
+                                              return Container(
+                                                width: 100.0,
+                                                height: 100.0,
+                                                child: Stack(
+                                                  children: [
+                                                    Material(
+                                                      color: Colors.transparent,
+                                                      elevation: 3.0,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Container(
+                                                        width: 100.0,
+                                                        height: 100.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .file,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 32.0,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              'sss.zip',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                            Text(
+                                                              functions
+                                                                  .getFileDetail(
+                                                                      fileListItem),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        8.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    4.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('delete?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              _model.removeFromTmpFileList(
+                                                                  fileListItem);
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                          child: Icon(
+                                                            Icons.remove_circle,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        final selectedFiles = await selectFiles(
+                                          multiFile: true,
+                                        );
+                                        if (selectedFiles != null) {
+                                          setState(() =>
+                                              _model.isDataUploading2 = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
+
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedFiles
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                        ))
+                                                    .toList();
+                                          } finally {
+                                            _model.isDataUploading2 = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                              selectedFiles.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFiles2 =
+                                                  selectedUploadedFiles;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
+                                        }
+
+                                        if (_model
+                                            .uploadedLocalFiles2.isNotEmpty) {
+                                          _model.tmpFileList = functions
+                                              .addUploadImageNewList(
+                                                  _model.uploadedLocalFiles2
+                                                      .toList(),
+                                                  _model.tmpFileList.toList())!
+                                              .toList()
+                                              .cast<FFUploadedFile>();
+                                          setState(() {});
+                                          setState(() {
+                                            _model.isDataUploading2 = false;
+                                            _model.uploadedLocalFiles2 = [];
+                                          });
+                                        }
+                                      },
+                                      text: 'Select File',
                                       options: FFButtonOptions(
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(

@@ -14,6 +14,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'data_form_page_widget.dart' show DataFormPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,27 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
 
   String updateFunction = 'update_data';
 
+  List<FFUploadedFile> tmpFileList = [];
+  void addToTmpFileList(FFUploadedFile item) => tmpFileList.add(item);
+  void removeFromTmpFileList(FFUploadedFile item) => tmpFileList.remove(item);
+  void removeAtIndexFromTmpFileList(int index) => tmpFileList.removeAt(index);
+  void insertAtIndexInTmpFileList(int index, FFUploadedFile item) =>
+      tmpFileList.insert(index, item);
+  void updateTmpFileListAtIndex(int index, Function(FFUploadedFile) updateFn) =>
+      tmpFileList[index] = updateFn(tmpFileList[index]);
+
+  List<FileDataStruct> currentFileList = [];
+  void addToCurrentFileList(FileDataStruct item) => currentFileList.add(item);
+  void removeFromCurrentFileList(FileDataStruct item) =>
+      currentFileList.remove(item);
+  void removeAtIndexFromCurrentFileList(int index) =>
+      currentFileList.removeAt(index);
+  void insertAtIndexInCurrentFileList(int index, FileDataStruct item) =>
+      currentFileList.insert(index, item);
+  void updateCurrentFileListAtIndex(
+          int index, Function(FileDataStruct) updateFn) =>
+      currentFileList[index] = updateFn(currentFileList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -78,8 +100,11 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   String? Function(BuildContext, String?)? detailTextControllerValidator;
   // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
   ApiCallResponse? apiResultwd5;
-  bool isDataUploading = false;
-  List<FFUploadedFile> uploadedLocalFiles = [];
+  bool isDataUploading1 = false;
+  List<FFUploadedFile> uploadedLocalFiles1 = [];
+
+  bool isDataUploading2 = false;
+  List<FFUploadedFile> uploadedLocalFiles2 = [];
 
   // State field(s) for recommendSwitch widget.
   bool? recommendSwitchValue;
