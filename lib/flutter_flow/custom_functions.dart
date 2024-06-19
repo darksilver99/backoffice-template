@@ -103,6 +103,16 @@ String formatFileSize(int bytes) {
   }
 }
 
-String getFileDetail(FFUploadedFile file) {
-  return "a";
+String getFileDetail(
+  dynamic file,
+  String field,
+) {
+  if (field == "name") {
+    return file.oldName;
+  }
+  return file.type;
+}
+
+dynamic fileToDynamic(FFUploadedFile file) {
+  return file;
 }

@@ -1351,9 +1351,11 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              functions
-                                                                  .getFileDetail(
-                                                                      fileListItem),
+                                                              functions.getFileDetail(
+                                                                  functions
+                                                                      .fileToDynamic(
+                                                                          fileListItem),
+                                                                  'name'),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
