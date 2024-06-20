@@ -8,14 +8,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'user_form_page_model.dart';
 export 'user_form_page_model.dart';
 
@@ -140,7 +136,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
-                      child: Text('Ok'),
+                      child: const Text('Ok'),
                     ),
                   ],
                 );
@@ -156,7 +152,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
+                    child: const Text('Ok'),
                   ),
                 ],
               );
@@ -211,7 +207,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 8.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -236,7 +232,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                 child: wrapWithModel(
                   model: _model.menuViewModel,
                   updateCallback: () => setState(() {}),
-                  child: MenuViewWidget(),
+                  child: const MenuViewWidget(),
                 ),
               ),
             ],
@@ -254,7 +250,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -281,21 +277,21 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                           return (MediaQuery.sizeOf(context).width * 0.5);
                         }
                       }(),
-                      decoration: BoxDecoration(),
-                      child: Container(
+                      decoration: const BoxDecoration(),
+                      child: SizedBox(
                         width: double.infinity,
                         child: Form(
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 64.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.firstNameTextController,
@@ -369,7 +365,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.lastNameTextController,
@@ -443,7 +439,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.phoneTextController,
@@ -517,7 +513,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.emailTextController,
@@ -591,7 +587,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 8.0),
                                   child: TextFormField(
                                     controller: _model.createDateTextController,
@@ -688,7 +684,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                   (imageList2Index) {
                                             final imageList2Item =
                                                 imageList2[imageList2Index];
-                                            return Container(
+                                            return SizedBox(
                                               width: 100.0,
                                               height: 100.0,
                                               child: Stack(
@@ -768,11 +764,11 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   4.0,
@@ -796,20 +792,20 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                     builder:
                                                                         (alertDialogContext) {
                                                                       return AlertDialog(
-                                                                        title: Text(
+                                                                        title: const Text(
                                                                             'delete?'),
                                                                         actions: [
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, false),
                                                                             child:
-                                                                                Text('Cancel'),
+                                                                                const Text('Cancel'),
                                                                           ),
                                                                           TextButton(
                                                                             onPressed: () =>
                                                                                 Navigator.pop(alertDialogContext, true),
                                                                             child:
-                                                                                Text('Confirm'),
+                                                                                const Text('Confirm'),
                                                                           ),
                                                                         ],
                                                                       );
@@ -825,7 +821,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                       ?.token,
                                                               uid: currentUserData
                                                                   ?.id
-                                                                  ?.toString(),
+                                                                  .toString(),
                                                               id: imageList2Item
                                                                   .id,
                                                               cmd: widget.cmd,
@@ -874,7 +870,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                           onPressed: () =>
                                                                               Navigator.pop(alertDialogContext),
                                                                           child:
-                                                                              Text('Ok'),
+                                                                              const Text('Ok'),
                                                                         ),
                                                                       ],
                                                                     );
@@ -897,7 +893,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                         onPressed:
                                                                             () =>
                                                                                 Navigator.pop(alertDialogContext),
-                                                                        child: Text(
+                                                                        child: const Text(
                                                                             'Ok'),
                                                                       ),
                                                                     ],
@@ -922,11 +918,11 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                   if (false)
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 1.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -947,14 +943,14 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                               FFButtonOptions(
                                                             height: 22.0,
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -990,7 +986,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Colors
                                                                   .transparent,
                                                               width: 1.0,
@@ -1017,7 +1013,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                             .alternate,
                                       ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 8.0),
                                       child: Builder(
                                         builder: (context) {
@@ -1039,7 +1035,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     (imageListIndex) {
                                               final imageListItem =
                                                   imageList[imageListIndex];
-                                              return Container(
+                                              return SizedBox(
                                                 width: 100.0,
                                                 height: 100.0,
                                                 child: Stack(
@@ -1107,11 +1103,11 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               1.0, -1.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -1136,15 +1132,15 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                           (alertDialogContext) {
                                                                         return AlertDialog(
                                                                           title:
-                                                                              Text('delete?'),
+                                                                              const Text('delete?'),
                                                                           actions: [
                                                                             TextButton(
                                                                               onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: Text('Cancel'),
+                                                                              child: const Text('Cancel'),
                                                                             ),
                                                                             TextButton(
                                                                               onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: Text('Confirm'),
+                                                                              child: const Text('Confirm'),
                                                                             ),
                                                                           ],
                                                                         );
@@ -1170,11 +1166,11 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     if (false)
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 1.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1193,14 +1189,14 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                 FFButtonOptions(
                                                               height: 22.0,
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1232,7 +1228,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                                       ),
                                                               elevation: 3.0,
                                                               borderSide:
-                                                                  BorderSide(
+                                                                  const BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -1330,10 +1326,10 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -1346,7 +1342,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -1370,7 +1366,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: Text(
                                               'สถานะการใช้งาน',
@@ -1389,7 +1385,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                           value: _model.statusSwitchValue!,
                                           onChanged: (newValue) async {
                                             setState(() => _model
-                                                .statusSwitchValue = newValue!);
+                                                .statusSwitchValue = newValue);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1418,7 +1414,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -1428,10 +1424,10 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .error,
@@ -1444,7 +1440,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -1458,7 +1454,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                         if (widget.id != null) {
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
@@ -1474,7 +1470,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                     await UpdatedataCall.call(
                                                   token: currentUserData?.token,
                                                   uid: currentUserData?.id
-                                                      ?.toString(),
+                                                      .toString(),
                                                   subject: _model
                                                       .firstNameTextController
                                                       .text,
@@ -1530,7 +1526,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: Text('Ok'),
+                                                              child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         );
@@ -1555,7 +1551,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: Text('Ok'),
+                                                              child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         );
@@ -1577,7 +1573,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: Text('Ok'),
+                                                            child: const Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1590,11 +1586,11 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                               text: 'อัพเดท',
                                               options: FFButtonOptions(
                                                 height: 40.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -1610,7 +1606,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -1632,7 +1628,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                   await InsertdataCall.call(
                                                 token: currentUserData?.token,
                                                 uid: currentUserData?.id
-                                                    ?.toString(),
+                                                    .toString(),
                                                 subject: _model
                                                     .firstNameTextController
                                                     .text,
@@ -1677,7 +1673,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: Text('Ok'),
+                                                            child: const Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1702,7 +1698,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: Text('Ok'),
+                                                            child: const Text('Ok'),
                                                           ),
                                                         ],
                                                       );
@@ -1724,7 +1720,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext),
-                                                          child: Text('Ok'),
+                                                          child: const Text('Ok'),
                                                         ),
                                                       ],
                                                     );
@@ -1737,10 +1733,10 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                             text: 'บันทึก',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1755,7 +1751,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1784,7 +1780,7 @@ class _UserFormPageWidgetState extends State<UserFormPageWidget> {
               wrapWithModel(
                 model: _model.menuButtonViewModel,
                 updateCallback: () => setState(() {}),
-                child: MenuButtonViewWidget(),
+                child: const MenuButtonViewWidget(),
               ),
             ],
           ),

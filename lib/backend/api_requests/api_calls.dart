@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
-import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -26,7 +24,7 @@ class DatalistCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datalist',
-      apiUrl: '${api}${functionName}',
+      apiUrl: '$api$functionName',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -61,10 +59,10 @@ class DatadetailCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'datadetail',
-      apiUrl: '${api}${functionName}',
+      apiUrl: '$api$functionName',
       callType: ApiCallType.GET,
       headers: {
-        'Authorization': '${token}',
+        'Authorization': '$token',
       },
       params: {
         'id': id,
@@ -104,10 +102,10 @@ class InsertdataCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'insertdata',
-      apiUrl: '${api}${insertFunction}',
+      apiUrl: '$api$insertFunction',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '${token}',
+        'Authorization': '$token',
       },
       params: {
         'uid': uid,
@@ -155,10 +153,10 @@ class UpdatedataCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'updatedata',
-      apiUrl: '${api}${updateFunction}',
+      apiUrl: '$api$updateFunction',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '${token}',
+        'Authorization': '$token',
       },
       params: {
         'uid': uid,
@@ -199,7 +197,7 @@ class DeletedataCall {
       apiUrl: '${api}delete_data',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '${token}',
+        'Authorization': '$token',
       },
       params: {
         'uid': uid,
@@ -231,7 +229,7 @@ class RemoveimageCall {
       apiUrl: '${api}remove_image',
       callType: ApiCallType.POST,
       headers: {
-        'Authorization': '${token}',
+        'Authorization': '$token',
       },
       params: {
         'uid': uid,
@@ -257,8 +255,8 @@ class LoginCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "username": "${username}",
-  "password": "${password}",
+  "username": "$username",
+  "password": "$password",
   "backend": 1
 }''';
     return ApiManager.instance.makeApiCall(
