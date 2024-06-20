@@ -105,6 +105,8 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   bool isDataUploading1 = false;
   List<FFUploadedFile> uploadedLocalFiles1 = [];
 
+  // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
+  ApiCallResponse? apiResultwd5Copy;
   bool isDataUploading2 = false;
   List<FFUploadedFile> uploadedLocalFiles2 = [];
 

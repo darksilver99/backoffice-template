@@ -1210,26 +1210,42 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                               size: 32.0,
                                                             ),
                                                           ),
-                                                          Text(
-                                                            fileList2Item
-                                                                .fileName,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              await launchURL(
+                                                                  fileList2Item
+                                                                      .url);
+                                                            },
+                                                            child: Text(
+                                                              fileList2Item
+                                                                  .fileName,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
                                                           ),
                                                           Text(
                                                             '(${functions.formatFileSize(fileList2Item.fileSize)})',
@@ -1263,13 +1279,134 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                   4.0,
                                                                   4.0,
                                                                   0.0),
-                                                      child: Icon(
-                                                        Icons.remove_circle,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        size: 24.0,
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          var confirmDialogResponse =
+                                                              await showDialog<
+                                                                      bool>(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'delete?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                Text('Cancel'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                Text('Confirm'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  ) ??
+                                                                  false;
+                                                          if (confirmDialogResponse) {
+                                                            _model.apiResultwd5Copy =
+                                                                await RemoveimageCall
+                                                                    .call(
+                                                              token:
+                                                                  currentUserData
+                                                                      ?.token,
+                                                              uid: currentUserData
+                                                                  ?.id
+                                                                  ?.toString(),
+                                                              id: fileList2Item
+                                                                  .id,
+                                                              cmd: widget.cmd,
+                                                              api:
+                                                                  FFAppConstants
+                                                                      .apiPath,
+                                                            );
+
+                                                            if ((_model
+                                                                    .apiResultwd5Copy
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              if (GeneralDataStruct.maybeFromMap(
+                                                                          (_model.apiResultwd5Copy?.jsonBody ??
+                                                                              ''))
+                                                                      ?.status ==
+                                                                  1) {
+                                                                _model.removeFromCurrentFileList(
+                                                                    fileList2Item);
+                                                                setState(() {});
+                                                              } else {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          getJsonField(
+                                                                        (_model.apiResultwd5Copy?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.msg''',
+                                                                      ).toString()),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              }
+                                                            } else {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text((_model
+                                                                            .apiResultwd5Copy
+                                                                            ?.exceptionMessage ??
+                                                                        '')),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                            }
+                                                          }
+
+                                                          setState(() {});
+                                                        },
+                                                        child: Icon(
+                                                          Icons.remove_circle,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          size: 24.0,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
