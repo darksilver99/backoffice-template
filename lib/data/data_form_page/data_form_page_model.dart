@@ -80,6 +80,8 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   ApiCallResponse? apiResult6ha;
   // Stores action output result for [Custom Action - getCurrentImageList] action in DataFormPage widget.
   List<ImageDataStruct>? images;
+  // Stores action output result for [Custom Action - getCurrentFileList] action in DataFormPage widget.
+  List<FileDataStruct>? files;
   // Model for MenuView component.
   late MenuViewModel menuViewModel;
   // State field(s) for Subject widget.

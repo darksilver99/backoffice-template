@@ -207,8 +207,10 @@ class InsertdataCall {
     String? api = '',
     String? isRecommend = '0',
     String? insertFunction = '',
+    List<FFUploadedFile>? filesList,
   }) async {
     final images = imagesList ?? [];
+    final files = filesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'insertdata',
@@ -227,6 +229,7 @@ class InsertdataCall {
         'status': status,
         'is_recommend': isRecommend,
         'insert_function': insertFunction,
+        'files[]': files,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -305,8 +308,10 @@ class UpdatedataCall {
     String? api = '',
     String? isRecommend = '0',
     String? updateFunction = '',
+    List<FFUploadedFile>? filesList,
   }) async {
     final images = imagesList ?? [];
+    final files = filesList ?? [];
 
     return ApiManager.instance.makeApiCall(
       callName: 'updatedata',
@@ -327,6 +332,7 @@ class UpdatedataCall {
         'status': status,
         'is_recommend': isRecommend,
         'update_function': updateFunction,
+        'files[]': files,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

@@ -110,6 +110,15 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
             );
             _model.currentImageList =
                 _model.images!.toList().cast<ImageDataStruct>();
+            _model.files = await actions.getCurrentFileList(
+              getJsonField(
+                (_model.apiResult6ha?.jsonBody ?? ''),
+                r'''$.data.file_list''',
+                true,
+              )!,
+            );
+            _model.currentFileList =
+                _model.files!.toList().cast<FileDataStruct>();
             setState(() {});
           } else {
             await showDialog(
@@ -1202,7 +1211,8 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                             ),
                                                           ),
                                                           Text(
-                                                            'sss.zip',
+                                                            fileList2Item
+                                                                .fileName,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -1222,7 +1232,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                                 ),
                                                           ),
                                                           Text(
-                                                            '(20KB.)',
+                                                            '(${functions.formatFileSize(fileList2Item.fileSize)})',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -1750,6 +1760,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                           ''),
                                                   updateFunction:
                                                       _model.updateFunction,
+                                                  filesList: _model.tmpFileList,
                                                 );
 
                                                 if ((_model.apiResultdgp
@@ -1904,6 +1915,7 @@ class _DataFormPageWidgetState extends State<DataFormPageWidget> {
                                                         ''),
                                                 insertFunction:
                                                     _model.insertFunction,
+                                                filesList: _model.tmpFileList,
                                               );
 
                                               if ((_model.apiResulto60
