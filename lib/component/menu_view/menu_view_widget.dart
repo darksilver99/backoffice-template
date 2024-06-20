@@ -200,7 +200,7 @@ class _MenuViewWidgetState extends State<MenuViewWidget> {
                     ParamType.String,
                   ),
                   'functionName': serializeParam(
-                    'data_list',
+                    'users_list',
                     ParamType.String,
                   ),
                 }.withoutNulls,

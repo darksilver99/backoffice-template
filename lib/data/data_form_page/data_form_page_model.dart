@@ -3,7 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/component/menu_button_view/menu_button_view_widget.dart';
 import '/component/menu_view/menu_view_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/components/test_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
@@ -100,15 +99,12 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   FocusNode? detailFocusNode;
   TextEditingController? detailTextController;
   String? Function(BuildContext, String?)? detailTextControllerValidator;
-  // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
-  ApiCallResponse? apiResultwd5;
-  bool isDataUploading1 = false;
-  List<FFUploadedFile> uploadedLocalFiles1 = [];
-
+  // Model for TestView component.
+  late TestViewModel testViewModel;
   // Stores action output result for [Backend Call - API (removeimage)] action in Icon widget.
   ApiCallResponse? apiResultwd5Copy;
-  bool isDataUploading2 = false;
-  List<FFUploadedFile> uploadedLocalFiles2 = [];
+  bool isDataUploading = false;
+  List<FFUploadedFile> uploadedLocalFiles = [];
 
   // State field(s) for recommendSwitch widget.
   bool? recommendSwitchValue;
@@ -125,6 +121,7 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
   void initState(BuildContext context) {
     menuViewModel = createModel(context, () => MenuViewModel());
     subjectTextControllerValidator = _subjectTextControllerValidator;
+    testViewModel = createModel(context, () => TestViewModel());
     menuButtonViewModel = createModel(context, () => MenuButtonViewModel());
   }
 
@@ -138,6 +135,7 @@ class DataFormPageModel extends FlutterFlowModel<DataFormPageWidget> {
     detailFocusNode?.dispose();
     detailTextController?.dispose();
 
+    testViewModel.dispose();
     menuButtonViewModel.dispose();
   }
 }

@@ -46,7 +46,7 @@ class UserFormPageModel extends FlutterFlowModel<UserFormPageWidget> {
 
   String? displayImage;
 
-  String updateFunction = 'update_data';
+  String updateFunction = 'update_users';
 
   ///  State fields for stateful widgets in this page.
 
