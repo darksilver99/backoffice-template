@@ -11,41 +11,6 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class ProductlistCall {
-  static Future<ApiCallResponse> call({
-    String? rows = '',
-    String? start = '',
-    String? uid = '',
-    String? keyword = '',
-    String? ids = '',
-    String? sortField = '',
-    String? sortKey = '',
-    String? api = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'productlist',
-      apiUrl: '${api}product_list',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        'rows': rows,
-        'start': start,
-        'uid': uid,
-        'keyword': keyword,
-        'ids': ids,
-        'sort_field': sortField,
-        'sort_key': sortKey,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class DatalistCall {
   static Future<ApiCallResponse> call({
     String? rows = '',
@@ -85,35 +50,6 @@ class DatalistCall {
   }
 }
 
-class ProductdetailCall {
-  static Future<ApiCallResponse> call({
-    int? id,
-    int? uid,
-    String? token = '',
-    String? api = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'productdetail',
-      apiUrl: '${api}product_detail',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'id': id,
-        'uid': uid,
-        'token': token,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class DatadetailCall {
   static Future<ApiCallResponse> call({
     int? id,
@@ -137,52 +73,6 @@ class DatadetailCall {
         'cmd': cmd,
         'function_name': functionName,
       },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class InsertproductCall {
-  static Future<ApiCallResponse> call({
-    String? token =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
-    String? uid = '1',
-    String? productId = '',
-    String? subject = '',
-    String? detail = '',
-    double? normalPrice,
-    double? specialPrice,
-    List<FFUploadedFile>? imagesList,
-    int? displayImageIndex = 0,
-    String? status = '1',
-    String? api = '',
-  }) async {
-    final images = imagesList ?? [];
-
-    return ApiManager.instance.makeApiCall(
-      callName: 'insertproduct',
-      apiUrl: '${api}insert_product',
-      callType: ApiCallType.POST,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'uid': uid,
-        'product_id': productId,
-        'subject': subject,
-        'detail': detail,
-        'normal_price': normalPrice,
-        'special_price': specialPrice,
-        'images[]': images,
-        'display_image_index': displayImageIndex,
-        'status': status,
-      },
-      bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -242,56 +132,6 @@ class InsertdataCall {
   }
 }
 
-class UpdateproductCall {
-  static Future<ApiCallResponse> call({
-    String? token =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
-    String? uid = '1',
-    String? subject = '',
-    String? detail = '',
-    double? normalPrice,
-    double? specialPrice,
-    List<FFUploadedFile>? imagesList,
-    int? displayImageIndex = 0,
-    int? id,
-    String? uploadKey = '',
-    String? productId = '',
-    String? status = '1',
-    String? api = '',
-  }) async {
-    final images = imagesList ?? [];
-
-    return ApiManager.instance.makeApiCall(
-      callName: 'updateproduct',
-      apiUrl: '${api}update_product',
-      callType: ApiCallType.POST,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'uid': uid,
-        'subject': subject,
-        'detail': detail,
-        'normal_price': normalPrice,
-        'special_price': specialPrice,
-        'images[]': images,
-        'display_image_index': displayImageIndex,
-        'id': id,
-        'uploadKey': uploadKey,
-        'product_id': productId,
-        'status': status,
-      },
-      bodyType: BodyType.MULTIPART,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class UpdatedataCall {
   static Future<ApiCallResponse> call({
     String? token =
@@ -333,36 +173,6 @@ class UpdatedataCall {
         'is_recommend': isRecommend,
         'update_function': updateFunction,
         'files[]': files,
-      },
-      bodyType: BodyType.MULTIPART,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class DeleteproductCall {
-  static Future<ApiCallResponse> call({
-    String? token =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjlseTY1WVBtSWYxIiwiaWF0IjoxNzE3NTY3NzM5LCJleHAiOjE3MjExNjQxMzl9.x3nz7Ktr1o_SgLkAlGHaWA-e0DBmw1tyrAqTVfCWSEU',
-    String? uid = '1',
-    String? id = '',
-    String? api = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'deleteproduct',
-      apiUrl: '${api}delete_product',
-      callType: ApiCallType.POST,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'uid': uid,
-        'id': id,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

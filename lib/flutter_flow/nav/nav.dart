@@ -95,23 +95,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
-          name: 'ProductListPage',
-          path: '/productListPage',
-          requireAuth: true,
-          builder: (context, params) => ProductListPageWidget(),
-        ),
-        FFRoute(
-          name: 'ProductFormPage',
-          path: '/productFormPage',
-          requireAuth: true,
-          builder: (context, params) => ProductFormPageWidget(
-            id: params.getParam(
-              'id',
-              ParamType.int,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'LoginPage',
           path: '/loginPage',
           builder: (context, params) => LoginPageWidget(),
